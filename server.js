@@ -1,20 +1,24 @@
 require('dotenv').config();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 const express = require('express');
 const app = express();
 
-const mysql = require('mysql')
-const connection = mysql.createConnection({
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DB
-})
+const path = require('path');
 
-connection.connect()
+// const mysql = require('mysql')
+// const connection = mysql.createConnection({
+//     host: process.env.MYSQL_HOST,
+//     user: process.env.MYSQL_USER,
+//     password: process.env.MYSQL_PASSWORD,
+//     database: process.env.MYSQL_DB
+// })
 
-app.use(express.json);
+// connection.connect()
+
+app.use(express.urlencoded({
+    extended: true
+  }));
 app.use(express.static('public'));
 
 
