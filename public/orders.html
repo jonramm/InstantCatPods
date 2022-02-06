@@ -7,6 +7,8 @@
 
     <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="./styles/headers.css" rel="stylesheet">
+    <link href="./styles/footers.css" rel="stylesheet">
     <link href="./styles/style.css" rel="stylesheet">
 
     <!-- Fonts -->
@@ -65,7 +67,30 @@
   </header>
 
       <main class="container app">
+	  <img src="./images/ordersicon.png">
           <h1>Orders</h1>
+		  <br>
+		  <form>
+			<lable>Order Date: </label>
+			<input type="date" id="order_date" name="order_date"/>
+			<lable>Total: </label>
+			<input type="number" id="total" name="total"/>
+			<lable>Status: </label>
+			<input type="text" id="status" name="status"/>
+			<br>
+			<br>
+			<br>
+			<button name="insert_btn" type="submit">Insert</button> &nbsp&nbsp&nbsp&nbsp&nbsp
+			<button name="search_btn"type="submit">Search</button>
+		  </form>
+		  <br>
+		  <br>
+		  <br>
+		  <br>
+		  <br>
+		  <br>
+		  <h2>Results:</h2>
+		  <p>Table with Delete / Edit Buttons</p>
       </main>
 
       <div class="container">
