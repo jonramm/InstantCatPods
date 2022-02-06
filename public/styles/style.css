@@ -7,6 +7,12 @@ body {
 
 main {
     padding: 5% 0 5%;
+    
+}
+
+a {
+    text-decoration: none;
+    color: rgb(195, 182, 95)
 }
 
 .bg-dark {
@@ -15,4 +21,26 @@ main {
 
 .app {
     text-align: center;
+    margin-top: 5%;
+    border-radius: 15%;
+}
+
+.logo-image {
+    width: 100px;
+    height: auto;
+}
+
+.options-list {
+    font-size: 2rem;
+    text-align: left;
+}
+
+.page-header {
+    padding-bottom: 3%;
+}
+
+.list-container {
+    text-align: center;
+    width: fit-content;
+    margin: auto;
 }
