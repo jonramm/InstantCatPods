@@ -34,8 +34,11 @@ main {
 
 .app {
     text-align: center;
-    margin-top: 5%;
     border-radius: 15%;
+}
+
+.home-content {
+  margin-top: 5%;
 }
 
 .list-container {
@@ -131,6 +134,12 @@ label {
 
 .form-input {
   margin-bottom: 3%;
+}
+
+/* Tables */
+
+.td-button {
+  width: 20px;
 }
 
 

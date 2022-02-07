@@ -73,7 +73,7 @@
 
     <img src="./images/ordersicon.png">
     <h1>Orders</h1>
-    
+
     <form>
       <div class="form-input">
         <div class="form-group">
@@ -93,8 +93,26 @@
       <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
     </form>
 
-    <h2>Results:</h2>
-    <p>Table with Delete / Edit Buttons</p>
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Order Date</th>
+          <th scope="col">Total</th>
+          <th scope="col">Status</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1/1/11</td>
+          <td>$100</td>
+          <td>Payment received</td>
+          <td class="td-button"><button class="btn btn-primary">Edit</button></td>
+          <td class="td-button"><button class="btn btn-primary">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
   </main>
 
   <div class="container">
