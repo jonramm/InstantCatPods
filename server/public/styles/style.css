@@ -114,6 +114,24 @@ main {
     text-align: left;
 }
 
+/* Forms */
+
+form {
+  width: 50%;
+  margin:3% auto 3%;
+}
+
+input {
+  margin: 5px auto;
+}
+
+label {
+  font-size: 1.6rem;
+}
+
+.form-input {
+  margin-bottom: 3%;
+}
 
 
 

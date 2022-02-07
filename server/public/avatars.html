@@ -16,9 +16,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
 
-    <title>Orders</title>
+    <title>Avatars</title>
 </head>
-
 <body>
   <header>
     <div class="px-3 py-2 bg-dark text-white">
@@ -66,29 +65,22 @@
     </div>
   </header>
 
-      <main class="container app">
-	  <img src="./images/ordersicon.png">
-          <h1>Orders</h1>
-		  <br>
+  <main class="container app">
+
+    <img src="./images/avatarsicon.png">
+    <h1>Avatars</h1>
+
 		  <form>
-			<lable>Order Date: </label>
-			<input type="date" id="order_date" name="order_date"/>
-			<lable>Total: </label>
-			<input type="number" id="total" name="total"/>
-			<lable>Status: </label>
-			<input type="text" id="status" name="status"/>
-			<br>
-			<br>
-			<br>
-			<button name="insert_btn" type="submit">Insert</button> &nbsp&nbsp&nbsp&nbsp&nbsp
-			<button name="search_btn"type="submit">Search</button>
+        <div class="form-input">
+          <div class="form-group">
+            <label for="name">Avatar Name: </label>
+			      <input type="text" id="name" name="name"/>
+          </div>
+        </div>
+        <button class="btn btn-primary" name="insert_btn" type="submit">Insert</button> &nbsp&nbsp&nbsp&nbsp&nbsp
+        <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
 		  </form>
-		  <br>
-		  <br>
-		  <br>
-		  <br>
-		  <br>
-		  <br>
+
 		  <h2>Results:</h2>
 		  <p>Table with Delete / Edit Buttons</p>
       </main>

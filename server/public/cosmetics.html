@@ -65,32 +65,33 @@
     </div>
   </header>
 
-      <main class="container app">
-		  <img src="./images/cosmeticsicon.png">
-          <h1>Cosmetics</h1>
-		  <br>
-		  <form>
-			<lable>Description: </label>
-			<input type="text" id="description" name="description"/>
-			<lable>Type: </label>
-			<input type="text" id="type" name="type"/>
-			<lable>Price: </label>
-			<input type="number" id="price" name="price"/>
-			<br>
-			<br>
-			<br>
-			<button name="insert_btn" type="submit">Insert</button> &nbsp&nbsp&nbsp&nbsp&nbsp
-			<button name="search_btn"type="submit">Search</button>
-		  </form>
-		  <br>
-		  <br>
-		  <br>
-		  <br>
-		  <br>
-		  <br>
-		  <h2>Results:</h2>
-		  <p>Table with Delete / Edit Buttons</p>
-      </main>
+  <main class="container app">
+
+		<img src="./images/cosmeticsicon.png">
+    <h1>Cosmetics</h1>
+
+		<form>
+      <div class="form-input">
+        <div class="form-group">
+          <label for="description">Description: </label>
+          <input type="text" id="description" name="description"/>
+        </div>
+        <div class="form-group">
+          <label for="type">Type: </label>
+          <input type="text" id="type" name="type"/>
+        </div>
+        <div class="form-group">
+          <label for="price">Price: </label>
+          <input type="number" id="price" name="price"/>
+        </div>  
+      </div>
+			<button class="btn btn-primary" name="insert_btn" type="submit">Insert</button> &nbsp&nbsp&nbsp&nbsp&nbsp
+			<button class="btn btn-primary" name="search_btn" type="submit">Search</button>
+		</form>
+
+    <h2>Results:</h2>
+    <p>Table with Delete / Edit Buttons</p>
+  </main>
 
       <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
