@@ -73,8 +73,12 @@
 		  <form>
         <div class="form-input">
           <div class="form-group">
+            <label for="name">User Name: </label>
+			      <input type="text" id="user_name" name="name"/>
+          </div>
+          <div class="form-group">
             <label for="name">Avatar Name: </label>
-			      <input type="text" id="name" name="name"/>
+			      <input type="text" id="avatar_name" name="name"/>
           </div>
         </div>
         <button class="btn btn-primary" name="insert_btn" type="submit">Insert</button> &nbsp&nbsp&nbsp&nbsp&nbsp
@@ -84,13 +88,15 @@
 		  <table class="table table-dark">
         <thead>
           <tr>
-            <th scope="col">Name</th>
+            <th scope="col">User Name:</th>
+            <th scope="col">Avatar Name:</th>
             <th scope="col"></th>
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
           <tr>
+            <td>John Doe</td>
             <td>Fluffy</td>
             <td class="td-button"><button class="btn btn-primary">Edit</button></td>
             <td class="td-button"><button class="btn btn-primary">Delete</button></td>
