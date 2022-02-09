@@ -77,8 +77,10 @@
     <form>
       <div class="form-input">
         <div class="form-group">
-          <label for="order_date">User: </label>
-          <input type="text" id="order_date" name="order_date" />
+          <label for="user">User: </label>
+          <select id="user" name="user">
+            <option>John Doe</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="order_date">Order Date: </label>
@@ -100,6 +102,7 @@
     <table class="table table-dark">
       <thead>
         <tr>
+          <th scope="col">ID</th>
           <th scope="col">User</th>
           <th scope="col">Order Date</th>
           <th scope="col">Total</th>
@@ -110,6 +113,7 @@
       </thead>
       <tbody>
         <tr>
+          <td>1</td>
           <td>John Doe</td>
           <td>1/1/11</td>
           <td>$100</td>
@@ -119,6 +123,15 @@
         </tr>
       </tbody>
     </table>
+
+    <div class="links-container">
+      <button type="button" class="btn btn-secondary">
+        <a class="relationship-links" href="./order-cosmetics.html"> Order Cosmetics</a>
+      </button>
+      <button type="button" class="btn btn-secondary">
+        <a class="relationship-links" href="./users-cosmetics.html">User Cosmetics</a>
+    </button>
+    </div>
   </main>
 
   <div class="container">
