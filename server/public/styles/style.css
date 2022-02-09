@@ -10,7 +10,11 @@ body {
 
 a {
     text-decoration: none;
-    color: rgb(195, 182, 95)
+    color: rgb(227, 217, 104)
+}
+
+a.relationship-links {
+  font-size: 1.5rem;
 }
 
 main {
@@ -39,6 +43,10 @@ main {
 
 .home-content {
   margin-top: 5%;
+}
+
+.links-container {
+  margin-top: 3%;
 }
 
 .list-container {
