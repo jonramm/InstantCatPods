@@ -12,7 +12,7 @@ function App() {
   return (
     <div>
       <Header />
-      <main class="container app bg-dark text-white">
+      <main class="container app">
         <Routes>
           <Route path='/' element={ <HomePage /> } />
           <Route path='/users' element={ <Users /> } />
@@ -22,7 +22,7 @@ function App() {
           <Route path='/order-cosmetics' element={ <OrderCosmetics /> } />
           <Route path='/user-cosmetics' element={ <UserCosmetics /> } /> */}
         </Routes>
-      </main>
+        </main>
       <Footer />
     </div>
   );

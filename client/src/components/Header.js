@@ -20,31 +20,31 @@ function Header() {
 
                         <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                             <li>
-                                <a href="./index.html" class="nav-link text-secondary">
+                                <a href="/" class="nav-link text-secondary">
                                     <img class="bi d-block mx-auto mb-1" width="24" height="24" src={homeIcon} />
                                         Home
                                 </a>
                             </li>
                             <li>
-                                <a href="./users.html" class="nav-link text-white">
+                                <a href="/users" class="nav-link text-white">
                                     <img class="bi d-block mx-auto mb-1" width="24" height="24" src={userIcon} />
                                         Users
                                 </a>
                             </li>
                             <li>
-                                <a href="./avatars.html" class="nav-link text-white">
+                                <a href="/avatars" class="nav-link text-white">
                                     <img class="bi d-block mx-auto mb-1" width="24" height="24" src={avatarIcon} />
                                         Avatars
                                 </a>
                             </li>
                             <li>
-                                <a href="./cosmetics.html" class="nav-link text-white">
+                                <a href="/cosmetics" class="nav-link text-white">
                                     <img class="bi d-block mx-auto mb-1" width="24" height="24" src={cosmeticIcon} />
                                         Cosmetics
                                 </a>
                             </li>
                             <li>
-                                <a href="./orders.html" class="nav-link text-white">
+                                <a href="/orders" class="nav-link text-white">
                                     <img class="bi d-block mx-auto mb-1" width="24" height="24" src={orderIcon} />
                                         Orders
                                 </a>

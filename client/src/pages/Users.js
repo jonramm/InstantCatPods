@@ -1,52 +1,81 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from 'react';
+import usersIcon from '../images/usersicon.png';
+import UsersTable from "../components/UsersTable";
 
 function Users() {
 
     const [first_name, setFirstName] = useState('')
     const [last_name, setLastName] = useState('')
     const [screen_name, setScreenName] = useState('')
-    const [date, setDate] = useState('') 
+    const [date, setDate] = useState('')
+    const [users, setUsers] = useState([])
 
-    const addUser = async ()=> {
+    const addUser = async () => {
         // function for adding User to db
         alert('user to be added to database')
     }
 
+    const loadUsers = async () => {
+        // function for retrieving users from db
+        const users = {user_id: 1,
+                first_name: "John",
+                last_name: "Doe",
+                screen_name: "jdoe",
+                dob: "1/1/11"}
+        setUsers([users])
+    }
+
+    useEffect(() => {
+        loadUsers();
+    }, [])
+
     return (
         <>
+            <img src={usersIcon} />
+            <h1>Users</h1>
             <form>
-                <label for="first_name">First Name: </label>
-                <input 
-                    type="text" 
-                    id="first_name" 
-                    value={first_name}
-                    onChange={e => setFirstName(e.target.value)} />
-                <label for="last_name">Last Name: </label>
-                <input 
-                    type="text" 
-                    id="last_name" 
-                    value={last_name}
-                    onChange={e => setLastName(e.target.value)} />
-                <label for="screen_name">Screen Name: </label>
-                <input 
-                    type="text" 
-                    id="screen_name" 
-                    value={screen_name}
-                    onChange={e => setScreenName(e.target.value)} />
-                <label for="date">Date of Birth: </label>
-                <input 
-                    type="date" 
-                    id="date" 
-                    value={date}
-                    onChange={e => setDate(e.target.value)} />
+                <div class="form-input">
+                    <div class="form-group">
+                        <label for="first_name">First Name: </label>
+                        <input class="form-control"
+                            type="text"
+                            id="first_name"
+                            value={first_name}
+                            onChange={e => setFirstName(e.target.value)} />
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name: </label>
+                        <input class="form-control"
+                            type="text"
+                            id="last_name"
+                            value={last_name}
+                            onChange={e => setLastName(e.target.value)} />
+                    </div>
+                    <div class="form-group">
+                        <label for="screen_name">Screen Name: </label>
+                        <input class="form-control"
+                            type="text"
+                            id="screen_name"
+                            value={screen_name}
+                            onChange={e => setScreenName(e.target.value)} />
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date of Birth: </label>
+                        <input class="form-control"
+                            type="date"
+                            id="date"
+                            value={date}
+                            onChange={e => setDate(e.target.value)} />
+                    </div>
+                </div>
                 <button onClick={addUser}>Insert</button>
                 <button name="search_btn" type="submit">Search</button>
             </form>
-            <h2>Results:</h2>
-            <p>Table with Delete / Edit Buttons</p>
+
+            <UsersTable users={users}/>
         </>
-)
+    )
 }
 
 export default Users;

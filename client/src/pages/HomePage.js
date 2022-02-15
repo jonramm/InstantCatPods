@@ -6,6 +6,7 @@ function HomePage() {
 
     return (
         <>
+            <main class="container app bg-dark text-white">
             <div class="page-header">
                 <img src={homeIcon} />
                     <h1>Welcome to the Instant Cat Pods Database Management Website!</h1>
@@ -20,6 +21,7 @@ function HomePage() {
                 </ul>
 
             </div>
+            </main>
         </>
     )
 }
