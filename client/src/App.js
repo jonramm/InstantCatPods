@@ -7,6 +7,7 @@ import Header from './components/Header'
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import Users from './pages/Users';
+import Orders from './pages/Orders';
 
 function App() {
   return (
@@ -16,9 +17,10 @@ function App() {
         <Routes>
           <Route path='/' element={ <HomePage /> } />
           <Route path='/users' element={ <Users /> } />
+          <Route path='/orders' element={ <Orders /> } />
           {/* <Route path='/avatars' element={ <Avatars /> } />
           <Route path='/cosmetics' element={ <Cosmetics /> } />
-          <Route path='/orders' element={ <Orders /> } />
+          
           <Route path='/order-cosmetics' element={ <OrderCosmetics /> } />
           <Route path='/user-cosmetics' element={ <UserCosmetics /> } /> */}
         </Routes>
