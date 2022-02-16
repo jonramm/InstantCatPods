@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 import usersIcon from '../images/usersicon.png';
 import UsersTable from "../components/UsersTable";
 
@@ -18,11 +19,13 @@ function Users() {
 
     const loadUsers = async () => {
         // function for retrieving users from db
-        const users = {user_id: 1,
-                first_name: "John",
-                last_name: "Doe",
-                screen_name: "jdoe",
-                dob: "1/1/11"}
+        const users = {
+            user_id: 1,
+            first_name: "John",
+            last_name: "Doe",
+            screen_name: "jdoe",
+            dob: "1/1/11"
+        }
         setUsers([users])
     }
 
@@ -32,7 +35,7 @@ function Users() {
 
     return (
         <>
-            <img src={usersIcon} alt="users icon"/>
+            <img src={usersIcon} alt="users icon" />
             <h1>Users</h1>
             <form>
                 <div class="form-input">
@@ -73,11 +76,12 @@ function Users() {
                 <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
             </form>
 
-            <UsersTable users={users}/>
+            <UsersTable users={users} />
 
             <div class="links-container">
+
                 <button type="button" class="btn btn-secondary">
-                    <a class="relationship-links" href="./users-cosmetics.html">User Cosmetics</a>
+                    <Link class="relationship-links" href="/users-cosmetics">User Cosmetics</Link>
                 </button>
             </div>
         </>

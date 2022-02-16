@@ -1,5 +1,6 @@
 import { React, useEffect } from "react";
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 import ordersIcon from '../images/ordersicon.png';
 import OrdersTable from "../components/OrdersTable";
 
@@ -83,10 +84,10 @@ function Orders() {
 
                 <div class="links-container">
                     <button type="button" class="btn btn-secondary">
-                        <a class="relationship-links" href="./order-cosmetics.html"> Order Cosmetics</a>
+                        <Link class="relationship-links" to="/order-cosmetics"> Order Cosmetics</Link>
                     </button>
                     <button type="button" class="btn btn-secondary">
-                        <a class="relationship-links" href="./users-cosmetics.html">User Cosmetics</a>
+                        <Link class="relationship-links" to="/users-cosmetics">User Cosmetics</Link>
                     </button>
                 </div>
             </>
