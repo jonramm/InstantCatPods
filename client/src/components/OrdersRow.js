@@ -4,7 +4,6 @@ function OrdersRow({ order }) {
 
     return (
         <>
-            {console.log(order)}
             <tr>
                 <td>{order.order_id}</td>
                 <td>{order.user}</td>

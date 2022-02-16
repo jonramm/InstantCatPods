@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 import ordersIcon from '../images/ordersicon.png';
 import OrdersTable from "../components/OrdersTable";
+import UserInputOptions from "../components/UserInputOptions";
 
 function Orders() {
 
@@ -11,6 +12,7 @@ function Orders() {
     const [total, setTotal] = useState()
     const [status, setStatus] = useState('')
     const [orders, setOrders] = useState([])
+    const [users, setUsers] = useState([])
 
     const loadOrders = async () => {
         // function for retrieving users from db
@@ -24,6 +26,17 @@ function Orders() {
         setOrders([orders])
     }
 
+    const loadUsers = async () => {
+        const users = [{first_name: "John",
+                      last_name: "Doe"},
+                      {first_name: "Jane",
+                      last_name: "Doe"}]
+        {console.log(users)}
+        for (const obj of users) {
+            setUsers(arr => [...arr, obj])
+        }
+    }
+
     const addOrder = async () => {
         // function for adding an order to db
         alert('Adding order...')
@@ -31,6 +44,7 @@ function Orders() {
 
     useEffect(() => {
         loadOrders();
+        loadUsers();
     }, [])
 
     return (
@@ -47,7 +61,8 @@ function Orders() {
                                 id="user"
                                 value={user}
                                 onChange={e => setUser(e.target.value)}>
-                                <option>John Doe</option>
+                                <option>--please select a user--</option>
+                                <UserInputOptions users={ users }/>
                             </select>
                         </div>
                         <div class="form-group">
