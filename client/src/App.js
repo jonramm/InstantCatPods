@@ -11,6 +11,7 @@ import Orders from './pages/Orders';
 import Avatars from './pages/Avatars';
 import Cosmetics from './pages/Cosmetics';
 import OrderCosmetics from './pages/OrderCosmetics';
+import UserCosmetics from './pages/UserCosmetics';
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
           <Route path='/cosmetics' element={ <Cosmetics /> } />
           
           <Route path='/order-cosmetics' element={ <OrderCosmetics /> } />
-          {/* <Route path='/user-cosmetics' element={ <UserCosmetics /> } /> */}
+          <Route path='/user-cosmetics' element={ <UserCosmetics /> } />
         </Routes>
         </main>
       <Footer />

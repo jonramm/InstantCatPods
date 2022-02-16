@@ -87,7 +87,7 @@ function Orders() {
                         <Link class="relationship-links" to="/order-cosmetics"> Order Cosmetics</Link>
                     </button>
                     <button type="button" class="btn btn-secondary">
-                        <Link class="relationship-links" to="/users-cosmetics">User Cosmetics</Link>
+                        <Link class="relationship-links" to="/user-cosmetics">User Cosmetics</Link>
                     </button>
                 </div>
             </>

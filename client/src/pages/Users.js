@@ -81,7 +81,7 @@ function Users() {
             <div class="links-container">
 
                 <button type="button" class="btn btn-secondary">
-                    <Link class="relationship-links" href="/users-cosmetics">User Cosmetics</Link>
+                    <Link class="relationship-links" to="/user-cosmetics">User Cosmetics</Link>
                 </button>
             </div>
         </>

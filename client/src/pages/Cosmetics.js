@@ -1,5 +1,6 @@
 import { React, useEffect } from "react";
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 import cosmeticsIcon from '../images/cosmeticsicon.png';
 import CosmeticsTable from "../components/CosmeticsTable";
 
@@ -70,13 +71,13 @@ function Cosmetics() {
             <CosmeticsTable cosmetics={cosmetics} />
 
             <div class="links-container">
-                <button type="button" class="btn btn-secondary">
-                    <a class="relationship-links" href="./order-cosmetics.html"> Order Cosmetics</a>
-                </button>
-                <button type="button" class="btn btn-secondary">
-                    <a class="relationship-links" href="./users-cosmetics.html">User Cosmetics</a>
-                </button>
-            </div>
+                    <button type="button" class="btn btn-secondary">
+                        <Link class="relationship-links" to="/order-cosmetics"> Order Cosmetics</Link>
+                    </button>
+                    <button type="button" class="btn btn-secondary">
+                        <Link class="relationship-links" to="/user-cosmetics">User Cosmetics</Link>
+                    </button>
+                </div>
 
         </>
     )

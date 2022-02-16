@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import catPodLogo from '../images/CatPodsLogo.png'
 import homeIcon from '../images/homeicon.png'
 import userIcon from '../images/usersicon.png'
@@ -13,41 +14,41 @@ function Header() {
             <div class="px-3 py-2 bg-dark text-white">
                 <div class="container">
                     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                        <a href="./index.html" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-                            <img src={catPodLogo} class="logo-image" />
+                        <Link to="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                            <img src={catPodLogo} class="logo-image" alt="logo icon" />
                                 <h1>Instant Cat Pods</h1>
-                        </a>
+                        </Link>
 
                         <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                             <li>
-                                <a href="/" class="nav-link text-secondary">
-                                    <img class="bi d-block mx-auto mb-1" width="24" height="24" src={homeIcon} />
+                                <Link to="/" class="nav-link text-secondary">
+                                    <img class="bi d-block mx-auto mb-1" width="24" height="24" src={homeIcon} alt="home icon" />
                                         Home
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="/users" class="nav-link text-white">
-                                    <img class="bi d-block mx-auto mb-1" width="24" height="24" src={userIcon} />
+                                <Link to="/users" class="nav-link text-white">
+                                    <img class="bi d-block mx-auto mb-1" width="24" height="24" src={userIcon} alt="user icon" />
                                         Users
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="/avatars" class="nav-link text-white">
-                                    <img class="bi d-block mx-auto mb-1" width="24" height="24" src={avatarIcon} />
+                                <Link to="/avatars" class="nav-link text-white">
+                                    <img class="bi d-block mx-auto mb-1" width="24" height="24" src={avatarIcon} alt="avatar icon" />
                                         Avatars
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="/cosmetics" class="nav-link text-white">
-                                    <img class="bi d-block mx-auto mb-1" width="24" height="24" src={cosmeticIcon} />
+                                <Link to="/cosmetics" class="nav-link text-white">
+                                    <img class="bi d-block mx-auto mb-1" width="24" height="24" src={cosmeticIcon} alt="cosmetic icon" />
                                         Cosmetics
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="/orders" class="nav-link text-white">
-                                    <img class="bi d-block mx-auto mb-1" width="24" height="24" src={orderIcon} />
+                                <Link to="/orders" class="nav-link text-white">
+                                    <img class="bi d-block mx-auto mb-1" width="24" height="24" src={orderIcon} alt="order icon" />
                                         Orders
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>
