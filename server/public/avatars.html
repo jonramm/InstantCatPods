@@ -65,27 +65,49 @@
     </div>
   </header>
 
-      <main class="container app">
-          <img src="./images/avatarsicon.png">
-          <h1>Avatars</h1>
-		  <br>
+  <main class="container app">
+
+    <img src="./images/avatarsicon.png">
+    <h1>Avatars</h1>
+
 		  <form>
-			<lable>Avatar Name: </label>
-			<input type="text" id="name" name="name"/>
-			<br>
-			<br>
-			<br>
-			<button name="insert_btn" type="submit">Insert</button> &nbsp&nbsp&nbsp&nbsp&nbsp
-			<button name="search_btn"type="submit">Search</button>
+        <div class="form-input">
+          <div class="form-group">
+            <label for="user_name">User Name: </label>
+			      <select id="user_name" name="name">
+              <option>John Doe</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="avatar_name">Avatar Name: </label>
+			      <input type="text" id="avatar_name" name="name"/>
+          </div>
+        </div>
+        <button class="btn btn-primary" name="insert_btn" type="submit">Insert</button> &nbsp&nbsp&nbsp&nbsp&nbsp
+        <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
 		  </form>
-		  <br>
-		  <br>
-		  <br>
-		  <br>
-		  <br>
-		  <br>
-		  <h2>Results:</h2>
-		  <p>Table with Delete / Edit Buttons</p>
+
+		  <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">User Name:</th>
+            <th scope="col">Avatar Name:</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>John Doe</td>
+            <td>Fluffy</td>
+            <td class="td-button"><button class="btn btn-primary">Edit</button></td>
+            <td class="td-button"><button class="btn btn-primary">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+
       </main>
 
       <div class="container">

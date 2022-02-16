@@ -1,5 +1,7 @@
 require('dotenv').config();
+
 const PORT = process.env.PORT || 4000;
+
 
 const express = require('express');
 const app = express();
@@ -20,11 +22,13 @@ app.use(express.urlencoded({
     extended: true
   }));
 
+
 // app.use(express.static('public'));
 
 app.get('/', (req, res) => {
   res.send('Hello from the server!')
 })
+
 
 
 app.listen(PORT, () => {
