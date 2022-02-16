@@ -75,8 +75,8 @@ function Orders() {
                                 onChange={e => setStatus(e.target.value)} />
                         </div>
                     </div>
-                    <button onClick={addOrder}>Insert</button>
-                    <button name="search_btn" type="submit">Search</button>
+                    <button class="btn btn-primary" onClick={addOrder}>Insert</button>
+                    <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
                 </form>
 
                 <OrdersTable orders={orders} />

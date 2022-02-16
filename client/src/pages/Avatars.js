@@ -1,0 +1,68 @@
+import { React, useEffect } from "react";
+import { useState } from 'react';
+import avatarsIcon from '../images/avatarsicon.png';
+import AvatarsTable from "../components/AvatarsTable";
+
+function Avatars() {
+
+    const [avatar_id, setAvatarId] = useState('')
+    const [user_name, setUserName] = useState('')
+    const [avatar_name, setAvatarName] = useState('')
+    const [avatars, setAvatars] = useState([])
+
+    const loadAvatars = async () => {
+        // function for retrieving avatars from db
+        const avatars = {
+            avatar_id: 1,
+            user_name: "John Doe",
+            avatar_name: "Fluffy",
+        }
+        setAvatars([avatars])
+    }
+
+    const addAvatar = async () => {
+        // function for adding an order to db
+        alert('Adding avatar...')
+    }
+
+    useEffect(() => {
+        loadAvatars();
+    }, [])
+
+    return (
+        <>
+            <>
+                <img src={avatarsIcon} />
+                <h1>Avatars</h1>
+                <form>
+                    <div class="form-input">
+                        <div class="form-group">
+                            <label for="user">User Name: </label>
+                            <select class="form-control"
+                                type="text"
+                                id="user"
+                                value={user_name}
+                                onChange={e => setUserName(e.target.value)}>
+                                <option>John Doe</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="avatar_name">Avatar Name: </label>
+                            <input class="form-control"
+                                type="text"
+                                id="avatar_name"
+                                value={avatar_name}
+                                onChange={e => setAvatarName(e.target.value)} />
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onClick={addAvatar}>Insert</button>
+                    <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
+                </form>
+
+                <AvatarsTable avatars={avatars} />
+            </>
+        </>
+    )
+}
+
+export default Avatars;

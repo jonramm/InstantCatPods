@@ -69,11 +69,17 @@ function Users() {
                             onChange={e => setDate(e.target.value)} />
                     </div>
                 </div>
-                <button onClick={addUser}>Insert</button>
-                <button name="search_btn" type="submit">Search</button>
+                <button class="btn btn-primary" onClick={addUser}>Insert</button>
+                <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
             </form>
 
             <UsersTable users={users}/>
+
+            <div class="links-container">
+                <button type="button" class="btn btn-secondary">
+                    <a class="relationship-links" href="./users-cosmetics.html">User Cosmetics</a>
+                </button>
+            </div>
         </>
     )
 }
