@@ -10,11 +10,13 @@ body {
 
 a {
     text-decoration: none;
+
     color: rgb(227, 217, 104)
 }
 
 a.relationship-links {
   font-size: 1.5rem;
+
 }
 
 main {
@@ -38,6 +40,7 @@ main {
 
 .app {
     text-align: center;
+
     border-radius: 15%;
 }
 
@@ -48,6 +51,7 @@ main {
 .links-container {
   margin-top: 3%;
 }
+
 
 .list-container {
     text-align: center;
@@ -125,6 +129,7 @@ main {
     text-align: left;
 }
 
+
 /* Forms */
 
 form {
@@ -149,6 +154,7 @@ label {
 .td-button {
   width: 20px;
 }
+
 
 
 
