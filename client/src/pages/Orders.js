@@ -5,10 +5,9 @@ import OrdersTable from "../components/OrdersTable";
 
 function Orders() {
 
-    const [order_id, setOrderId] = useState('')
     const [user, setUser] = useState('')
     const [order_date, setOrderDate] = useState('')
-    const [total, setTotal] = useState(0)
+    const [total, setTotal] = useState()
     const [status, setStatus] = useState('')
     const [orders, setOrders] = useState([])
 
@@ -36,7 +35,7 @@ function Orders() {
     return (
         <>
             <>
-                <img src={ordersIcon} />
+                <img src={ordersIcon} alt="orders icon"/>
                 <h1>Orders</h1>
                 <form>
                     <div class="form-input">
@@ -61,7 +60,8 @@ function Orders() {
                         <div class="form-group">
                             <label for="total">Total: </label>
                             <input class="form-control"
-                                type="text"
+                                type="number"
+                                step="any"
                                 id="total"
                                 value={total}
                                 onChange={e => setTotal(e.target.value)} />

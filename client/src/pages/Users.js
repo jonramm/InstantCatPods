@@ -32,7 +32,7 @@ function Users() {
 
     return (
         <>
-            <img src={usersIcon} />
+            <img src={usersIcon} alt="users icon"/>
             <h1>Users</h1>
             <form>
                 <div class="form-input">

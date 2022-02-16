@@ -5,7 +5,6 @@ import AvatarsTable from "../components/AvatarsTable";
 
 function Avatars() {
 
-    const [avatar_id, setAvatarId] = useState('')
     const [user_name, setUserName] = useState('')
     const [avatar_name, setAvatarName] = useState('')
     const [avatars, setAvatars] = useState([])
@@ -32,7 +31,7 @@ function Avatars() {
     return (
         <>
             <>
-                <img src={avatarsIcon} />
+                <img src={avatarsIcon} alt="avatar icon"/>
                 <h1>Avatars</h1>
                 <form>
                     <div class="form-input">
