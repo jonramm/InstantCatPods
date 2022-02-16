@@ -25,11 +25,11 @@ app.use(express.urlencoded({
 
 // app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-  res.send('Hello from the server!')
-})
+app.use(express.static(path.join(__dirname, 'build')));
 
-
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}...`)
