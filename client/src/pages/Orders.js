@@ -71,11 +71,15 @@ function Orders() {
                         </div>
                         <div class="form-group">
                             <label for="status">Status: </label>
-                            <input class="form-control"
+                            <select class="form-control"
                                 type="text"
                                 id="status"
                                 value={status}
-                                onChange={e => setStatus(e.target.value)} />
+                                onChange={e => setStatus(e.target.value)}>
+                                <option>Paid</option>
+                                <option>Pending</option>
+                                <option>Declined</option>
+                            </select>
                         </div>
                     </div>
                     <button class="btn btn-primary" onClick={addOrder}>Insert</button>
