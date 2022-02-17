@@ -5,6 +5,8 @@ import usersIcon from '../images/usersicon.png';
 import heart from '../images/heart.gif'
 import cosmeticsIcon from '../images/cosmeticsicon.png'
 import UserCosmeticsTable from "../components/UserCosmeticsTable";
+import UserInputOptions from "../components/UserInputOptions";
+import CosmeticInputOptions from "../components/CosmeticInputOptions";
 
 function UserCosmetics() {
 
@@ -15,8 +17,8 @@ function UserCosmetics() {
     const loadUserCosmetics = async () => {
         // function for retrieving user cosmetics from db
         const users = {
-            user: 1,
-            cosmetic: 2
+            user: "John Doe",
+            cosmetic: "Viking Horns"
         }
         setUserCosmetics([users])
     }
@@ -42,11 +44,12 @@ function UserCosmetics() {
                         <div class="form-group">
                             <label for="user">User: </label>
                             <select class="form-control"
-                                type="number"
+                                type="text"
                                 id="user"
                                 value={user}
                                 onChange={e => setUser(e.target.value)}>
-                                <option>1</option>
+                                <option>--please select a user--</option>
+                                <UserInputOptions />
                             </select>
                         </div>
                         <div class="form-group">
@@ -56,7 +59,8 @@ function UserCosmetics() {
                                 id="cosmetic"
                                 value={cosmetic}
                                 onChange={e => setCosmetic(e.target.value)}>
-                                <option>Viking Horns</option>
+                                <option>--please select a cosmetic--</option>
+                                <CosmeticInputOptions />
                             </select>
                         </div>
                         

@@ -5,6 +5,7 @@ import ordersIcon from '../images/ordersicon.png';
 import heart from '../images/heart.gif'
 import cosmeticsIcon from '../images/cosmeticsicon.png'
 import OrderCosmeticsTable from "../components/OrderCosmeticsTable";
+import CosmeticInputOptions from "../components/CosmeticInputOptions";
 
 function OrderCosmetics() {
 
@@ -16,7 +17,7 @@ function OrderCosmetics() {
         // function for retrieving order cosmetics from db
         const orders = {
             order: 1,
-            cosmetic: 2
+            cosmetic: "Gauntlets"
         }
         setOrderCosmetics([orders])
     }
@@ -56,7 +57,8 @@ function OrderCosmetics() {
                                 id="cosmetic"
                                 value={cosmetic}
                                 onChange={e => setCosmetic(e.target.value)}>
-                                <option>Viking Horns</option>
+                                <option>--please enter a cosmetic--</option>
+                                <CosmeticInputOptions />
                             </select>
                         </div>
                         

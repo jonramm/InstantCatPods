@@ -2,6 +2,7 @@ import { React, useEffect } from "react";
 import { useState } from 'react';
 import avatarsIcon from '../images/avatarsicon.png';
 import AvatarsTable from "../components/AvatarsTable";
+import UserInputOptions from "../components/UserInputOptions";
 
 function Avatars() {
 
@@ -42,7 +43,9 @@ function Avatars() {
                                 id="user"
                                 value={user_name}
                                 onChange={e => setUserName(e.target.value)}>
-                                <option>John Doe</option>
+                                <option>--please select a user--</option>
+                                <option>-None-</option>
+                                <UserInputOptions />
                             </select>
                         </div>
                         <div class="form-group">

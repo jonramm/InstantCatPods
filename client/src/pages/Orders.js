@@ -12,7 +12,6 @@ function Orders() {
     const [total, setTotal] = useState()
     const [status, setStatus] = useState('')
     const [orders, setOrders] = useState([])
-    const [users, setUsers] = useState([])
 
     const loadOrders = async () => {
         // function for retrieving users from db
@@ -26,17 +25,6 @@ function Orders() {
         setOrders([orders])
     }
 
-    const loadUsers = async () => {
-        const users = [{first_name: "John",
-                      last_name: "Doe"},
-                      {first_name: "Jane",
-                      last_name: "Doe"}]
-        {console.log(users)}
-        for (const obj of users) {
-            setUsers(arr => [...arr, obj])
-        }
-    }
-
     const addOrder = async () => {
         // function for adding an order to db
         alert('Adding order...')
@@ -44,7 +32,6 @@ function Orders() {
 
     useEffect(() => {
         loadOrders();
-        loadUsers();
     }, [])
 
     return (
@@ -62,7 +49,7 @@ function Orders() {
                                 value={user}
                                 onChange={e => setUser(e.target.value)}>
                                 <option>--please select a user--</option>
-                                <UserInputOptions users={ users }/>
+                                <UserInputOptions />
                             </select>
                         </div>
                         <div class="form-group">
