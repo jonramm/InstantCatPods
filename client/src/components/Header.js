@@ -21,7 +21,7 @@ function Header() {
 
                         <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                             <li>
-                                <Link to="/" class="nav-link text-secondary">
+                                <Link to="/" class="nav-link text-white">
                                     <img class="bi d-block mx-auto mb-1" width="24" height="24" src={homeIcon} alt="home icon" />
                                         Home
                                 </Link>
