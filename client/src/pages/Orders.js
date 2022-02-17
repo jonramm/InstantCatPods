@@ -72,13 +72,17 @@ function Orders() {
                         <div class="form-group">
                             <label for="status">Status: </label>
                             <input class="form-control"
-                                type="number"
+                                type="text"
                                 id="status"
                                 value={status}
                                 onChange={e => setStatus(e.target.value)} />
                         </div>
                     </div>
                     <button class="btn btn-primary" onClick={addOrder}>Insert</button>
+                    <Link to="/order-details" 
+                        state={{user: user, order_date: order_date, total: total, status: status}}>
+                        <button class="btn btn-primary">Add Cosmetics</button>
+                    </Link>
                     <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
                 </form>
 

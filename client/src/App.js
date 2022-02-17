@@ -12,6 +12,7 @@ import Avatars from './pages/Avatars';
 import Cosmetics from './pages/Cosmetics';
 import OrderCosmetics from './pages/OrderCosmetics';
 import UserCosmetics from './pages/UserCosmetics';
+import OrderDetails from './pages/OrderDetails';
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
           <Route path='/orders' element={ <Orders /> } />
           <Route path='/avatars' element={ <Avatars /> } />
           <Route path='/cosmetics' element={ <Cosmetics /> } />
-          
+          <Route path='/order-details' element={ <OrderDetails /> } />
           <Route path='/order-cosmetics' element={ <OrderCosmetics /> } />
           <Route path='/user-cosmetics' element={ <UserCosmetics /> } />
         </Routes>

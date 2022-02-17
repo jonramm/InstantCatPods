@@ -152,3 +152,9 @@ margin-bottom: 3%;
 .td-button {
 width: 20px;
 }
+
+.card {
+  width: 18rem;
+  margin: auto;
+  font-size: 1.6rem;
+}

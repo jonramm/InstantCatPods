@@ -10,7 +10,6 @@ function UserInputOptions() {
                       last_name: "Doe"},
                       {first_name: "Jane",
                       last_name: "Doe"}]
-        {console.log(users)}
         for (const obj of users) {
             setUsers(arr => [...arr, obj])
         }
@@ -22,7 +21,7 @@ function UserInputOptions() {
 
     return (
         <>
-            {users.map((user, i) => (<option>{user.first_name} {user.last_name}</option>))}
+            {users.map((user, key) => (<option id={key}>{user.first_name} {user.last_name}</option>))}
         </>
     )
 }
