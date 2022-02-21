@@ -15,14 +15,9 @@ function Orders() {
 
     const loadOrders = async () => {
         // function for retrieving users from db
-        const orders = {
-            order_id: 1,
-            user: "John Doe",
-            order_date: "2/16/22",
-            total: 19.99,
-            status: 'Paid'
-        }
-        setOrders([orders])
+        const response = await fetch('/retrieve/orders');
+        const data = await response.json();
+        setOrders(data)
     }
 
     const addOrder = async () => {
@@ -71,11 +66,15 @@ function Orders() {
                         </div>
                         <div class="form-group">
                             <label for="status">Status: </label>
-                            <input class="form-control"
+                            <select class="form-control"
                                 type="text"
                                 id="status"
                                 value={status}
-                                onChange={e => setStatus(e.target.value)} />
+                                onChange={e => setStatus(e.target.value)}>
+                                <option>Paid</option>
+                                <option>Pending</option>
+                                <option>Declined</option>
+                            </select>
                         </div>
                     </div>
                     <button class="btn btn-primary" onClick={addOrder}>Insert</button>

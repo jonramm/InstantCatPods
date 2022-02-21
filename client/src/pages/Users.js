@@ -17,16 +17,22 @@ function Users() {
         alert('user to be added to database')
     }
 
+    // const loadUsers = async () => {
+    //     // function for retrieving users from db
+    //     const users = {
+    //         user_id: 1,
+    //         first_name: "John",
+    //         last_name: "Doe",
+    //         screen_name: "jdoe",
+    //         dob: "1/1/11"
+    //     }
+    //     setUsers([users])
+    // }
+
     const loadUsers = async () => {
-        // function for retrieving users from db
-        const users = {
-            user_id: 1,
-            first_name: "John",
-            last_name: "Doe",
-            screen_name: "jdoe",
-            dob: "1/1/11"
-        }
-        setUsers([users])
+        const response = await fetch('/retrieve/users');
+        const data = await response.json();
+        setUsers(data);
     }
 
     useEffect(() => {

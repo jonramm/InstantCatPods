@@ -13,13 +13,9 @@ function Cosmetics() {
 
     const loadCosmetics = async () => {
         // function for retrieving cosmetics from db
-        const cosmetics = {
-            asset_id: 1,
-            description: "Viking Horns",
-            type: "Hat",
-            price: 2.99,
-        }
-        setCosmetics([cosmetics])
+        const response = await fetch('/retrieve/cosmetics');
+        const data = await response.json();
+        setCosmetics(data)
     }
 
     const addCosmetic = async () => {

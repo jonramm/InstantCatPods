@@ -6,7 +6,7 @@ function CosmeticsRow({ cosmetic }) {
         <>
             {console.log(cosmetic)}
             <tr>
-                <td>{cosmetic.asset_id}</td>
+                <td>{cosmetic.id}</td>
                 <td>{cosmetic.description}</td>
                 <td>{cosmetic.type}</td>
                 <td>{cosmetic.price}</td>
