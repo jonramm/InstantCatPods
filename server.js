@@ -8,6 +8,8 @@ const path = require('path');
 const mysql = require('mysql')
 const db = require('./dbcon')
 
+const retrieve = require('./routes/retrieve')
+
 // const connection = mysql.createConnection({
 //     host: process.env.MYSQL_HOST,
 //     user: process.env.MYSQL_USER,
@@ -28,14 +30,7 @@ app.use(express.urlencoded({
 
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('/api/get', (req, res) => {
-  db.query('SELECT * FROM users', (err, result) => {
-    if(err) {
-      console.log(err)
-    }
-    res.send(result)
-  })
-})
+app.use('/retrieve', retrieve)
 
 // app.get('/', function (req, res) {
 //   res.sendFile(path.join(__dirname, 'build', 'index.html'));
