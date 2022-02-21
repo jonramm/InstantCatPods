@@ -9,7 +9,7 @@ function AvatarsTable({ avatars }) {
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">User Name</th>
+                        <th scope="col">User Last Name</th>
                         <th scope="col">Avatar Name</th>
                         <th scope="col"></th>
                         <th scope="col"></th>

@@ -15,14 +15,9 @@ function Orders() {
 
     const loadOrders = async () => {
         // function for retrieving users from db
-        const orders = {
-            order_id: 1,
-            user: "John Doe",
-            order_date: "2/16/22",
-            total: 19.99,
-            status: 'Paid'
-        }
-        setOrders([orders])
+        const response = await fetch('/retrieve/orders');
+        const data = await response.json();
+        setOrders(data)
     }
 
     const addOrder = async () => {

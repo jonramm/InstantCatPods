@@ -12,7 +12,7 @@ router.get('/users', (req, res) => {
 })
 
 router.get('/avatars', (req, res) => {
-    db.query('SELECT * FROM avatars', (err, result) => {
+    db.query('SELECT a.id, a.name, u.last_name FROM avatars a JOIN users u ON a.id = u.id;', (err, result) => {
         if (err) {
             console.log(err)
         }
@@ -22,6 +22,15 @@ router.get('/avatars', (req, res) => {
 
 router.get('/cosmetics', (req, res) => {
     db.query('SELECT * FROM cosmetics', (err, result) => {
+        if (err) {
+            console.log(err)
+        }
+        res.send(result)
+    })
+})
+
+router.get('/orders', (req, res) => {
+    db.query('SELECT o.id, u.last_name, order_date, total, status FROM orders o JOIN users u ON u.id = o.id;', (err, result) => {
         if (err) {
             console.log(err)
         }
