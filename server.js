@@ -37,9 +37,9 @@ app.get('/api/get', (req, res) => {
   })
 })
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+// app.get('/', function (req, res) {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}...`)
