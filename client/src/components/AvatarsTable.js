@@ -5,7 +5,6 @@ function AvatarsTable({ avatars }) {
 
     return (
         <>
-        {console.log(avatars)}
             <table class="table table-dark">
                 <thead>
                     <tr>

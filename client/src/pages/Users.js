@@ -30,7 +30,7 @@ function Users() {
     // }
 
     const loadUsers = async () => {
-        const response = await fetch('/retrieve');
+        const response = await fetch('/retrieve/users');
         const data = await response.json();
         setUsers(data);
     }

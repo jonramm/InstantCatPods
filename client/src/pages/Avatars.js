@@ -12,12 +12,9 @@ function Avatars() {
 
     const loadAvatars = async () => {
         // function for retrieving avatars from db
-        const avatars = {
-            avatar_id: 1,
-            user_name: "John Doe",
-            avatar_name: "Fluffy",
-        }
-        setAvatars([avatars])
+        const response = await fetch('/retrieve/avatars');
+        const data = await response.json();
+        setAvatars(data);
     }
 
     const addAvatar = async () => {
