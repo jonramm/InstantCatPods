@@ -6,12 +6,9 @@ function CosmeticInputOptions() {
     const [cosmetics, setCosmetics] = useState([])
     
     const loadCosmetics = async () => {
-        const cosmetics = [{name: "Viking Horns"},
-                      {name: "Gauntlets"}]
-        {console.log(cosmetics)}
-        for (const obj of cosmetics) {
-            setCosmetics(arr => [...arr, obj])
-        }
+        const response = await fetch('/retrieve/cosmetics');
+        const data = await response.json();
+        setCosmetics(data)
     }
 
     useEffect(() => {
@@ -20,7 +17,7 @@ function CosmeticInputOptions() {
 
     return (
         <>
-            {cosmetics.map((cosmetic, i) => (<option>{cosmetic.name}</option>))}
+            {cosmetics.map((cosmetic, i) => (<option>{cosmetic.description}</option>))}
         </>
     )
 }

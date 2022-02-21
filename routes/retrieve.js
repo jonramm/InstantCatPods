@@ -20,4 +20,13 @@ router.get('/avatars', (req, res) => {
     })
 })
 
+router.get('/cosmetics', (req, res) => {
+    db.query('SELECT * FROM cosmetics', (err, result) => {
+        if (err) {
+            console.log(err)
+        }
+        res.send(result)
+    })
+})
+
 module.exports = router

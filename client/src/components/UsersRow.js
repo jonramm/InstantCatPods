@@ -6,7 +6,7 @@ function UsersRow({ user }) {
         <>
             {console.log(user)}
             <tr>
-                <td>{user.user_id}</td>
+                <td>{user.id}</td>
                 <td>{user.first_name}</td>
                 <td>{user.last_name}</td>
                 <td>{user.screen_name}</td>
