@@ -32,6 +32,9 @@ function Cosmetics() {
 
             <img src={cosmeticsIcon} alt="cosmetics icon"/>
             <h1>Cosmetics</h1>
+            <div className="container instructions table-dark bg-dark">
+                <h3>Add new cosmetic or search existing cosmetics</h3>
+            </div>
             <form>
                 <div class="form-input">
                     <div class="form-group">

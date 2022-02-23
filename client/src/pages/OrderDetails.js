@@ -57,6 +57,9 @@ function OrderDetails() {
             </div>
 
             <div className='col'>
+            <div className="container instructions table-dark bg-dark">
+                <h3>Add cosmetics to order</h3>
+            </div>
             <form>
                 <div className="form-input">
                     <label for="cosmetic">Cosmetic: </label>

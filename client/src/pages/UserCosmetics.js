@@ -39,6 +39,9 @@ function UserCosmetics() {
                 <img src={heart} alt="heart gif"/>
                 <img src={cosmeticsIcon} alt="cosmetics icon"/>
                 <h1>User Cosmetics</h1>
+                <div className="container instructions table-dark bg-dark">
+                    <h3>Add cosmetics to users</h3>
+                </div>
                 <form>
                     <div class="form-input">
                         <div class="form-group">

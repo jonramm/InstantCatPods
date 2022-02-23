@@ -6,6 +6,7 @@ import heart from '../images/heart.gif'
 import cosmeticsIcon from '../images/cosmeticsicon.png'
 import OrderCosmeticsTable from "../components/OrderCosmeticsTable";
 import CosmeticInputOptions from "../components/CosmeticInputOptions";
+import OrderInputOptions from "../components/OrderInputOptions";
 
 function OrderCosmetics() {
 
@@ -38,6 +39,9 @@ function OrderCosmetics() {
                 <img src={heart} alt="heart gif"/>
                 <img src={cosmeticsIcon} alt="cosmetics icon"/>
                 <h1>Order Cosmetics</h1>
+                <div className="container instructions table-dark bg-dark">
+                    <h3>Add cosmetics to orders</h3>
+                </div>
                 <form>
                     <div class="form-input">
                         <div class="form-group">
@@ -47,7 +51,7 @@ function OrderCosmetics() {
                                 id="order"
                                 value={order}
                                 onChange={e => setOrder(e.target.value)}>
-                                <option>1</option>
+                                <OrderInputOptions />
                             </select>
                         </div>
                         <div class="form-group">
