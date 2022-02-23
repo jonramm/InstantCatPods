@@ -1,22 +1,4 @@
 
--- SELECT QUERIES --
-
---Select all rows and columns from Users
-SELECT * FROM USERS;
-
---Select and display all rows and columns from Avatars with User last name in place of user id
-SELECT a.id, u.last_name, a.name 
-FROM avatars a JOIN users u ON a.id = u.id;
-
---Select and display all rows and columns from Cosmetics
-SELECT * FROM cosmetics;
-
---Select and display all rows and columns from Orders, replacing user_id with User's last name
-SELECT o.id, u.last_name, order_date, total, status 
-FROM orders o JOIN users u ON u.id = o.id;
-
---INSERT QUERIES--
-
 --USERS--
 
 -- add a new USER
@@ -26,6 +8,9 @@ VALUES (:first_name, :last_name, :screen_name, :dob);
 -- Get all User information in alphabetical order by first name
 SELECT id, first_name, last_name, screen_name, dob FROM users
 ORDER BY first_name ASC;
+
+--Select all rows and columns from Users
+SELECT * FROM users;
 
 -- Delete a USER
 DELETE FROM users WHERE id = :selected_user_id; -- corresponding table data, not sure how to do this
@@ -42,9 +27,12 @@ VALUES (:avatar_name, :user_name);
 SELECT user_id, name FROM avatars
 ORDER BY user_id ASC;
 
+--Select and display all rows and columns from Avatars with User last name in place of user id
+SELECT a.id, u.last_name, a.name 
+FROM avatars a JOIN users u ON a.id = u.id;
+
 -- Delete an AVATAR
 DELETE FROM avatars WHERE id = :selected_avatar_id; -- corresponding table data, not sure how to do this
-
 
 
 
@@ -58,9 +46,11 @@ VALUES (:description, :type, :price);
 SELECT description, type, price FROM cosmetics
 ORDER BY price DESC;
 
+--Select and display all rows and columns from Cosmetics
+SELECT * FROM cosmetics;
+
 -- Delete a COSMETIC
 DELETE FROM cosmetics WHERE id = :selected_cosmetic_id; -- corresponding table data
-
 
 
 
@@ -77,9 +67,12 @@ INNER JOIN orders_cosmetics on orders.id = order_id
 INNER JOIN cosmetics ON cosmetics.id = asset_id;
 ORDER BY order_date DESC;
 
+--Select and display all rows and columns from Orders, replacing user_id with User's last name
+SELECT o.id, u.last_name, order_date, total, status 
+FROM orders o JOIN users u ON u.id = o.id;
+
 -- Delete an ORDER
 DELETE FROM orders WHERE id = :selected_order_id; -- corresponding table data
-
 
 
 
@@ -93,7 +86,6 @@ VALUES (:order, :cosmetic);
 
 
 
-
 -- USERS_COSMETICS--
 
 --add a new USERS_COSMETICS
@@ -101,3 +93,4 @@ INSERT INTO users_cosmetics(user_id, asset_id)
 VALUES (:user, :cosmetic);
 
 --
+ 
