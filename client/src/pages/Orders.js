@@ -32,8 +32,11 @@ function Orders() {
     return (
         <>
             <>
-                <img src={ordersIcon} alt="orders icon"/>
+                <img src={ordersIcon} alt="orders icon" />
                 <h1>Orders</h1>
+                <div className="container instructions table-dark bg-dark">
+                    <h3>Add new order or search existing orders</h3>
+                </div>
                 <form>
                     <div class="form-input">
                         <div class="form-group">
@@ -78,8 +81,8 @@ function Orders() {
                         </div>
                     </div>
                     <button class="btn btn-primary" onClick={addOrder}>Insert</button>
-                    <Link to="/order-details" 
-                        state={{user: user, order_date: order_date, total: total, status: status}}>
+                    <Link to="/order-details"
+                        state={{ user: user, order_date: order_date, total: total, status: status }}>
                         <button class="btn btn-primary">Add Cosmetics</button>
                     </Link>
                     <button class="btn btn-primary" name="search_btn" type="submit">Search</button>

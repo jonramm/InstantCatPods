@@ -17,18 +17,6 @@ function Users() {
         alert('user to be added to database')
     }
 
-    // const loadUsers = async () => {
-    //     // function for retrieving users from db
-    //     const users = {
-    //         user_id: 1,
-    //         first_name: "John",
-    //         last_name: "Doe",
-    //         screen_name: "jdoe",
-    //         dob: "1/1/11"
-    //     }
-    //     setUsers([users])
-    // }
-
     const loadUsers = async () => {
         const response = await fetch('/retrieve/users');
         const data = await response.json();
@@ -43,6 +31,9 @@ function Users() {
         <>
             <img src={usersIcon} alt="users icon" />
             <h1>Users</h1>
+            <div className="container instructions table-dark bg-dark">
+                <h3>Add new user or search existing users</h3>
+            </div>
             <form>
                 <div class="form-input">
                     <div class="form-group">

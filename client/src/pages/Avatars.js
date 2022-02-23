@@ -31,6 +31,9 @@ function Avatars() {
             <>
                 <img src={avatarsIcon} alt="avatar icon"/>
                 <h1>Avatars</h1>
+                <div className="container instructions table-dark bg-dark">
+                <h3>Add new avatar or search existing avatars</h3>
+            </div>
                 <form>
                     <div class="form-input">
                         <div class="form-group">

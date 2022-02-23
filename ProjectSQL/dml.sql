@@ -12,6 +12,11 @@ ORDER BY first_name ASC;
 --Select all rows and columns from Users
 SELECT * FROM users;
 
+--Update a USER
+UPDATE users
+SET first_name = :new_first_name, last_name = :new_last_name, screen_name = :new_screen_name, dob = new_dob
+WHERE id = :selected_id;
+
 -- Delete a USER
 DELETE FROM users WHERE id = :selected_user_id; -- corresponding table data, not sure how to do this
 
@@ -31,6 +36,10 @@ ORDER BY user_id ASC;
 SELECT a.id, u.last_name, a.name 
 FROM avatars a JOIN users u ON a.id = u.id;
 
+UPDATE avatars
+SET name = :new_name, user_id = :new_user_id
+WHERE id = :selected_id;
+
 -- Delete an AVATAR
 DELETE FROM avatars WHERE id = :selected_avatar_id; -- corresponding table data, not sure how to do this
 
@@ -48,6 +57,10 @@ ORDER BY price DESC;
 
 --Select and display all rows and columns from Cosmetics
 SELECT * FROM cosmetics;
+
+UPDATE cosmetics
+SET description = :new_description, type = :new_type, price = :new_price
+WHERE id = :selected_id;
 
 -- Delete a COSMETIC
 DELETE FROM cosmetics WHERE id = :selected_cosmetic_id; -- corresponding table data
@@ -71,6 +84,10 @@ ORDER BY order_date DESC;
 SELECT o.id, u.last_name, order_date, total, status 
 FROM orders o JOIN users u ON u.id = o.id;
 
+UPDATE orders
+SET order_date = :new_order_date, total = :new_total, status = :new_status, user_id = :new_user_id
+WHERE id = :selected_id;
+
 -- Delete an ORDER
 DELETE FROM orders WHERE id = :selected_order_id; -- corresponding table data
 
@@ -78,9 +95,19 @@ DELETE FROM orders WHERE id = :selected_order_id; -- corresponding table data
 
 --ORDERS_COSMETICS--
 
+--Retrieve orders_cosmetics where cosmetic is represented by its description 
+SELECT o.id, c.description FROM orders_cosmetics oc
+JOIN orders o ON o.id = oc.order_id
+JOIN cosmetics c on c.id = oc.asset_id
+ORDER BY o.id;
+
 -- add a new ORDERS_COSMETICS
 INSERT INTO orders_cosmetics(order_id, asset_id)
 VALUES (:order, :cosmetic);
+
+--Delete relationship by proividing order_id and asset_id
+DELETE FROM orders_cosmetics
+WHERE order_id = :selected_order_id AND asset_id = :selected_asset_id;
 
 -- 
 
@@ -88,9 +115,19 @@ VALUES (:order, :cosmetic);
 
 -- USERS_COSMETICS--
 
+--Retrive users_cosmetics data where user is represented by last name and cosmetic by description
+SELECT u.last_name, c.description FROM users_cosmetics uc
+JOIN users u ON u.id = uc.user_id
+JOIN cosmetics c on c.id = uc.asset_id
+ORDER BY u.last_name;
+
 --add a new USERS_COSMETICS
 INSERT INTO users_cosmetics(user_id, asset_id)
 VALUES (:user, :cosmetic);
+
+--Delete relationship by proividing user_id and asset_id
+DELETE FROM userss_cosmetics
+WHERE user_id = :selected_user_id AND asset_id = :selected_asset_id;
 
 --
  
