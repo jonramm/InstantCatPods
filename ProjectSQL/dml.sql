@@ -10,7 +10,11 @@ SELECT id, first_name, last_name, screen_name, dob FROM users
 ORDER BY first_name ASC;
 
 --Select all rows and columns from Users
-SELECT * FROM users;
+SELECT * FROM users
+
+--Select all rows and columns from a single user
+SELECT * FROM users
+WHERE id = :selected_id
 
 --Update a USER
 UPDATE users
@@ -36,6 +40,10 @@ ORDER BY user_id ASC;
 SELECT a.id, u.last_name, a.name 
 FROM avatars a JOIN users u ON a.id = u.id;
 
+--Select all rows and columns from a single avatar
+SELECT * FROM avatars
+WHERE id = :selected_id
+
 UPDATE avatars
 SET name = :new_name, user_id = :new_user_id
 WHERE id = :selected_id;
@@ -57,6 +65,10 @@ ORDER BY price DESC;
 
 --Select and display all rows and columns from Cosmetics
 SELECT * FROM cosmetics;
+
+--Select all rows and columns from a single cosmetic
+SELECT * FROM cosmetics
+WHERE id = :selected_id
 
 UPDATE cosmetics
 SET description = :new_description, type = :new_type, price = :new_price
@@ -83,6 +95,10 @@ ORDER BY order_date DESC;
 --Select and display all rows and columns from Orders, replacing user_id with User's last name
 SELECT o.id, u.last_name, order_date, total, status 
 FROM orders o JOIN users u ON u.id = o.id;
+
+--Select all rows and columns from a single order
+SELECT * FROM orders
+WHERE id = :selected_id
 
 UPDATE orders
 SET order_date = :new_order_date, total = :new_total, status = :new_status, user_id = :new_user_id
