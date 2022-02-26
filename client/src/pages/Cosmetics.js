@@ -18,9 +18,34 @@ function Cosmetics() {
         setCosmetics(data)
     }
 
-    const addCosmetic = async () => {
-        // function for adding a cosmetic to db
-        alert('Adding avatar...')
+    const clearFields = () => {
+        setDescription('')
+        setType('')
+        setPrice()
+    }
+
+    const createCosmetic = async (e) => {
+        e.preventDefault();
+        const newCosmetic = { description, type, price };
+        if (description && type && price) {
+            const response = await fetch('/create/cosmetics', {
+                method: 'POST',
+                body: JSON.stringify(newCosmetic),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            if (response.status === 200) {
+                alert('Successfully added the cosmetic!')
+                clearFields();
+                loadCosmetics();
+            } else {
+                alert(`Failed to add cosmetic, status code = ${response.status}.`)
+                clearFields();
+            }
+        } else {
+            alert('Please fill out all fields')
+        }
     }
 
     useEffect(() => {
@@ -47,11 +72,16 @@ function Cosmetics() {
                     </div>
                     <div class="form-group">
                         <label for="type">Type: </label>
-                        <input class="form-control"
+                        <select class="form-control"
                             type="text"
                             id="type"
                             value={type}
-                            onChange={e => setType(e.target.value)} />
+                            onChange={e => setType(e.target.value)}>
+                            <option value=''>--please select a type--</option>
+                            <option>Head Gear</option>
+                            <option>Torso Gear</option>
+                            <option>Feet Gear</option>
+                        </select>   
                     </div>
                     <div class="form-group">
                         <label for="price">Price: </label>
@@ -63,7 +93,7 @@ function Cosmetics() {
                             onChange={e => setPrice(e.target.value)} />
                     </div>
                 </div>
-                <button class="btn btn-primary" onClick={addCosmetic}>Insert</button>
+                <button class="btn btn-primary" onClick={createCosmetic}>Insert</button>
                 <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
             </form>
 

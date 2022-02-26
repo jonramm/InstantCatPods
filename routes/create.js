@@ -13,7 +13,6 @@ router.post('/users', (req, res) => {
 })
 
 router.post('/avatars', (req, res) => {
-  console.log(req.body)
   if (req.body.name && req.body.user_id) {
     db.query(`INSERT INTO avatars (name, user_id) VALUES ('${req.body.name}', ${req.body.user_id});`, (err, result) => {
       if(err) {
@@ -29,7 +28,15 @@ router.post('/avatars', (req, res) => {
       res.send(result)
     })
   }
-  
+})
+
+router.post('/cosmetics', (req, res) => {
+  db.query(`INSERT INTO cosmetics (description, type, price) VALUES ('${req.body.description}', '${req.body.type}', ${req.body.price});`, (err, result) => {
+    if(err) {
+      console.log(err)
+    }
+    res.send(result)
+  })
 })
 
 module.exports = router
