@@ -23,8 +23,9 @@ function Users() {
         setUsers(data);
     }
 
-    const createUser = async () => {
-        const newUser = {first_name, last_name, screen_name, dob};
+    const createUser = async (e) => {
+        e.preventDefault();
+        const newUser = { first_name, last_name, screen_name, dob };
         const response = await fetch('/create/users', {
             method: 'POST',
             body: JSON.stringify(newUser),
@@ -32,7 +33,7 @@ function Users() {
                 'Content-Type': 'application/json',
             },
         });
-        if (response.status === 201) {
+        if (response.status === 200) {
             alert('Successfully added the user!')
         } else {
             alert(`Failed to add user, status code = ${response.status}.`)
