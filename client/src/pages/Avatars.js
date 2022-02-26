@@ -6,8 +6,8 @@ import UserInputOptions from "../components/UserInputOptions";
 
 function Avatars() {
 
-    const [user_name, setUserName] = useState('')
-    const [avatar_name, setAvatarName] = useState('')
+    const [user_id, setUserId] = useState()
+    const [name, setName] = useState('')
     const [avatars, setAvatars] = useState([])
 
     const loadAvatars = async () => {
@@ -17,9 +17,33 @@ function Avatars() {
         setAvatars(data);
     }
 
-    const addAvatar = async () => {
-        // function for adding an order to db
-        alert('Adding avatar...')
+    const clearFields = () => {
+        setUserId()
+        setName('')
+    }
+
+    const createAvatar = async (e) => {
+        e.preventDefault();
+        const newUser = { name, user_id };
+        if (name) {
+            const response = await fetch('/create/avatars', {
+                method: 'POST',
+                body: JSON.stringify(newUser),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            if (response.status === 200) {
+                alert('Successfully added the avatar!')
+                clearFields();
+                loadAvatars();
+            } else {
+                alert(`Failed to add avatar, status code = ${response.status}.`)
+                clearFields();
+            }
+        } else {
+            alert('Please fill out all fields')
+        }
     }
 
     useEffect(() => {
@@ -41,10 +65,10 @@ function Avatars() {
                             <select class="form-control"
                                 type="text"
                                 id="user"
-                                value={user_name}
-                                onChange={e => setUserName(e.target.value)}>
+                                value={user_id}
+                                onChange={e => setUserId(e.target.value)}>
                                 <option>--please select a user--</option>
-                                <option>-None-</option>
+                                <option value=''>-None-</option>
                                 <UserInputOptions />
                             </select>
                         </div>
@@ -53,11 +77,11 @@ function Avatars() {
                             <input class="form-control"
                                 type="text"
                                 id="avatar_name"
-                                value={avatar_name}
-                                onChange={e => setAvatarName(e.target.value)} />
+                                value={name}
+                                onChange={e => setName(e.target.value)} />
                         </div>
                     </div>
-                    <button class="btn btn-primary" onClick={addAvatar}>Insert</button>
+                    <button class="btn btn-primary" onClick={createAvatar}>Insert</button>
                     <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
                 </form>
 

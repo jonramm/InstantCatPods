@@ -27,7 +27,7 @@ function UserInputOptions() {
 
     return (
         <>
-            {users.map((user, key) => (<option id={key}>{user.first_name} {user.last_name}</option>))}
+            {users.map((user, key) => (<option value={user.id} id={key}>{user.first_name} {user.last_name}</option>))}
         </>
     )
 }
