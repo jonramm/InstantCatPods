@@ -12,31 +12,40 @@ function Users() {
     const [dob, setDob] = useState('')
     const [users, setUsers] = useState([])
 
-    const addUser = async () => {
-        // function for adding User to db
-        alert('user to be added to database')
-    }
-
     const loadUsers = async () => {
         const response = await fetch('/retrieve/users');
         const data = await response.json();
         setUsers(data);
     }
 
+    const clearFields = () => {
+        setFirstName('')
+        setLastName('')
+        setScreenName('')
+        setDob('')
+    }
+
     const createUser = async (e) => {
         e.preventDefault();
         const newUser = { first_name, last_name, screen_name, dob };
-        const response = await fetch('/create/users', {
-            method: 'POST',
-            body: JSON.stringify(newUser),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        if (response.status === 200) {
-            alert('Successfully added the user!')
+        if (first_name && last_name && screen_name && dob) {
+            const response = await fetch('/create/users', {
+                method: 'POST',
+                body: JSON.stringify(newUser),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            if (response.status === 200) {
+                alert('Successfully added the user!')
+                clearFields();
+                loadUsers();
+            } else {
+                alert(`Failed to add user, status code = ${response.status}.`)
+                clearFields();
+            }
         } else {
-            alert(`Failed to add user, status code = ${response.status}.`)
+            alert('Please fill out all fields')
         }
     }
 
