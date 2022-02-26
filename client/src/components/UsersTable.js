@@ -1,7 +1,7 @@
 import React from "react";
 import UsersRow from "./UsersRow";
 
-function UsersTable({ users }) {
+function UsersTable({ users, onDelete }) {
 
     return (
         <>
@@ -18,7 +18,7 @@ function UsersTable({ users }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map((user, i) => (<UsersRow user={user} key={i} />))}
+                    {users.map((user, i) => (<UsersRow user={user} onDelete={onDelete} key={i} />))}
                 </tbody>
             </table>
         </>

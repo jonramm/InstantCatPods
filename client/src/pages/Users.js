@@ -49,6 +49,16 @@ function Users() {
         }
     }
 
+    const deleteUser = async id => {
+        const response = await fetch(`/destroy/users/${id}`, { method: 'DELETE' });
+        if (response.status === 200) {
+            alert('Successfully deleted the user!')
+            loadUsers()
+        } else {
+            alert(`Failed to delete user, status code = ${response.status}.`)
+        }
+    }
+
     useEffect(() => {
         loadUsers();
     }, [])
@@ -99,7 +109,7 @@ function Users() {
                 <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
             </form>
 
-            <UsersTable users={users} />
+            <UsersTable users={users} onDelete={deleteUser} />
 
             <div class="links-container">
 
