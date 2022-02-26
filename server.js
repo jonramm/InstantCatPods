@@ -7,8 +7,10 @@ const app = express();
 const path = require('path');
 const mysql = require('mysql')
 const db = require('./dbcon')
+const bodyParser = require('body-parser')
 
 const retrieve = require('./routes/retrieve')
+const create = require('./routes/create')
 
 // const connection = mysql.createConnection({
 //     host: process.env.MYSQL_HOST,
@@ -26,11 +28,14 @@ app.use(express.urlencoded({
     extended: true
   }));
 
+app.use(express.json())
+
 // app.use(express.static('public'));
 
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.use('/retrieve', retrieve)
+app.use('/create', create)
 
 // app.get('/', function (req, res) {
 //   res.sendFile(path.join(__dirname, 'build', 'index.html'));

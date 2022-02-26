@@ -1,0 +1,11 @@
+POST http://localhost:3000/create/users HTTP/1.1
+content-type: application/json
+
+{
+    "first_name": "Tommy",
+    "last_name": "Frishberg",
+    "screen_name": "tomtom",
+    "dob": "1975-01-21"
+}
+
+###

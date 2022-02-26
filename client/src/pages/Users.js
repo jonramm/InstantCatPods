@@ -9,7 +9,7 @@ function Users() {
     const [first_name, setFirstName] = useState('')
     const [last_name, setLastName] = useState('')
     const [screen_name, setScreenName] = useState('')
-    const [date, setDate] = useState('')
+    const [dob, setDob] = useState('')
     const [users, setUsers] = useState([])
 
     const addUser = async () => {
@@ -21,6 +21,22 @@ function Users() {
         const response = await fetch('/retrieve/users');
         const data = await response.json();
         setUsers(data);
+    }
+
+    const createUser = async () => {
+        const newUser = {first_name, last_name, screen_name, dob};
+        const response = await fetch('/create/users', {
+            method: 'POST',
+            body: JSON.stringify(newUser),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (response.status === 201) {
+            alert('Successfully added the user!')
+        } else {
+            alert(`Failed to add user, status code = ${response.status}.`)
+        }
     }
 
     useEffect(() => {
@@ -61,15 +77,15 @@ function Users() {
                             onChange={e => setScreenName(e.target.value)} />
                     </div>
                     <div class="form-group">
-                        <label for="date">Date of Birth: </label>
+                        <label for="dob">Date of Birth: </label>
                         <input class="form-control"
                             type="date"
-                            id="date"
-                            value={date}
-                            onChange={e => setDate(e.target.value)} />
+                            id="dob"
+                            value={dob}
+                            onChange={e => setDob(e.target.value)} />
                     </div>
                 </div>
-                <button class="btn btn-primary" onClick={addUser}>Insert</button>
+                <button class="btn btn-primary" onClick={createUser}>Insert</button>
                 <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
             </form>
 

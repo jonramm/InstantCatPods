@@ -4,7 +4,6 @@ function UsersRow({ user }) {
 
     return (
         <>
-            {console.log(user)}
             <tr>
                 <td>{user.id}</td>
                 <td>{user.first_name}</td>
