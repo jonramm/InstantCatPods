@@ -6,8 +6,8 @@ function UserCosmeticsRow({ userCosmetic }) {
         <>
             {console.log(userCosmetic)}
             <tr>
-                <td>{userCosmetic.user}</td>
-                <td>{userCosmetic.cosmetic}</td>
+                <td>{userCosmetic.id}</td>
+                <td>{userCosmetic.description}</td>
                 <td class="td-button"><button class="btn btn-primary">Edit</button></td>
                 <td class="td-button"><button class="btn btn-primary">Delete</button></td>
             </tr>
