@@ -39,4 +39,13 @@ router.post('/cosmetics', (req, res) => {
   })
 })
 
+router.post('/orders', (req, res) => {
+  db.query(`INSERT INTO orders (order_date, total, status, user_id) VALUES ('${req.body.order_date}', ${req.body.total}, '${req.body.status}', ${req.body.user_id});`, (err, result) => {
+    if(err) {
+      console.log(err)
+    }
+    res.send(result)
+  })
+})
+
 module.exports = router

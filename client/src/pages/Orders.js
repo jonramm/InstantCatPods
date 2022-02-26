@@ -7,7 +7,7 @@ import UserInputOptions from "../components/UserInputOptions";
 
 function Orders() {
 
-    const [user, setUser] = useState('')
+    const [user_id, setUserId] = useState('')
     const [order_date, setOrderDate] = useState('')
     const [total, setTotal] = useState()
     const [status, setStatus] = useState('')
@@ -20,9 +20,35 @@ function Orders() {
         setOrders(data)
     }
 
-    const addOrder = async () => {
-        // function for adding an order to db
-        alert('Adding order...')
+    const clearFields = () => {
+        setUserId()
+        setOrderDate('')
+        setTotal()
+        setStatus('')
+    }
+
+    const createOrder = async (e) => {
+        e.preventDefault();
+        const newUser = { user_id, order_date, total, status };
+        if (user_id && order_date && total && status) {
+            const response = await fetch('/create/orders', {
+                method: 'POST',
+                body: JSON.stringify(newUser),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            if (response.status === 200) {
+                alert('Successfully added the order!')
+                clearFields();
+                loadOrders();
+            } else {
+                alert(`Failed to add order, status code = ${response.status}.`)
+                clearFields();
+            }
+        } else {
+            alert('Please fill out all fields')
+        }
     }
 
     useEffect(() => {
@@ -42,18 +68,18 @@ function Orders() {
                         <div class="form-group">
                             <label for="user">User: </label>
                             <select class="form-control"
-                                type="text"
+                                type="number"
                                 id="user"
-                                value={user}
-                                onChange={e => setUser(e.target.value)}>
-                                <option>--please select a user--</option>
+                                value={user_id}
+                                onChange={e => setUserId(e.target.value)}>
+                                <option value=''>--please select a user--</option>
                                 <UserInputOptions />
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="order_date">Order Date: </label>
                             <input class="form-control"
-                                type="text"
+                                type="date"
                                 id="order_date"
                                 value={order_date}
                                 onChange={e => setOrderDate(e.target.value)} />
@@ -74,15 +100,16 @@ function Orders() {
                                 id="status"
                                 value={status}
                                 onChange={e => setStatus(e.target.value)}>
+                                <option value=''>--please select a status</option>
                                 <option>Paid</option>
                                 <option>Pending</option>
                                 <option>Declined</option>
                             </select>
                         </div>
                     </div>
-                    <button class="btn btn-primary" onClick={addOrder}>Insert</button>
+                    <button class="btn btn-primary" onClick={createOrder}>Insert</button>
                     <Link to="/order-details"
-                        state={{ user: user, order_date: order_date, total: total, status: status }}>
+                        state={{ user_id: user_id, order_date: order_date, total: total, status: status }}>
                         <button class="btn btn-primary">Add Cosmetics</button>
                     </Link>
                     <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
