@@ -11,4 +11,13 @@ router.delete('/users/:id', (req, res) => {
       })
 })
 
+router.delete('/avatars/:id', (req, res) => {
+    db.query(`DELETE FROM avatars WHERE id = ${req.params.id};`, (err, result) => {
+        if(err) {
+          console.log(err)
+        }
+        res.send(result)
+      })
+})
+
 module.exports = router

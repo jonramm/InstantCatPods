@@ -46,6 +46,16 @@ function Avatars() {
         }
     }
 
+    const deleteAvatar = async id => {
+        const response = await fetch(`/destroy/avatars/${id}`, { method: 'DELETE' });
+        if (response.status === 200) {
+            alert('Successfully deleted the user!')
+            loadAvatars()
+        } else {
+            alert(`Failed to delete user, status code = ${response.status}.`)
+        }
+    }
+
     useEffect(() => {
         loadAvatars();
     }, [])
@@ -85,7 +95,7 @@ function Avatars() {
                     <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
                 </form>
 
-                <AvatarsTable avatars={avatars} />
+                <AvatarsTable avatars={avatars} onDelete={deleteAvatar} />
             </>
         </>
     )
