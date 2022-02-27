@@ -29,4 +29,13 @@ router.delete('/cosmetics/:id', (req, res) => {
     })
 })
 
+router.delete('/orders/:id', (req, res) => {
+  db.query(`DELETE FROM orders WHERE id = ${req.params.id};`, (err, result) => {
+      if(err) {
+        console.log(err)
+      }
+      res.send(result)
+    })
+})
+
 module.exports = router

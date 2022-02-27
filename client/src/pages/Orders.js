@@ -51,6 +51,16 @@ function Orders() {
         }
     }
 
+    const deleteOrder = async id => {
+        const response = await fetch(`/destroy/orders/${id}`, { method: 'DELETE' });
+        if (response.status === 200) {
+            alert('Successfully deleted the order!')
+            loadOrders()
+        } else {
+            alert(`Failed to delete order, status code = ${response.status}.`)
+        }
+    }
+
     useEffect(() => {
         loadOrders();
     }, [])
@@ -115,7 +125,7 @@ function Orders() {
                     <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
                 </form>
 
-                <OrdersTable orders={orders} />
+                <OrdersTable orders={orders} onDelete={deleteOrder} />
 
                 <div class="links-container">
                     <button type="button" class="btn btn-secondary">
