@@ -1,6 +1,6 @@
 import React from "react";
 
-function OrdersRow({ order }) {
+function OrdersRow({ order, onDelete }) {
 
     return (
         <>
@@ -11,7 +11,7 @@ function OrdersRow({ order }) {
                 <td>{order.total}</td>
                 <td>{order.status}</td>
                 <td class="td-button"><button class="btn btn-primary">Edit</button></td>
-                <td class="td-button"><button class="btn btn-primary">Delete</button></td>
+                <td class="td-button"><button onClick={() => onDelete(order.id)} class="btn btn-primary">Delete</button></td>
             </tr>
         </>
     )

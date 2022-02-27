@@ -1,7 +1,7 @@
 import React from "react";
 import CosmeticsRow from "./CosmeticsRow";
 
-function CosmeticsTable({ cosmetics }) {
+function CosmeticsTable({ cosmetics, onDelete }) {
 
     return (
         <>
@@ -18,7 +18,7 @@ function CosmeticsTable({ cosmetics }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {cosmetics.map((cosmetic, i) => (<CosmeticsRow cosmetic={cosmetic} key={i} />))}
+                    {cosmetics.map((cosmetic, i) => (<CosmeticsRow cosmetic={cosmetic} onDelete={onDelete} key={i} />))}
                 </tbody>
             </table>
         </>
