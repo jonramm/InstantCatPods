@@ -16,11 +16,9 @@ function OrderCosmetics() {
 
     const loadOrderCosmetics = async () => {
         // function for retrieving order cosmetics from db
-        const orders = {
-            order: 1,
-            cosmetic: "Gauntlets"
-        }
-        setOrderCosmetics([orders])
+        const response = await fetch('/retrieve/orders-cosmetics');
+        const data = await response.json();
+        setOrderCosmetics(data)
     }
 
     const addOrderCosmetic = async () => {

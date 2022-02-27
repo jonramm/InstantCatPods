@@ -16,11 +16,9 @@ function UserCosmetics() {
 
     const loadUserCosmetics = async () => {
         // function for retrieving user cosmetics from db
-        const users = {
-            user: "John Doe",
-            cosmetic: "Viking Horns"
-        }
-        setUserCosmetics([users])
+        const response = await fetch('/retrieve/users-cosmetics');
+        const data = await response.json();
+        setUserCosmetics(data)
     }
 
     const addUserCosmetic = async () => {
