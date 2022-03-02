@@ -12,6 +12,8 @@ function Orders() {
     const [total, setTotal] = useState()
     const [status, setStatus] = useState('')
     const [orders, setOrders] = useState([])
+    const [cosmetic, setCosmetic] = useState('')
+    const [components, setComponents] = useState([]); 
 
     const loadOrders = async () => {
         // function for retrieving users from db
@@ -25,6 +27,12 @@ function Orders() {
         setOrderDate('')
         setTotal()
         setStatus('')
+    }
+
+    function addCosmetic() {
+        if (components.indexOf(cosmetic) === -1) {
+            setComponents([...components, cosmetic])
+        }
     }
 
     const createOrder = async (e) => {
