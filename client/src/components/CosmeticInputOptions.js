@@ -17,7 +17,7 @@ function CosmeticInputOptions() {
 
     return (
         <>
-            {cosmetics.map((cosmetic, i) => (<option>{cosmetic.description}</option>))}
+            {cosmetics.map((cosmetic, i) => (<option value={cosmetic.id}>{cosmetic.description}</option>))}
         </>
     )
 }

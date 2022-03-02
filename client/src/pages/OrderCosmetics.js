@@ -10,7 +10,7 @@ import OrderInputOptions from "../components/OrderInputOptions";
 
 function OrderCosmetics() {
 
-    const [order, setOrder] = useState('')
+    const [order_id, setOrder] = useState('')
     const [cosmetic, setCosmetic] = useState('')
     const [orderCosmetics, setOrderCosmetics] = useState([])
 
@@ -21,9 +21,28 @@ function OrderCosmetics() {
         setOrderCosmetics(data)
     }
 
-    const addOrderCosmetic = async () => {
-        // function for adding an order cosmetic to db
-        alert('Adding order...')
+    const createOrderCosmetic = async (e) => {
+        e.preventDefault();
+        const newOrderCosmetic = { order_id, cosmetic };
+        if (order_id && cosmetic) {
+            const response = await fetch('/create/orders-cosmetics', {
+                method: 'POST',
+                body: JSON.stringify(newOrderCosmetic),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            if (response.status === 200) {
+                alert('Successfully added the relationship!!')
+                // clearFields();
+                loadOrderCosmetics();
+            } else {
+                alert(`Failed to add relationship, status code = ${response.status}.`)
+                // clearFields();
+            }
+        } else {
+            alert('Please fill out all fields')
+        }
     }
 
     useEffect(() => {
@@ -47,7 +66,7 @@ function OrderCosmetics() {
                             <select class="form-control"
                                 type="number"
                                 id="order"
-                                value={order}
+                                value={order_id}
                                 onChange={e => setOrder(e.target.value)}>
                                 <OrderInputOptions />
                             </select>
@@ -65,7 +84,7 @@ function OrderCosmetics() {
                         </div>
                         
                     </div>
-                    <button class="btn btn-primary" onClick={addOrderCosmetic}>Insert</button>
+                    <button class="btn btn-primary" onClick={createOrderCosmetic}>Insert</button>
                     <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
                 </form>
 

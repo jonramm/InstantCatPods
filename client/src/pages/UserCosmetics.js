@@ -10,7 +10,7 @@ import CosmeticInputOptions from "../components/CosmeticInputOptions";
 
 function UserCosmetics() {
 
-    const [user, setUser] = useState('')
+    const [user_id, setUser] = useState('')
     const [cosmetic, setCosmetic] = useState('')
     const [userCosmetics, setUserCosmetics] = useState([])
 
@@ -18,12 +18,32 @@ function UserCosmetics() {
         // function for retrieving user cosmetics from db
         const response = await fetch('/retrieve/users-cosmetics');
         const data = await response.json();
+        console.log(data)
         setUserCosmetics(data)
     }
 
-    const addUserCosmetic = async () => {
-        // function for adding an user cosmetic to db
-        alert('Adding user...')
+    const createUserCosmetic = async (e) => {
+        e.preventDefault();
+        const newUserCosmetic = { user_id, cosmetic };
+        if (user_id && cosmetic) {
+            const response = await fetch('/create/users-cosmetics', {
+                method: 'POST',
+                body: JSON.stringify(newUserCosmetic),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            if (response.status === 200) {
+                alert('Successfully added the relationship!!')
+                // clearFields();
+                loadUserCosmetics();
+            } else {
+                alert(`Failed to add relationship, status code = ${response.status}.`)
+                // clearFields();
+            }
+        } else {
+            alert('Please fill out all fields')
+        }
     }
 
     useEffect(() => {
@@ -47,7 +67,7 @@ function UserCosmetics() {
                             <select class="form-control"
                                 type="text"
                                 id="user"
-                                value={user}
+                                value={user_id}
                                 onChange={e => setUser(e.target.value)}>
                                 <option>--please select a user--</option>
                                 <UserInputOptions />
@@ -66,7 +86,7 @@ function UserCosmetics() {
                         </div>
                         
                     </div>
-                    <button class="btn btn-primary" onClick={addUserCosmetic}>Insert</button>
+                    <button class="btn btn-primary" onClick={createUserCosmetic}>Insert</button>
                     <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
                 </form>
 
