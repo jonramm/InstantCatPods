@@ -126,10 +126,10 @@ function Orders() {
                         </div>
                     </div>
                     <button class="btn btn-primary" onClick={createOrder}>Insert</button>
-                    <Link to="/order-details"
+                    {/* <Link to="/order-details"
                         state={{ user_id: user_id, order_date: order_date, total: total, status: status }}>
                         <button class="btn btn-primary">Add Cosmetics</button>
-                    </Link>
+                    </Link> */}
                     <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
                 </form>
 
