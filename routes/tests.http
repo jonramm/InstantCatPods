@@ -9,3 +9,5 @@ content-type: application/json
 }
 
 ###
+
+GET http://localhost:3000/retrieve/cosmetics/1

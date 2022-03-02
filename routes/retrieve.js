@@ -29,6 +29,16 @@ router.get('/cosmetics', (req, res) => {
     })
 })
 
+router.get('/single-cosmetic/:id', (req, res) => {
+    console.log(req.params.id)
+    db.query(`SELECT description FROM cosmetics WHERE id = ${req.params.id}`, (err, result) => {
+        if (err) {
+            console.log(err)
+        }
+        res.send(result)
+    })
+})
+
 router.get('/orders', (req, res) => {
     db.query('SELECT o.id, u.last_name, order_date, total, status FROM orders o JOIN users u ON u.id = o.user_id;', (err, result) => {
         if (err) {
