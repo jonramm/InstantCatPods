@@ -127,6 +127,23 @@ router.post('/orders-cosmetics-bulk', (req, res) => {
   })
 })
 
+router.post('/users-cosmetics-bulk', (req, res) => {
+  const user_id = req.body.user_id
+  const inputArr = req.body.components
+  let valuesStr = ''
+  inputArr.forEach(arrItem => {
+    valuesStr = valuesStr.concat(`(${user_id},${arrItem.id}),`)
+  })
+  const editValuesStr = valuesStr.slice(0, -1)
+
+  db.query(`INSERT INTO users_cosmetics (user_id, asset_id) VALUES ${editValuesStr};`, (err, result) => {
+    if (err) {
+      console.log(err)
+    }
+    res.send(result)
+  })
+})
+
 router.post('/users-cosmetics', (req, res) => {
 	
 	inserts = [req.body.user_id, req.body.cosmetic];

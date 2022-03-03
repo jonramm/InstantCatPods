@@ -100,14 +100,27 @@ function Orders() {
     const createRelationships = async () => {
         const lastOrder = await loadLastOrder()
         const newOrdersCosmetics = { lastOrder, components };
-        const response = await fetch('/create/orders-cosmetics-bulk', {
+        const newUsersCosmetics = { user_id, components }
+        const response1 = await fetch('/create/orders-cosmetics-bulk', {
             method: 'POST',
             body: JSON.stringify(newOrdersCosmetics),
             headers: {
                 'Content-Type': 'application/json',
             },
         });
-
+        const response2 = await fetch('/create/users-cosmetics-bulk', {
+            method: 'POST',
+            body: JSON.stringify(newUsersCosmetics),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (response1.status === 200) {
+            alert('Successfully added order-cosmetics relationships!')
+        }
+        if (response2.status === 200) {
+            alert('Successfully added user-cosmetics relationships!')
+        }
     }
 
     const deleteOrder = async id => {
