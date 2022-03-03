@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ordersIcon from '../images/ordersicon.png';
 import OrdersTable from "../components/OrdersTable";
 import UserInputOptions from "../components/UserInputOptions";
+import CosmeticInputOptions from "../components/CosmeticInputOptions"
 
 function Orders() {
 
@@ -18,13 +19,13 @@ function Orders() {
     const [components, setComponents] = useState([]);
 
     const addCosmetic = async () => {
-        
+
         let cosmeticName = await loadCosmetic(cosmetic)
         const description = cosmeticName[0].description
         const newPrice = cosmeticName[0].price
 
         let inArray = false
-        
+
         components.forEach(item => {
             if (item.id === cosmetic) {
                 inArray = true
@@ -32,15 +33,15 @@ function Orders() {
         })
 
         if (!inArray) {
-            setComponents([...components, {id: cosmetic, description: description, price: newPrice}])
-            setTotal(total+newPrice)
+            setComponents([...components, { id: cosmetic, description: description, price: newPrice }])
+            setTotal(total + newPrice)
         }
     }
 
     function removeCosmetic(i, toDelete) {
         let componentsArr = components.filter((item) => item.description !== toDelete.description)
         setComponents(componentsArr)
-        setTotal(total-toDelete.price)  
+        setTotal(total - toDelete.price)
     };
 
     const loadCosmetic = async (id) => {
@@ -69,12 +70,6 @@ function Orders() {
         setTotal(0)
         setStatus('')
         setComponents([])
-    }
-
-    function addCosmetic() {
-        if (components.indexOf(cosmetic) === -1) {
-            setComponents([...components, cosmetic])
-        }
     }
 
     const createOrder = async (e) => {
@@ -145,121 +140,100 @@ function Orders() {
 
     return (
         <>
-            <>
-                <img src={ordersIcon} alt="orders icon" />
-                <h1>Orders</h1>
-                <div className="container instructions table-dark bg-dark">
-                    <h3>Add new order or search existing orders</h3>
+            <img src={ordersIcon} alt="orders icon" />
+            <h1>Orders</h1>
+            
+            <div className="row">
+            <form className="col">
+            <div className="container instructions table-dark bg-dark">
+                <h3>Add new order or search existing orders</h3>
+            </div>
+                <div class="form-input">
+                    <div class="form-group">
+                        <label for="user">User: </label>
+                        <select class="form-control"
+                            type="number"
+                            id="user"
+                            value={user_id}
+                            onChange={e => setUserId(e.target.value)}>
+                            <option value=''>--please select a user--</option>
+                            <UserInputOptions />
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="order_date">Order Date: </label>
+                        <input class="form-control"
+                            type="date"
+                            id="order_date"
+                            value={order_date}
+                            onChange={e => setOrderDate(e.target.value)} />
+                    </div>
+                    <div class="form-group">
+                        <label for="total">Total: </label>
+                        <p class="form-control" id="total">${total}</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status: </label>
+                        <select class="form-control"
+                            type="text"
+                            id="status"
+                            value={status}
+                            onChange={e => setStatus(e.target.value)}>
+                            <option value=''>--please select a status</option>
+                            <option>Paid</option>
+                            <option>Pending</option>
+                            <option>Declined</option>
+                        </select>
+                    </div>
                 </div>
-                <form>
-                    <div class="form-input">
-                        <div class="form-group">
-                            <label for="user">User: </label>
-                            <select class="form-control"
-                                type="number"
-                                id="user"
-                                value={user_id}
-                                onChange={e => setUserId(e.target.value)}>
-                                <option value=''>--please select a user--</option>
-                                <UserInputOptions />
-                            </select>
-                        </div>
-
-                        <form>
-                            <div class="form-input">
-                                <div class="form-group">
-                                    <label for="user">User: </label>
-                                    <select class="form-control"
-                                        type="number"
-                                        id="user"
-                                        value={user_id}
-                                        onChange={e => setUserId(e.target.value)}>
-                                        <option value=''>--please select a user--</option>
-                                        <UserInputOptions />
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="order_date">Order Date: </label>
-                                    <input class="form-control"
-                                        type="date"
-                                        id="order_date"
-                                        value={order_date}
-                                        onChange={e => setOrderDate(e.target.value)} />
-                                </div>
-                                <div class="form-group">
-                                    <label for="total">Total: </label>
-                                    <p class="form-control" id="total">${total}</p>
-                                </div>
-                                <div class="form-group">
-                                    <label for="status">Status: </label>
-                                    <select class="form-control"
-                                        type="text"
-                                        id="status"
-                                        value={status}
-                                        onChange={e => setStatus(e.target.value)}>
-                                        <option value=''>--please select a status</option>
-                                        <option>Paid</option>
-                                        <option>Pending</option>
-                                        <option>Declined</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <button class="btn btn-primary" onClick={createOrder}>Insert</button>
-                            {/* <Link to="/order-details"
+                <button class="btn btn-primary" onClick={createOrder}>Insert</button>
+                {/* <Link to="/order-details"
                                 state={{ user_id: user_id, order_date: order_date, total: total, status: status }}>
                                 <button class="btn btn-primary">Add Cosmetics</button>
                             </Link> */}
-                            <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
-                        </form>
-                    </div>
+                <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
+            </form>
 
-                    <div className='col'>
-                        <div className="container instructions table-dark bg-dark">
-                            <h3>Add cosmetics to order</h3>
-                        </div>
-                        <form>
-                            <div className="form-input">
-                                <label for="cosmetic">Cosmetic: </label>
-                                <select class="form-control"
-                                    type="text"
-                                    id="cosmetic"
-                                    value={cosmetic}
-                                    onChange={e => setCosmetic(e.target.value)}>
-                                    <option>--please enter a cosmetic--</option>
-                                    <CosmeticInputOptions />
-                                </select>
-                            </div>
-                        </form>
-                        <button class="btn btn-primary" onClick={addCosmetic}>Add Cosmetic</button>
-                        <ul className="cosmetics-list">
-                        {components.map((item, i) => ( 
-                            <li class="list-group-item">{item.description} 
-                                <button class="btn btn-primary" onClick={() => removeCosmetic(i, item)}>Delete</button>
-                            </li> ))} 
-                        </ul>
-                        
-                        {/* <button class="btn btn-primary" onClick={addOrder}>Insert Order</button> */}
-
-                    </div>
-                    <button class="btn btn-primary" onClick={createOrder}>Insert</button>
-                    {/* <Link to="/order-details"
-                        state={{ user_id: user_id, order_date: order_date, total: total, status: status }}>
-                        <button class="btn btn-primary">Add Cosmetics</button>
-                    </Link> */}
-                    <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
-                </form>
-
-                <OrdersTable orders={orders} onDelete={deleteOrder} />
-
-                <div class="links-container">
-                    <button type="button" class="btn btn-secondary">
-                        <Link class="relationship-links" to="/order-cosmetics"> Order Cosmetics</Link>
-                    </button>
-                    <button type="button" class="btn btn-secondary">
-                        <Link class="relationship-links" to="/user-cosmetics">User Cosmetics</Link>
-                    </button>
+            <div className='col'>
+                <div className="container instructions table-dark bg-dark">
+                    <h3>Add cosmetics to order</h3>
                 </div>
-            </>
+                <form>
+                    <div className="form-input">
+                        <label for="cosmetic">Cosmetic: </label>
+                        <select class="form-control"
+                            type="text"
+                            id="cosmetic"
+                            value={cosmetic}
+                            onChange={e => setCosmetic(e.target.value)}>
+                            <option>--please enter a cosmetic--</option>
+                            <CosmeticInputOptions />
+                        </select>
+                    </div>
+                </form>
+                <button class="btn btn-primary" onClick={addCosmetic}>Add Cosmetic</button>
+                <ul className="cosmetics-list">
+                    {components.map((item, i) => (
+                        <li class="list-group-item">{item.description}
+                            <button class="btn btn-primary" onClick={() => removeCosmetic(i, item)}>Delete</button>
+                        </li>))}
+                </ul>
+            </div>
+            </div>
+            
+
+
+
+            <OrdersTable orders={orders} onDelete={deleteOrder} />
+
+            <div class="links-container">
+                <button type="button" class="btn btn-secondary">
+                    <Link class="relationship-links" to="/order-cosmetics"> Order Cosmetics</Link>
+                </button>
+                <button type="button" class="btn btn-secondary">
+                    <Link class="relationship-links" to="/user-cosmetics">User Cosmetics</Link>
+                </button>
+            </div>
         </>
     )
 }
