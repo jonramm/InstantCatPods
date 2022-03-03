@@ -10,4 +10,8 @@ content-type: application/json
 
 ###
 
-GET http://localhost:3000/retrieve/cosmetics/1
+GET http://localhost:3000/retrieve/single-cosmetic/1 HTTP/1.1
+
+###
+
+GET http://localhost:3000/retrieve/users HTTP/1.1
