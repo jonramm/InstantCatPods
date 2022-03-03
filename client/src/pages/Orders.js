@@ -10,10 +10,9 @@ function Orders() {
 
     const [user_id, setUserId] = useState('')
     const [order_date, setOrderDate] = useState('')
-    const [total, setTotal] = useState()
     const [status, setStatus] = useState('')
     const [orders, setOrders] = useState([])
-    const [price, setPrice] = useState(0)
+    const [total, setTotal] = useState(0)
 
     const [cosmetic, setCosmetic] = useState('')
     const [components, setComponents] = useState([]);
@@ -36,7 +35,7 @@ function Orders() {
 
         if (!inArray) {
             setComponents([...components, {id: cosmetic, description: description, price: newPrice}])
-            setPrice(price+newPrice)
+            setTotal(total+newPrice)
         }
         
         console.log(components)
@@ -46,7 +45,7 @@ function Orders() {
     function removeCosmetic(i, toDelete) {
         let componentsArr = components.filter((item) => item.description !== toDelete.description)
         setComponents(componentsArr)
-        setPrice(price-toDelete.price)  
+        setTotal(total-toDelete.price)  
     };
 
     const loadCosmetic = async (id) => {
@@ -72,7 +71,7 @@ function Orders() {
     const createOrder = async (e) => {
         e.preventDefault();
         const newUser = { user_id, order_date, total, status };
-        if (user_id && order_date && total && status) {
+        if (user_id && order_date && status) {
             const response = await fetch('/create/orders', {
                 method: 'POST',
                 body: JSON.stringify(newUser),
@@ -140,7 +139,7 @@ function Orders() {
                                 </div>
                                 <div class="form-group">
                                     <label for="total">Total: </label>
-                                    <p class="form-control" id="total">${price}</p>
+                                    <p class="form-control" id="total">${total}</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="status">Status: </label>
@@ -157,10 +156,10 @@ function Orders() {
                                 </div>
                             </div>
                             <button class="btn btn-primary" onClick={createOrder}>Insert</button>
-                            <Link to="/order-details"
+                            {/* <Link to="/order-details"
                                 state={{ user_id: user_id, order_date: order_date, total: total, status: status }}>
                                 <button class="btn btn-primary">Add Cosmetics</button>
-                            </Link>
+                            </Link> */}
                             <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
                         </form>
                     </div>
