@@ -31,10 +31,11 @@ router.get('/cosmetics', (req, res) => {
 
 router.get('/single-cosmetic/:id', (req, res) => {
     console.log(req.params.id)
-    db.query(`SELECT description FROM cosmetics WHERE id = ${req.params.id}`, (err, result) => {
+    db.query(`SELECT description, price FROM cosmetics WHERE id = ${req.params.id}`, (err, result) => {
         if (err) {
             console.log(err)
         }
+        console.log(result)
         res.send(result)
     })
 })

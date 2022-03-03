@@ -13,23 +13,24 @@ function Orders() {
     const [total, setTotal] = useState()
     const [status, setStatus] = useState('')
     const [orders, setOrders] = useState([])
+    const [price, setPrice] = useState(0)
 
     const [cosmetic, setCosmetic] = useState('')
     const [components, setComponents] = useState([]);
 
     const [componentNames, setComponentNames] = useState([])
 
-    console.log(componentNames)
-
-    function addCosmetic() {
+    const addCosmetic = async () => {
         if (components.indexOf(cosmetic) === -1) {
             setComponents([...components, cosmetic])
         }
         
-        // let cosmeticName = loadCosmetic(cosmetic)
-        
-        // console.log(cosmeticName)
-        // setComponentNames([...componentNames, cosmeticName])
+        let cosmeticName = await loadCosmetic(cosmetic)
+        const description = cosmeticName[0].description
+        const newPrice = cosmeticName[0].price
+        setPrice(price+newPrice)
+        setComponentNames([...componentNames, description])
+        console.log(price)
     }
 
     function removeCosmetic(i, name) {
@@ -38,9 +39,9 @@ function Orders() {
     };
 
     const loadCosmetic = async (id) => {
-        const response = await fetch(`/retrieve/cosmetics/${id}`)
+        const response = await fetch(`/retrieve/single-cosmetic/${id}`)
         const data = await response.json();
-        setComponentNames(data)
+        return data
     }
 
     const loadOrders = async () => {
@@ -128,12 +129,7 @@ function Orders() {
                                 </div>
                                 <div class="form-group">
                                     <label for="total">Total: </label>
-                                    <input class="form-control"
-                                        type="number"
-                                        step="any"
-                                        id="total"
-                                        value={total}
-                                        onChange={e => setTotal(e.target.value)} />
+                                    <p class="form-control" id="total">${price}</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="status">Status: </label>
@@ -177,7 +173,7 @@ function Orders() {
                         </form>
                         <button class="btn btn-primary" onClick={addCosmetic}>Add Cosmetic</button>
                         <ul className="cosmetics-list">
-                        {components.map((item, i) => ( 
+                        {componentNames.map((item, i) => ( 
                             <li class="list-group-item">{item} 
                                 <button class="btn btn-primary" onClick={() => removeCosmetic(i, item)}>Delete</button>
                             </li> ))} 
