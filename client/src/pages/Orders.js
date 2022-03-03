@@ -21,21 +21,32 @@ function Orders() {
     const [componentNames, setComponentNames] = useState([])
 
     const addCosmetic = async () => {
-        if (components.indexOf(cosmetic) === -1) {
-            setComponents([...components, cosmetic])
-        }
         
         let cosmeticName = await loadCosmetic(cosmetic)
         const description = cosmeticName[0].description
         const newPrice = cosmeticName[0].price
-        setPrice(price+newPrice)
-        setComponentNames([...componentNames, description])
-        console.log(price)
+
+        let inArray = false
+        
+        components.forEach(item => {
+            if (item.id === cosmetic) {
+                inArray = true
+            }
+        })
+
+        if (!inArray) {
+            setComponents([...components, {id: cosmetic, description: description, price: newPrice}])
+            setPrice(price+newPrice)
+        }
+        
+        console.log(components)
+        console.log(componentNames)
     }
 
-    function removeCosmetic(i, name) {
-        let arr = components.filter((item) => item !== name)
-        setComponents(arr)
+    function removeCosmetic(i, toDelete) {
+        let componentsArr = components.filter((item) => item.description !== toDelete.description)
+        setComponents(componentsArr)
+        setPrice(price-toDelete.price)  
     };
 
     const loadCosmetic = async (id) => {
@@ -173,8 +184,8 @@ function Orders() {
                         </form>
                         <button class="btn btn-primary" onClick={addCosmetic}>Add Cosmetic</button>
                         <ul className="cosmetics-list">
-                        {componentNames.map((item, i) => ( 
-                            <li class="list-group-item">{item} 
+                        {components.map((item, i) => ( 
+                            <li class="list-group-item">{item.description} 
                                 <button class="btn btn-primary" onClick={() => removeCosmetic(i, item)}>Delete</button>
                             </li> ))} 
                         </ul>
