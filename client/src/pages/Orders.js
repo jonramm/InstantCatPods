@@ -66,7 +66,7 @@ function Orders() {
     const clearFields = () => {
         setUserId()
         setOrderDate('')
-        setTotal()
+        setTotal(0)
         setStatus('')
         setComponents([])
     }
