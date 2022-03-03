@@ -65,4 +65,34 @@ router.delete('/orders/:id', (req, res) => {
     })
 })
 
+router.delete('/order-cosmetics/:order_id/:asset_id', (req, res) => {
+	
+	inserts = [req.params.order_id, req.params.asset_id];
+	sql_delete_orders = "DELETE FROM orders_cosmetics WHERE order_id = ? AND asset_id = ?";
+	
+  db.query(sql_delete_orders, inserts, (err, result) => {
+      if(err) {
+        console.log(err)
+		res.write(JSON.stringify(err))
+		res.end();
+      }
+      res.send(result)
+    })
+})
+
+router.delete('/user-cosmetics/:user_id/:asset_id', (req, res) => {
+	
+	inserts = [req.params.user_id, req.params.asset_id];
+	sql_delete_orders = "DELETE FROM users_cosmetics WHERE user_id = ? AND asset_id = ?";
+	
+  db.query(sql_delete_orders, inserts, (err, result) => {
+      if(err) {
+        console.log(err)
+		res.write(JSON.stringify(err))
+		res.end();
+      }
+      res.send(result)
+    })
+})
+
 module.exports = router
