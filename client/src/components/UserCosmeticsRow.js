@@ -1,6 +1,6 @@
 import React from "react";
 
-function UserCosmeticsRow({ userCosmetic }) {
+function UserCosmeticsRow({ userCosmetic, onDelete }) {
 
     return (
         <>
@@ -9,7 +9,7 @@ function UserCosmeticsRow({ userCosmetic }) {
                 <td>{userCosmetic.id}</td>
                 <td>{userCosmetic.description}</td>
                 <td class="td-button"><button class="btn btn-primary">Edit</button></td>
-                <td class="td-button"><button class="btn btn-primary">Delete</button></td>
+                <td class="td-button"><button onClick={() => onDelete(userCosmetic.id)} class="btn btn-primary">Delete</button></td>
             </tr>
         </>
     )

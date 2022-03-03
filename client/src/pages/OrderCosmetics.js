@@ -45,6 +45,16 @@ function OrderCosmetics() {
         }
     }
 
+    const deleteOrderCosmetic = async (order_id, asset_id) => {
+        const response = await fetch(`/destroy/order-cosmetics/${order_id}/${asset_id}`, { method: 'DELETE' });
+        if (response.status === 200) {
+            alert('Successfully deleted the order cosmetic!')
+            loadOrderCosmetics()
+        } else {
+            alert(`Failed to delete order cosmetic, status code = ${response.status}.`)
+        }
+    }
+
     useEffect(() => {
         loadOrderCosmetics();
     }, [])
@@ -88,7 +98,7 @@ function OrderCosmetics() {
                     <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
                 </form>
 
-                <OrderCosmeticsTable orderCosmetics={orderCosmetics} />
+                <OrderCosmeticsTable orderCosmetics={orderCosmetics} onDelete={deleteOrderCosmetic} />
 
                 <div class="links-container">
                     <button type="button" class="btn btn-secondary">
