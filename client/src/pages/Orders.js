@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import ordersIcon from '../images/ordersicon.png';
 import OrdersTable from "../components/OrdersTable";
 import UserInputOptions from "../components/UserInputOptions";
-import CosmeticInputOptions from "../components/CosmeticInputOptions";
 
 function Orders() {
 
@@ -50,6 +49,7 @@ function Orders() {
         return data
     }
 
+
     const loadOrders = async () => {
         // function for retrieving users from db
         const response = await fetch('/retrieve/orders');
@@ -69,6 +69,12 @@ function Orders() {
         setTotal(0)
         setStatus('')
         setComponents([])
+    }
+
+    function addCosmetic() {
+        if (components.indexOf(cosmetic) === -1) {
+            setComponents([...components, cosmetic])
+        }
     }
 
     const createOrder = async (e) => {
@@ -142,11 +148,23 @@ function Orders() {
             <>
                 <img src={ordersIcon} alt="orders icon" />
                 <h1>Orders</h1>
-                <div className="row">
-                    <div className="col">
-                        <div className="container instructions table-dark bg-dark">
-                            <h3>Add new order or search existing orders</h3>
+                <div className="container instructions table-dark bg-dark">
+                    <h3>Add new order or search existing orders</h3>
+                </div>
+                <form>
+                    <div class="form-input">
+                        <div class="form-group">
+                            <label for="user">User: </label>
+                            <select class="form-control"
+                                type="number"
+                                id="user"
+                                value={user_id}
+                                onChange={e => setUserId(e.target.value)}>
+                                <option value=''>--please select a user--</option>
+                                <UserInputOptions />
+                            </select>
                         </div>
+
                         <form>
                             <div class="form-input">
                                 <div class="form-group">
@@ -221,9 +239,15 @@ function Orders() {
                         </ul>
                         
                         {/* <button class="btn btn-primary" onClick={addOrder}>Insert Order</button> */}
-                    </div>
-                </div>
 
+                    </div>
+                    <button class="btn btn-primary" onClick={createOrder}>Insert</button>
+                    {/* <Link to="/order-details"
+                        state={{ user_id: user_id, order_date: order_date, total: total, status: status }}>
+                        <button class="btn btn-primary">Add Cosmetics</button>
+                    </Link> */}
+                    <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
+                </form>
 
                 <OrdersTable orders={orders} onDelete={deleteOrder} />
 

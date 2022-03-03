@@ -6,11 +6,8 @@ import CosmeticInputOptions from "../components/CosmeticInputOptions";
 
 function OrderDetails() {
 
-    
-
     const [cosmetic, setCosmetic] = useState('')
     const [components, setComponents] = useState([]); 
-
 
     const location = useLocation()
     const { user, order_date, total, status } = location.state

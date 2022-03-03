@@ -38,9 +38,10 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use('/retrieve', retrieve)
 app.use('/create', create)
 app.use('/destroy', destroy)
-// app.get('/', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
-// });
+
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}...`)

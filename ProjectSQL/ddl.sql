@@ -34,15 +34,15 @@ CREATE TABLE orders_cosmetics(
 order_id int NOT NULL,
 asset_id int NOT NULL,
 PRIMARY KEY(order_id, asset_id),
-FOREIGN KEY(order_id) REFERENCES orders(id),
-FOREIGN KEY(asset_id) REFERENCES cosmetics(id));
+FOREIGN KEY(order_id) REFERENCES orders(id) ON DELETE CASCADE,
+FOREIGN KEY(asset_id) REFERENCES cosmetics(id)) ON DELETE CASCADE;
 
 CREATE TABLE users_cosmetics(
 user_id int NOT NULL,
 asset_id int NOT NULL,
 PRIMARY KEY(user_id, asset_id),
-FOREIGN KEY(user_id) REFERENCES users(id),
-FOREIGN KEY(asset_id) REFERENCES cosmetics(id));
+FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
+FOREIGN KEY(asset_id) REFERENCES cosmetics(id)) ON DELETE CASCADE;
 
 INSERT INTO `users` VALUES (1,'Jon','Ramm','jonargee','1986-03-19'),(2,'Jim','Jenkins','jenk19','1992-02-11'),(3,'Bill','Fredrickson','billyfred','1978-10-13'),(4,'Mary','Williams','willmar','0200-03-01'),(5,'Celete','Marwin','celly','1984-06-22');
 INSERT INTO `avatars` VALUES (1,'Sebille',1),(2,'King Kong',2),(3,'Sparkle Pony',2),(4,'Large Firey Dragon',3),(5,'T-Rex',4);
