@@ -13,11 +13,10 @@ function Orders() {
     const [status, setStatus] = useState('')
     const [orders, setOrders] = useState([])
     const [total, setTotal] = useState(0)
+    // const [lastOrder, setLastOrder] = useState()
 
     const [cosmetic, setCosmetic] = useState('')
     const [components, setComponents] = useState([]);
-
-    const [componentNames, setComponentNames] = useState([])
 
     const addCosmetic = async () => {
         
@@ -37,9 +36,6 @@ function Orders() {
             setComponents([...components, {id: cosmetic, description: description, price: newPrice}])
             setTotal(total+newPrice)
         }
-        
-        console.log(components)
-        console.log(componentNames)
     }
 
     function removeCosmetic(i, toDelete) {
@@ -61,11 +57,18 @@ function Orders() {
         setOrders(data)
     }
 
+    const loadLastOrder = async () => {
+        const response = await fetch('/retrieve/last-order');
+        const data = await response.json()
+        return (data[0].id)
+    }
+
     const clearFields = () => {
         setUserId()
         setOrderDate('')
         setTotal()
         setStatus('')
+        setComponents([])
     }
 
     const createOrder = async (e) => {
@@ -79,8 +82,10 @@ function Orders() {
                     'Content-Type': 'application/json',
                 },
             });
+            console.log(response)
             if (response.status === 200) {
                 alert('Successfully added the order!')
+                createRelationships()
                 clearFields();
                 loadOrders();
             } else {
@@ -90,6 +95,19 @@ function Orders() {
         } else {
             alert('Please fill out all fields')
         }
+    }
+
+    const createRelationships = async () => {
+        const lastOrder = await loadLastOrder()
+        const newOrdersCosmetics = { lastOrder, components };
+        const response = await fetch('/create/orders-cosmetics-bulk', {
+            method: 'POST',
+            body: JSON.stringify(newOrdersCosmetics),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
     }
 
     const deleteOrder = async id => {
