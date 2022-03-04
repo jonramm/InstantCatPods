@@ -1,11 +1,10 @@
 import React from "react";
 import AvatarsRow from "./AvatarsRow";
 
-function AvatarsTable({ avatars, onDelete }) {
+function AvatarsTable({ avatars, onDelete, onEdit }) {
 
     return (
         <>
-            {console.log(avatars)}
             <table class="table table-dark">
                 <thead>
                     <tr>
@@ -17,7 +16,7 @@ function AvatarsTable({ avatars, onDelete }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {avatars.map((avatar, i) => (<AvatarsRow avatar={avatar} onDelete={onDelete} key={i} />))}
+                    {avatars.map((avatar, i) => (<AvatarsRow avatar={avatar} onDelete={onDelete} onEdit={onEdit} key={i} />))}
                 </tbody>
             </table>
         </>

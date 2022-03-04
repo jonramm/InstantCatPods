@@ -27,15 +27,15 @@ router.put('/users', (req, res) => {
 });
 
 // Avatars
-router.put('/avatars/:id', (req, res) => {
-	
-  if (req.body.name && req.body.user_id) {
+router.put('/avatars', (req, res) => {
+
+  	if (req.body.name && req.body.user_id) {
 	  
 	  inserts = [req.body.name, 
 	  req.body.user_id, 
-	  req.params.id];
+	  req.body.id];
 	  
-	  sql_update_avatars = "UPDATE avatars SET name=?, user_id=?, WHERE id=?";
+	  sql_update_avatars = "UPDATE avatars SET name=?, user_id=? WHERE id=?";
 	  
     db.query(sql_update_avatars, inserts, (err, result) => {
       if(err) {
@@ -48,9 +48,9 @@ router.put('/avatars/:id', (req, res) => {
     })
   } else {
 	  
-	inserts = [req.body.name, req.params.id];
+	inserts = [req.body.name, req.body.id];
 	
-	sql_update_avatars = "UPDATE avatars SET name=?, user_id=NULL, WHERE id=?";
+	sql_update_avatars = "UPDATE avatars SET name=?, user_id=NULL WHERE id=?";
 	
     db.query(sql_update_avatars, inserts, (err, result) => {
       if(err) {
