@@ -3,13 +3,16 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 import cosmeticsIcon from '../images/cosmeticsicon.png';
 import CosmeticsTable from "../components/CosmeticsTable";
+import { useNavigate } from "react-router-dom";
 
-function Cosmetics() {
+function Cosmetics( { setCosmeticToEdit }) {
 
     const [description, setDescription] = useState('')
     const [type, setType] = useState('')
     const [price, setPrice] = useState()
     const [cosmetics, setCosmetics] = useState([])
+
+    const navigate = useNavigate()
 
     const loadCosmetics = async () => {
         // function for retrieving cosmetics from db
@@ -46,6 +49,11 @@ function Cosmetics() {
         } else {
             alert('Please fill out all fields')
         }
+    }
+
+    const editCosmetic = async cosmeticToEdit => {
+        setCosmeticToEdit(cosmeticToEdit)
+        navigate('/edit-cosmetic')
     }
 
     const deleteCosmetic = async id => {
@@ -107,7 +115,7 @@ function Cosmetics() {
                 <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
             </form>
 
-            <CosmeticsTable cosmetics={cosmetics} onDelete={deleteCosmetic} />
+            <CosmeticsTable cosmetics={cosmetics} onDelete={deleteCosmetic} onEdit={editCosmetic} />
 
             <div class="links-container">
                     <button type="button" class="btn btn-secondary">

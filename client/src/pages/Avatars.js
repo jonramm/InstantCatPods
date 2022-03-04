@@ -3,12 +3,17 @@ import { useState } from 'react';
 import avatarsIcon from '../images/avatarsicon.png';
 import AvatarsTable from "../components/AvatarsTable";
 import UserInputOptions from "../components/UserInputOptions";
+import { useNavigate } from "react-router-dom";
 
-function Avatars() {
+function Avatars({ setAvatarToEdit }) {
 
     const [user_id, setUserId] = useState()
     const [name, setName] = useState('')
     const [avatars, setAvatars] = useState([])
+
+    console.log(avatars)
+
+    const navigate = useNavigate()
 
     const loadAvatars = async () => {
         // function for retrieving avatars from db
@@ -44,6 +49,11 @@ function Avatars() {
         } else {
             alert('Please fill out name field')
         }
+    }
+
+    const editAvatar = async avatarToEdit => {
+        setAvatarToEdit(avatarToEdit)
+        navigate('/edit-avatar')
     }
 
     const deleteAvatar = async id => {
@@ -95,7 +105,7 @@ function Avatars() {
                     <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
                 </form>
 
-                <AvatarsTable avatars={avatars} onDelete={deleteAvatar} />
+                <AvatarsTable avatars={avatars} onDelete={deleteAvatar} onEdit={editAvatar} />
             </>
         </>
     )
