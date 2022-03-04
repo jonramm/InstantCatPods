@@ -7,14 +7,13 @@ const db = require('../dbcon')
 // User edits that data, and submits, which will go to approrpriate request for DB.
 
 // Users
-router.put('/users/:id', (req, res) => {
-	
+router.put('/users', (req, res) => {
 	inserts = [req.body.first_name, 
 	req.body.last_name, 
 	req.body.screen_name, 
-	req.body.dob, req.params.id];
+	req.body.dob, req.body.id];
 	
-	sql_update_users = "UPDATE users SET first_name=?, last_name=?, screen_name=?, dob=?, WHERE id=?";
+	sql_update_users = "UPDATE users SET first_name=?, last_name=?, screen_name=?, dob=? WHERE id=?";
 	
     db.query(sql_update_users, inserts, (err, result) => {
         if(err) {
@@ -149,4 +148,6 @@ router.put('/user-cosmetics/:user_id/:asset_id', (req,res) =>{
 	  res.end()	
 	})	
 })
+
+module.exports = router
 

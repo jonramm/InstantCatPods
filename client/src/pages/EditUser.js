@@ -9,19 +9,27 @@ function EditUser( {userToEdit} ) {
     const [last_name, setLastName] = useState(userToEdit.last_name)
     const [screen_name, setScreenName] = useState(userToEdit.screen_name)
     const [dob, setDob] = useState(userToEdit.dob)
+    const [id, setId] = useState(userToEdit.id)
 
     const navigate = useNavigate()
 
     const editUser = async (e) => {
         e.preventDefault();
-        const newUser = { first_name, last_name, screen_name, dob };
-        const response = await fetch('/create/users', {
+        const newUser = { id, first_name, last_name, screen_name, dob };
+        const response = await fetch('/update/users', {
             method: 'PUT',
             body: JSON.stringify(newUser),
             headers: {
                 'Content-Type': 'application/json',
             },
         });
+        if (response.status === 200) {
+            alert('Successfully edited the user!')
+            navigate('/users')
+        } else {
+            alert(`Failed to edit user, status code = ${response.status}.`)
+            navigate('/users')
+        }
     }    
 
     return (
@@ -63,8 +71,7 @@ function EditUser( {userToEdit} ) {
                             onChange={e => setDob(e.target.value)} />
                     </div>
                 </div>
-                <button class="btn btn-primary" onClick={editUser}>Insert</button>
-                <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
+                <button class="btn btn-primary" onClick={editUser}>Submit Changes</button>
             </form>
         </>
     )

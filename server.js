@@ -12,6 +12,7 @@ const bodyParser = require('body-parser')
 const retrieve = require('./routes/retrieve')
 const create = require('./routes/create')
 const destroy = require('./routes/destroy')
+const update = require('./routes/update')
 
 // const connection = mysql.createConnection({
 //     host: process.env.MYSQL_HOST,
@@ -38,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use('/retrieve', retrieve)
 app.use('/create', create)
 app.use('/destroy', destroy)
+app.use('/update', update)
 
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
