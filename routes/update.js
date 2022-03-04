@@ -65,14 +65,14 @@ router.put('/avatars', (req, res) => {
 })
 
 // Cosmetics
-router.put('/cosmetics/:id', (req,res) =>{
+router.put('/cosmetics', (req,res) =>{
 	
 	inserts = [req.body.description, 
 	req.body.type, 
 	req.body.price, 
-	req.params.id];
+	req.body.id];
 	
-	sql_update_cosmetics = "UPDATE cosmetics SET description=?, type=?, price=?, WHERE id=?";
+	sql_update_cosmetics = "UPDATE cosmetics SET description=?, type=?, price=? WHERE id=?";
 	
 	db.query(sql_update_cosmetics, inserts, (err, result) => {
 		if(err) {

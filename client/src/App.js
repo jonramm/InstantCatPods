@@ -16,6 +16,7 @@ import UserCosmetics from './pages/UserCosmetics';
 import OrderDetails from './pages/OrderDetails';
 import EditUser from './pages/EditUser';
 import EditAvatar from './pages/EditAvatar';
+import EditCosmetic from './pages/EditCosmetic';
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
           <Route path='/avatars' element={ <Avatars setAvatarToEdit={setAvatarToEdit} /> } />
           <Route path='/edit-avatar' element={ <EditAvatar avatarToEdit={avatarToEdit} /> } />
           <Route path='/cosmetics' element={ <Cosmetics setCosmeticToEdit={setCosmeticToEdit} /> } />
+          <Route path='/edit-cosmetic' element={ <EditCosmetic cosmeticToEdit={cosmeticToEdit} /> } />
           <Route path='/order-details' element={ <OrderDetails /> } />
           <Route path='/order-cosmetics' element={ <OrderCosmetics /> } />
           <Route path='/user-cosmetics' element={ <UserCosmetics /> } />
