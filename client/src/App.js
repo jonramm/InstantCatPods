@@ -17,6 +17,7 @@ import OrderDetails from './pages/OrderDetails';
 import EditUser from './pages/EditUser';
 import EditAvatar from './pages/EditAvatar';
 import EditCosmetic from './pages/EditCosmetic';
+import EditOrder from './pages/EditOrder';
 
 function App() {
 
@@ -24,8 +25,6 @@ function App() {
   const [avatarToEdit, setAvatarToEdit] = useState()
   const [orderToEdit, setOrderToEdit] = useState()
   const [cosmeticToEdit, setCosmeticToEdit] = useState()
-
-  {console.log(avatarToEdit)}
 
   return (
     <div>
@@ -36,6 +35,7 @@ function App() {
           <Route path='/users' element={ <Users setUserToEdit={setUserToEdit} /> } />
           <Route path='/edit-user' element={ <EditUser userToEdit={userToEdit} /> } />
           <Route path='/orders' element={ <Orders setOrderToEdit={setOrderToEdit} /> } />
+          <Route path='/edit-order' element={ <EditOrder orderToEdit={orderToEdit} /> } />
           <Route path='/avatars' element={ <Avatars setAvatarToEdit={setAvatarToEdit} /> } />
           <Route path='/edit-avatar' element={ <EditAvatar avatarToEdit={avatarToEdit} /> } />
           <Route path='/cosmetics' element={ <Cosmetics setCosmeticToEdit={setCosmeticToEdit} /> } />

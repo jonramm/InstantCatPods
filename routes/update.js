@@ -86,15 +86,15 @@ router.put('/cosmetics', (req,res) =>{
 })
 
 // Orders
-router.put('/orders/:id', (req,res) =>{
+router.put('/orders', (req,res) =>{
 	
 	inserts = [req.body.order_date, 
 	req.body.total, 
 	req.body.status,
 	req.body.user_id,
-	req.params.id];
+	req.body.id];
 	
-	sql_update_orders = "UPDATE orders SET order_date=?, total=?, status=?, user_id=?, WHERE id=?";
+	sql_update_orders = "UPDATE orders SET order_date=?, total=?, status=?, user_id=? WHERE id=?";
 	
 	db.query(sql_update_orders, inserts, (err, result) => {
 		if(err) {

@@ -1,12 +1,12 @@
 import { React, useEffect } from "react";
 import { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ordersIcon from '../images/ordersicon.png';
 import OrdersTable from "../components/OrdersTable";
 import UserInputOptions from "../components/UserInputOptions";
 import CosmeticInputOptions from "../components/CosmeticInputOptions"
 
-function Orders() {
+function Orders({ setOrderToEdit }) {
 
     const [user_id, setUserId] = useState('')
     const [order_date, setOrderDate] = useState('')
@@ -17,6 +17,8 @@ function Orders() {
 
     const [cosmetic, setCosmetic] = useState('')
     const [components, setComponents] = useState([]);
+
+    const navigate = useNavigate()
 
     const addCosmetic = async () => {
 
@@ -96,6 +98,11 @@ function Orders() {
         } else {
             alert('Please fill out all fields')
         }
+    }
+
+    const editOrder = async orderToEdit => {
+        setOrderToEdit(orderToEdit)
+        navigate('/edit-order')
     }
 
     const createRelationships = async () => {
@@ -224,7 +231,7 @@ function Orders() {
 
 
 
-            <OrdersTable orders={orders} onDelete={deleteOrder} />
+            <OrdersTable orders={orders} onDelete={deleteOrder} onEdit={editOrder} />
 
             <div class="links-container">
                 <button type="button" class="btn btn-secondary">
