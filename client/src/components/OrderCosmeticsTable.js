@@ -1,7 +1,7 @@
 import React from "react";
 import OrderCosmeticsRow from "./OrderCosmeticsRow";
 
-function OrderCosmeticsTable({ orderCosmetics }) {
+function OrderCosmeticsTable({ orderCosmetics, onDelete }) {
 
     return (
         <>
@@ -15,7 +15,7 @@ function OrderCosmeticsTable({ orderCosmetics }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {orderCosmetics.map((orderCosmetic, i) => (<OrderCosmeticsRow orderCosmetic={orderCosmetic} key={i} />))}
+                    {orderCosmetics.map((orderCosmetic, i) => (<OrderCosmeticsRow orderCosmetic={orderCosmetic} onDelete={onDelete} key={i} />))}
                 </tbody>
             </table>
         </>

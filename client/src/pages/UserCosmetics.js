@@ -46,6 +46,16 @@ function UserCosmetics() {
         }
     }
 
+    const deleteUserCosmetic = async (user_id, asset_id) => {
+        const response = await fetch(`/destroy/user-cosmetics/${user_id}/${asset_id}`, { method: 'DELETE' });
+        if (response.status === 200) {
+            alert('Successfully deleted the order cosmetic!')
+            loadUserCosmetics()
+        } else {
+            alert(`Failed to delete order cosmetic, status code = ${response.status}.`)
+        }
+    }
+
     useEffect(() => {
         loadUserCosmetics();
     }, [])
@@ -90,7 +100,7 @@ function UserCosmetics() {
                     <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
                 </form>
 
-                <UserCosmeticsTable userCosmetics={userCosmetics} />
+                <UserCosmeticsTable userCosmetics={userCosmetics} onDelete={deleteUserCosmetic} />
 
                 <div class="links-container">
                     <button type="button" class="btn btn-secondary">
