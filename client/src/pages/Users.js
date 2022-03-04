@@ -3,14 +3,17 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 import usersIcon from '../images/usersicon.png';
 import UsersTable from "../components/UsersTable";
+import { useNavigate } from "react-router-dom";
 
-function Users() {
+function Users( {setUserToEdit} ) {
 
     const [first_name, setFirstName] = useState('')
     const [last_name, setLastName] = useState('')
     const [screen_name, setScreenName] = useState('')
     const [dob, setDob] = useState('')
     const [users, setUsers] = useState([])
+
+    const navigate = useNavigate()
 
     const loadUsers = async () => {
         const response = await fetch('/retrieve/users');
@@ -57,6 +60,11 @@ function Users() {
         } else {
             alert(`Failed to delete user, status code = ${response.status}.`)
         }
+    }
+
+    const editUser = async userToEdit => {
+        setUserToEdit(userToEdit)
+        navigate('/edit-user')
     }
 
     useEffect(() => {
@@ -109,7 +117,7 @@ function Users() {
                 <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
             </form>
 
-            <UsersTable users={users} onDelete={deleteUser} />
+            <UsersTable users={users} onDelete={deleteUser} onEdit={editUser} />
 
             <div class="links-container">
 

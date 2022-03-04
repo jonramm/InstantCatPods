@@ -25,7 +25,7 @@ router.put('/users/:id', (req, res) => {
         res.status(200)
 		res.end()
       })
-}))
+});
 
 // Avatars
 router.put('/avatars/:id', (req, res) => {
