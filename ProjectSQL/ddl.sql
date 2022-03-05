@@ -31,15 +31,15 @@ price DECIMAL(13,2) NOT NULL,
 PRIMARY KEY(id));
 
 CREATE TABLE orders_cosmetics(
-order_id int NOT NULL,
-asset_id int NOT NULL,
+order_id int,
+asset_id int,
 PRIMARY KEY(order_id, asset_id),
 FOREIGN KEY(order_id) REFERENCES orders(id) ON DELETE CASCADE,
 FOREIGN KEY(asset_id) REFERENCES cosmetics(id)) ON DELETE CASCADE;
 
 CREATE TABLE users_cosmetics(
-user_id int NOT NULL,
-asset_id int NOT NULL,
+user_id int,
+asset_id int,
 PRIMARY KEY(user_id, asset_id),
 FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
 FOREIGN KEY(asset_id) REFERENCES cosmetics(id)) ON DELETE CASCADE;
