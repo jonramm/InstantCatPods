@@ -78,7 +78,7 @@ function Cosmetics( { setCosmeticToEdit }) {
             <div className="container instructions table-dark bg-dark">
                 <h3>Add new cosmetic or search existing cosmetics</h3>
             </div>
-            <form>
+            <form className="form-width">
                 <div class="form-input">
                     <div class="form-group">
                         <label for="description">Description: </label>

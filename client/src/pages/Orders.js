@@ -158,7 +158,7 @@ function Orders({ setOrderToEdit, setOrderToView }) {
             <h1 className="title-header">Orders</h1>
             
             <div className="row">
-            <form className="col">
+            <form className="col form-width">
             <div className="container instructions table-dark bg-dark">
                 <h3>Add new order or search existing orders</h3>
             </div>
