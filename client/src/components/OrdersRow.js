@@ -1,6 +1,6 @@
 import React from "react";
 
-function OrdersRow({ order, onDelete, onEdit }) {
+function OrdersRow({ order, onDelete, onEdit, onView }) {
 
     const month = order.order_date.slice(5, 7)
     const day = order.order_date.slice(8, 10)
@@ -16,6 +16,7 @@ function OrdersRow({ order, onDelete, onEdit }) {
                 <td>{order.status}</td>
                 <td class="td-button"><button onClick={() => onEdit(order)} class="btn btn-primary">Edit</button></td>
                 <td class="td-button"><button onClick={() => onDelete(order.id)} class="btn btn-primary">Delete</button></td>
+                <td class="td-button"><button onClick={() => onView(order)} class="btn btn-primary">View</button></td>
             </tr>
         </>
     )

@@ -1,7 +1,7 @@
 import React from "react";
 import OrdersRow from "./OrdersRow";
 
-function OrdersTable({ orders, onDelete, onEdit }) {
+function OrdersTable({ orders, onDelete, onEdit, onView }) {
 
     return (
         <>
@@ -15,10 +15,11 @@ function OrdersTable({ orders, onDelete, onEdit }) {
                         <th scope="col">Status</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {orders.map((order, i) => (<OrdersRow order={order} onDelete={onDelete} onEdit={onEdit} key={i} />))}
+                    {orders.map((order, i) => (<OrdersRow order={order} onDelete={onDelete} onEdit={onEdit} onView={onView} key={i} />))}
                 </tbody>
             </table>
         </>
