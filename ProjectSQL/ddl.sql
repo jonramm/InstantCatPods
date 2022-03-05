@@ -12,7 +12,7 @@ id int(11) NOT NULL AUTO_INCREMENT,
 name varchar(255) NOT NULL,
 user_id int,
 PRIMARY KEY(id),
-FOREIGN KEY(user_id) REFERENCES users(id));
+FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE);
 
 CREATE TABLE orders(
 id int(11) NOT NULL AUTO_INCREMENT,
@@ -21,7 +21,7 @@ total DECIMAL(13,2) NOT NULL,
 status varchar(255) NOT NULL,
 user_id int,
 PRIMARY KEY(id),
-FOREIGN KEY(user_id) REFERENCES users(id));
+FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE);
 
 CREATE TABLE cosmetics(
 id int(11) NOT NULL AUTO_INCREMENT,
