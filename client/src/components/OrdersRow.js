@@ -10,7 +10,7 @@ function OrdersRow({ order, onDelete, onEdit }) {
         <>
             <tr>
                 <td>{order.id}</td>
-                <td>{order.last_name}</td>
+                <td>{order.first_name + ' ' + order.last_name}</td>
                 <td>{month + '-' + day + '-' + year}</td>
                 <td>${order.total}</td>
                 <td>{order.status}</td>

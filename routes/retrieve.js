@@ -39,7 +39,7 @@ router.get('/single-cosmetic/:id', (req, res) => {
 })
 
 router.get('/orders', (req, res) => {
-    db.query('SELECT o.id, u.last_name, order_date, total, status, o.user_id FROM orders o JOIN users u ON u.id = o.user_id;', (err, result) => {
+    db.query('SELECT o.id, u.first_name, u.last_name, order_date, total, status, o.user_id FROM orders o JOIN users u ON u.id = o.user_id;', (err, result) => {
         if (err) {
             console.log(err)
         }

@@ -50,7 +50,7 @@ function EditOrder({ orderToEdit }) {
                             id="user"
                             value={user_id}
                             onChange={e => setUserId(e.target.value)}>
-                            <option value=''>{orderToEdit.last_name}</option>
+                            <option value=''>{orderToEdit.first_name + ' ' + orderToEdit.last_name}</option>
                             <UserInputOptions />
                         </select>
                     </div>
