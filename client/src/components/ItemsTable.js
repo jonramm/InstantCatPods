@@ -5,7 +5,7 @@ function ItemsTable({ orderItems }) {
 
     return (
         <>
-            <table class="table table-dark">
+            <table class="table table-dark items-table">
                 <thead>
                     <tr>
                         <th scope="col">Items</th>

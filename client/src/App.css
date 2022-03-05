@@ -165,12 +165,22 @@ margin-bottom: 3%;
 
 /* Tables */
 
+.view-row {
+  width: 75%;
+  margin: auto;
+}
+
+.items-table {
+  width: 25%;
+  margin: auto;
+}
+
 .td-button {
 width: 20px;
 }
 
 .card {
-  width: 18rem;
+  width: 25%;
   margin: auto;
   font-size: 1.6rem;
 }
