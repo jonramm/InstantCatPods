@@ -17,9 +17,20 @@ function Users( {setUserToEdit} ) {
 
     const filterUsers = async (e) => {
         e.preventDefault();
-        const response = await fetch(`/retrieve/users-filter/${first_name}`);
-        const data = await response.json();
-        setUsers(data);
+        const searchFilters = {first_name, last_name, screen_name, dob}
+        if (first_name || last_name || screen_name || dob) {
+            const response = await fetch('/retrieve/users-filter', {
+                method: 'POST',
+                body: JSON.stringify(searchFilters),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const data = await response.json();
+            setUsers(data);
+        } else {
+            loadUsers()
+        }     
     }
 
     const loadUsers = async () => {

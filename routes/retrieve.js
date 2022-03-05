@@ -11,13 +11,13 @@ router.get('/users', (req, res) => {
       })
 })
 
-router.get('/users-filter/:first_name', (req, res) => {
-    let query = 'SELECT * FROM users WHERE '
+router.post('/users-filter', (req, res) => {
+    console.log(req.body)
+    let queryClause = 'WHERE '
     if (req.params.first_name !== '') {
-        query += `first_name = '${req.params.first_name}'`
+        queryClause += `first_name = '${req.body.first_name}'`
     }
-    query += ';'
-    db.query(query, (err, result) => {
+    db.query(`SELECT * FROM users ${queryClause};`, (err, result) => {
         if(err) {
             console.log(err)
           }
