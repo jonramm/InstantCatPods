@@ -5,7 +5,7 @@ import usersIcon from '../images/usersicon.png';
 import UsersTable from "../components/UsersTable";
 import { useNavigate } from "react-router-dom";
 
-function Users( {setUserToEdit} ) {
+function Users({ setUserToEdit }) {
 
     const [first_name, setFirstName] = useState('')
     const [last_name, setLastName] = useState('')
@@ -17,7 +17,7 @@ function Users( {setUserToEdit} ) {
 
     const filterUsers = async (e) => {
         e.preventDefault();
-        const searchFilters = {first_name, last_name, screen_name, dob}
+        const searchFilters = { first_name, last_name, screen_name, dob }
         if (first_name || last_name || screen_name || dob) {
             const response = await fetch('/retrieve/users-filter', {
                 method: 'POST',
@@ -30,7 +30,7 @@ function Users( {setUserToEdit} ) {
             setUsers(data);
         } else {
             loadUsers()
-        }     
+        }
     }
 
     const loadUsers = async () => {
@@ -93,47 +93,60 @@ function Users( {setUserToEdit} ) {
         <>
             <img src={usersIcon} alt="users icon" />
             <h1 className="title-header">Users</h1>
-            <div className="container instructions table-dark bg-dark">
-                <h3>Add new user or search existing users</h3>
-            </div>
-            <form>
-                <div class="form-input">
-                    <div class="form-group">
-                        <label for="first_name">First Name: </label>
-                        <input class="form-control"
-                            type="text"
-                            id="first_name"
-                            value={first_name}
-                            onChange={e => setFirstName(e.target.value)} />
-                    </div>
-                    <div class="form-group">
-                        <label for="last_name">Last Name: </label>
-                        <input class="form-control"
-                            type="text"
-                            id="last_name"
-                            value={last_name}
-                            onChange={e => setLastName(e.target.value)} />
-                    </div>
-                    <div class="form-group">
-                        <label for="screen_name">Screen Name: </label>
-                        <input class="form-control"
-                            type="text"
-                            id="screen_name"
-                            value={screen_name}
-                            onChange={e => setScreenName(e.target.value)} />
-                    </div>
-                    <div class="form-group">
-                        <label for="dob">Date of Birth: </label>
-                        <input class="form-control"
-                            type="date"
-                            id="dob"
-                            value={dob}
-                            onChange={e => setDob(e.target.value)} />
+            <div className="row justify-content-around">
+                <div className="col-4">
+                    <div className="container instructions table-dark bg-dark">
+                        <h3>Add new user or filter existing users. Enter data into the fields
+                        and click 'Add User' to submit it to the database or 'Filter Results'
+                        to display database rows that match specified criteria. Click 'Reset Results'
+                        to clear criteria.</h3>
                     </div>
                 </div>
-                <button class="btn btn-primary" onClick={createUser}>Insert</button>
-                <button class="btn btn-primary" onClick={filterUsers} name="search_btn">Search</button>
-            </form>
+
+                <div className="col-6">
+                    <form>
+                        <div class="form-input">
+                            <div class="form-group">
+                                <label for="first_name">First Name: </label>
+                                <input class="form-control"
+                                    type="text"
+                                    id="first_name"
+                                    value={first_name}
+                                    onChange={e => setFirstName(e.target.value)} />
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Last Name: </label>
+                                <input class="form-control"
+                                    type="text"
+                                    id="last_name"
+                                    value={last_name}
+                                    onChange={e => setLastName(e.target.value)} />
+                            </div>
+                            <div class="form-group">
+                                <label for="screen_name">Screen Name: </label>
+                                <input class="form-control"
+                                    type="text"
+                                    id="screen_name"
+                                    value={screen_name}
+                                    onChange={e => setScreenName(e.target.value)} />
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of Birth: </label>
+                                <input class="form-control"
+                                    type="date"
+                                    id="dob"
+                                    value={dob}
+                                    onChange={e => setDob(e.target.value)} />
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onClick={createUser}>Add User</button>
+                        <button class="btn btn-primary" onClick={filterUsers} name="search_btn">Filter Users</button>
+                        <button class="btn btn-primary" onClick={loadUsers} name="reset">Reset Results</button>
+                    </form>
+                </div>
+            </div>
+
+
 
             <UsersTable users={users} onDelete={deleteUser} onEdit={editUser} />
 

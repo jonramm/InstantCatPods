@@ -26,6 +26,10 @@ main {
   
 }
 
+table {
+  margin-top: 3%;
+}
+
 
 /* Classes */
 
@@ -151,10 +155,10 @@ margin-top: 3%;
 
 /* Forms */
 
-form {
+/* form {
 width: 50%;
 margin:3% auto 3%;
-}
+} */
 
 input {
 margin: 5px auto;
