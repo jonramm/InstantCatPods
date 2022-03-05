@@ -18,8 +18,8 @@ function EditOrder({ orderToEdit }) {
 
     const editOrder = async (e) => {
         e.preventDefault();
-        const newOrder = { id, order_date, total, status, user_id };
-        const response = await fetch('/update/orders', {
+        const newOrder = { order_date, total, status, user_id };
+        const response = await fetch(`/update/orders/${id}`, {
             method: 'PUT',
             body: JSON.stringify(newOrder),
             headers: {
@@ -82,7 +82,7 @@ function EditOrder({ orderToEdit }) {
                         </select>
                     </div>
                 </div>
-                <button class="btn btn-primary" onClick={editOrder}>Insert</button>
+                <button class="btn btn-primary" onClick={editOrder}>Submit Changes</button>
             </form>
         </>
     )
