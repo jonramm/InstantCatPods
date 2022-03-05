@@ -15,6 +15,13 @@ function Users( {setUserToEdit} ) {
 
     const navigate = useNavigate()
 
+    const filterUsers = async (e) => {
+        e.preventDefault();
+        const response = await fetch(`/retrieve/users-filter/${first_name}`);
+        const data = await response.json();
+        setUsers(data);
+    }
+
     const loadUsers = async () => {
         const response = await fetch('/retrieve/users');
         const data = await response.json();
@@ -114,7 +121,7 @@ function Users( {setUserToEdit} ) {
                     </div>
                 </div>
                 <button class="btn btn-primary" onClick={createUser}>Insert</button>
-                <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
+                <button class="btn btn-primary" onClick={filterUsers} name="search_btn">Search</button>
             </form>
 
             <UsersTable users={users} onDelete={deleteUser} onEdit={editUser} />
