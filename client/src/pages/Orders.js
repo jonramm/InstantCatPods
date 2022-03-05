@@ -15,6 +15,8 @@ function Orders({ setOrderToEdit }) {
     const [total, setTotal] = useState(0)
     // const [lastOrder, setLastOrder] = useState()
 
+    console.log(orders)
+
     const [cosmetic, setCosmetic] = useState('')
     const [components, setComponents] = useState([]);
 

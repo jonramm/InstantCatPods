@@ -9,7 +9,7 @@ function OrdersTable({ orders, onDelete, onEdit }) {
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">User Last Name</th>
+                        <th scope="col">User Name</th>
                         <th scope="col">Order Date</th>
                         <th scope="col">Total</th>
                         <th scope="col">Status</th>

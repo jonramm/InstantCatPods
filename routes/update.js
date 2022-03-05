@@ -29,7 +29,7 @@ router.put('/users/:id', (req, res) => {
 // Avatars
 router.put('/avatars/:id', (req, res) => {
 
-  	if (req.body.name && req.params.user_id) {
+  	if (req.body.name && req.body.user_id) {
 	  
 	  inserts = [req.body.name, 
 	  req.body.user_id, 

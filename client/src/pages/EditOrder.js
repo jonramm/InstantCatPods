@@ -6,13 +6,15 @@ import UserInputOptions from "../components/UserInputOptions";
 
 function EditOrder({ orderToEdit }) {
 
-    console.log(orderToEdit)
-
     const [order_date, setOrderDate] = useState(orderToEdit.order_date)
     const [total, setTotal] = useState(orderToEdit.total)
     const [status, setStatus] = useState(orderToEdit.status)
     const [user_id, setUserId] = useState(orderToEdit.user_id)
     const [id, setId] = useState(orderToEdit.id)
+
+    const month = order_date.slice(5, 7)
+    const day = order_date.slice(8, 10)
+    const year = order_date.slice(0, 4)
 
     const navigate = useNavigate()
 
@@ -48,15 +50,15 @@ function EditOrder({ orderToEdit }) {
                             id="user"
                             value={user_id}
                             onChange={e => setUserId(e.target.value)}>
-                            <option value=''>{orderToEdit.last_name}</option>
+                            <option value=''>{orderToEdit.first_name + ' ' + orderToEdit.last_name}</option>
                             <UserInputOptions />
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="order_date">Order Date: </label>
                         <input class="form-control"
-                            type="date"
                             id="order_date"
+                            type="date"
                             value={order_date}
                             onChange={e => setOrderDate(e.target.value)} />
                     </div>
