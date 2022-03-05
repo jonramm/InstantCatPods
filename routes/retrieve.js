@@ -12,11 +12,20 @@ router.get('/users', (req, res) => {
 })
 
 router.post('/users-filter', (req, res) => {
-    console.log(req.body)
     let queryClause = 'WHERE '
-    if (req.params.first_name !== '') {
+    if (req.body.first_name !== '') {
         queryClause += `first_name = '${req.body.first_name}'`
     }
+    if (req.body.last_name !== '') {
+        queryClause += `last_name = '${req.body.last_name}'`
+    }
+    if (req.body.screen_name !== '') {
+        queryClause += `screen_name = '${req.body.screen_name}'`
+    }
+    if (req.body.dob !== '') {
+        queryClause += `dob = '${req.body.dob}'`
+    }
+
     db.query(`SELECT * FROM users ${queryClause};`, (err, result) => {
         if(err) {
             console.log(err)
