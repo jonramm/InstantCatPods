@@ -145,6 +145,10 @@ margin-top: 3%;
   margin-top: 3%;
 }
 
+.order-details {
+  font-weight: bold;
+}
+
 /* Forms */
 
 form {
