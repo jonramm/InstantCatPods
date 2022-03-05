@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import ordersIcon from '../images/ordersicon.png';
+import ItemsTable from "../components/ItemsTable";
 
 function ViewOrder({ orderToView }) {
 
@@ -22,12 +23,12 @@ function ViewOrder({ orderToView }) {
         loadOrderItems(id)
     }, [])
 
-    console.log('Order Items')
-    console.log(orderItems)
-
     return (
         <>
+            <img src={ordersIcon} alt="orders icon" />
+            <h1>Order ID: {id}</h1>
 
+            <ItemsTable orderItems={orderItems}/>
         </>
     )
 }
