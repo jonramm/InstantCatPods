@@ -12,7 +12,7 @@ router.get('/users', (req, res) => {
 })
 
 router.get('/avatars', (req, res) => {
-    db.query('SELECT a.id, a.name, u.last_name, a.user_id FROM avatars a LEFT JOIN users u ON a.user_id = u.id;', (err, result) => {
+    db.query('SELECT a.id, a.name, u.first_name, u.last_name, a.user_id FROM avatars a LEFT JOIN users u ON a.user_id = u.id;', (err, result) => {
         if (err) {
             console.log(err)
         }
