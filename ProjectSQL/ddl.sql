@@ -35,7 +35,7 @@ order_id int NOT NULL,
 asset_id int NOT NULL,
 PRIMARY KEY(order_id, asset_id),
 FOREIGN KEY(order_id) REFERENCES orders(id) ON DELETE CASCADE,
-FOREIGN KEY(asset_id) REFERENCES cosmetics(id)) ON DELETE CASCADE;
+FOREIGN KEY(asset_id) REFERENCES cosmetics(id) ON DELETE CASCADE;
 
 CREATE TABLE users_cosmetics(
 user_id int NOT NULL,
