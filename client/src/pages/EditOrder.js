@@ -40,7 +40,7 @@ function EditOrder({ orderToEdit }) {
     return (
         <>
             <img src={ordersIcon} alt="avatars icon" />
-            <h1>Edit Order</h1>
+            <h1 className="title-header">Edit Order</h1>
             <form>
                 <div class="form-input">
                     <div class="form-group">

@@ -155,7 +155,7 @@ function Orders({ setOrderToEdit, setOrderToView }) {
     return (
         <>
             <img src={ordersIcon} alt="orders icon" />
-            <h1>Orders</h1>
+            <h1 className="title-header">Orders</h1>
             
             <div className="row">
             <form className="col">

@@ -48,7 +48,7 @@ router.get('/orders', (req, res) => {
 })
 
 router.get('/order-items/:id', (req, res) => {
-    db.query(`SELECT c.description FROM orders o JOIN orders_cosmetics oc ON o.id = oc.order_id JOIN cosmetics c ON oc.asset_id = c.id WHERE o.id = ${req.params.id};`, (err, result) => {
+    db.query(`SELECT c.description, c.price FROM orders o JOIN orders_cosmetics oc ON o.id = oc.order_id JOIN cosmetics c ON oc.asset_id = c.id WHERE o.id = ${req.params.id};`, (err, result) => {
         if (err) {
             console.log(err)
         }
