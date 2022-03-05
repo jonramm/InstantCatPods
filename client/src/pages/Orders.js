@@ -6,7 +6,7 @@ import OrdersTable from "../components/OrdersTable";
 import UserInputOptions from "../components/UserInputOptions";
 import CosmeticInputOptions from "../components/CosmeticInputOptions"
 
-function Orders({ setOrderToEdit }) {
+function Orders({ setOrderToEdit, setOrderToView }) {
 
     const [user_id, setUserId] = useState('')
     const [order_date, setOrderDate] = useState('')
@@ -105,6 +105,11 @@ function Orders({ setOrderToEdit }) {
     const editOrder = async orderToEdit => {
         setOrderToEdit(orderToEdit)
         navigate('/edit-order')
+    }
+
+    const viewOrder = async orderToView => {
+        setOrderToView(orderToView)
+        navigate('/view-order')
     }
 
     const createRelationships = async () => {
@@ -233,7 +238,7 @@ function Orders({ setOrderToEdit }) {
 
 
 
-            <OrdersTable orders={orders} onDelete={deleteOrder} onEdit={editOrder} />
+            <OrdersTable orders={orders} onDelete={deleteOrder} onEdit={editOrder} onView={viewOrder} />
 
             <div class="links-container">
                 <button type="button" class="btn btn-secondary">
