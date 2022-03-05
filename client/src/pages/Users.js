@@ -74,7 +74,7 @@ function Users( {setUserToEdit} ) {
     return (
         <>
             <img src={usersIcon} alt="users icon" />
-            <h1>Users</h1>
+            <h1 className="title-header">Users</h1>
             <div className="container instructions table-dark bg-dark">
                 <h3>Add new user or search existing users</h3>
             </div>

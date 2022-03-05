@@ -74,7 +74,7 @@ function Cosmetics( { setCosmeticToEdit }) {
         <>
 
             <img src={cosmeticsIcon} alt="cosmetics icon"/>
-            <h1>Cosmetics</h1>
+            <h1 className="title-header">Cosmetics</h1>
             <div className="container instructions table-dark bg-dark">
                 <h3>Add new cosmetic or search existing cosmetics</h3>
             </div>

@@ -34,7 +34,7 @@ function EditAvatar( {avatarToEdit} ) {
     return (
         <>
             <img src={avatarsIcon} alt="avatars icon" />
-            <h1>Edit Avatar</h1>
+            <h1 className="title-header">Edit Avatar</h1>
             <form>
                 <div class="form-input">
                     <div class="form-group">

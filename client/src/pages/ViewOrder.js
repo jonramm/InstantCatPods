@@ -30,21 +30,24 @@ function ViewOrder({ orderToView }) {
         loadOrderItems(id)
     }, [])
 
+    console.log(orderItems)
+
     return (
         <>
             <img src={ordersIcon} alt="orders icon" />
-            <h1>Order ID: {id}</h1>
-            <div class="row justify-content-around view-row">
+            <h1 className="title-header">Order ID: {id}</h1>
+            {/* <div class="row justify-content-around view-row"> */}
             <div class="card col-4 order-display">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">{first_name + ' ' + last_name}</li>
                     <li class="list-group-item">{month + '-' + day + '-' + year}</li>
                     <li class="list-group-item">{total}</li>
                     <li class="list-group-item">{status}</li>
+                    {orderItems.map((item, i) => (<li class="list-group-item">{item.description} - ${item.price}</li>))}
                 </ul>
             </div>
-            <ItemsTable class="col-4" orderItems={orderItems} />
-            </div>
+            {/* <ItemsTable class="col-4" orderItems={orderItems} />
+            </div> */}
             
         </>
     )

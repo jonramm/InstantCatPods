@@ -65,7 +65,7 @@ function OrderCosmetics() {
                 <img src={ordersIcon} alt="orders icon"/>
                 <img src={heart} alt="heart gif"/>
                 <img src={cosmeticsIcon} alt="cosmetics icon"/>
-                <h1>Order Cosmetics</h1>
+                <h1 className="title-header">Order Cosmetics</h1>
                 <div className="container instructions table-dark bg-dark">
                     <h3>Add cosmetics to orders</h3>
                 </div>

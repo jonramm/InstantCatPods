@@ -35,7 +35,7 @@ function EditUser( {userToEdit} ) {
     return (
         <>
             <img src={usersIcon} alt="users icon" />
-            <h1>Edit User</h1>
+            <h1 className="title-header">Edit User</h1>
             <form>
                 <div class="form-input">
                     <div class="form-group">

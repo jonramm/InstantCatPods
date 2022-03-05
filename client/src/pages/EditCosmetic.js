@@ -34,7 +34,7 @@ function EditCosmetic( {cosmeticToEdit} ) {
     return (
         <>
             <img src={cosmeticsIcon} alt="avatars icon" />
-            <h1>Edit Cosmetic</h1>
+            <h1 className="title-header">Edit Cosmetic</h1>
             <form>
             <div class="form-input">
                     <div class="form-group">

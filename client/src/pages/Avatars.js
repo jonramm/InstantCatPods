@@ -74,7 +74,7 @@ function Avatars({ setAvatarToEdit }) {
         <>
             <>
                 <img src={avatarsIcon} alt="avatar icon"/>
-                <h1>Avatars</h1>
+                <h1 className="title-header">Avatars</h1>
                 <div className="container instructions table-dark bg-dark">
                 <h3>Add new avatar or search existing avatars</h3>
             </div>
