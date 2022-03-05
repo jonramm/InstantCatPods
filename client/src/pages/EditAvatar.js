@@ -14,8 +14,8 @@ function EditAvatar( {avatarToEdit} ) {
 
     const editAvatar = async (e) => {
         e.preventDefault();
-        const newAvatar = { id, name, user_id };
-        const response = await fetch('/update/avatars', {
+        const newAvatar = { name, user_id };
+        const response = await fetch(`/update/avatars/${id}`, {
             method: 'PUT',
             body: JSON.stringify(newAvatar),
             headers: {

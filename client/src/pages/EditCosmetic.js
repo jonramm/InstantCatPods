@@ -14,8 +14,8 @@ function EditCosmetic( {cosmeticToEdit} ) {
 
     const editCosmetic = async (e) => {
         e.preventDefault();
-        const newCosmetic = { id, description, type, price };
-        const response = await fetch('/update/cosmetics', {
+        const newCosmetic = { description, type, price };
+        const response = await fetch(`/update/cosmetics/${id}`, {
             method: 'PUT',
             body: JSON.stringify(newCosmetic),
             headers: {

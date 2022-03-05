@@ -15,8 +15,8 @@ function EditUser( {userToEdit} ) {
 
     const editUser = async (e) => {
         e.preventDefault();
-        const newUser = { id, first_name, last_name, screen_name, dob };
-        const response = await fetch('/update/users', {
+        const newUser = { first_name, last_name, screen_name, dob };
+        const response = await fetch(`/update/users/${id}`, {
             method: 'PUT',
             body: JSON.stringify(newUser),
             headers: {

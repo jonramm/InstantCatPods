@@ -53,7 +53,7 @@ function Avatars({ setAvatarToEdit }) {
 
     const editAvatar = async avatarToEdit => {
         setAvatarToEdit(avatarToEdit)
-        navigate('/edit-avatar')
+        navigate(`/edit-avatar`)
     }
 
     const deleteAvatar = async id => {

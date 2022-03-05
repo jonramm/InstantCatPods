@@ -7,11 +7,11 @@ const db = require('../dbcon')
 // User edits that data, and submits, which will go to approrpriate request for DB.
 
 // Users
-router.put('/users', (req, res) => {
+router.put('/users/:id', (req, res) => {
 	inserts = [req.body.first_name, 
 	req.body.last_name, 
 	req.body.screen_name, 
-	req.body.dob, req.body.id];
+	req.body.dob, req.params.id];
 	
 	sql_update_users = "UPDATE users SET first_name=?, last_name=?, screen_name=?, dob=? WHERE id=?";
 	
@@ -27,13 +27,13 @@ router.put('/users', (req, res) => {
 });
 
 // Avatars
-router.put('/avatars', (req, res) => {
+router.put('/avatars/:id', (req, res) => {
 
-  	if (req.body.name && req.body.user_id) {
+  	if (req.body.name && req.params.user_id) {
 	  
 	  inserts = [req.body.name, 
 	  req.body.user_id, 
-	  req.body.id];
+	  req.params.id];
 	  
 	  sql_update_avatars = "UPDATE avatars SET name=?, user_id=? WHERE id=?";
 	  
@@ -48,7 +48,7 @@ router.put('/avatars', (req, res) => {
     })
   } else {
 	  
-	inserts = [req.body.name, req.body.id];
+	inserts = [req.body.name, req.params.id];
 	
 	sql_update_avatars = "UPDATE avatars SET name=?, user_id=NULL WHERE id=?";
 	
@@ -65,12 +65,12 @@ router.put('/avatars', (req, res) => {
 })
 
 // Cosmetics
-router.put('/cosmetics', (req,res) =>{
+router.put('/cosmetics/:id', (req,res) =>{
 	
 	inserts = [req.body.description, 
 	req.body.type, 
 	req.body.price, 
-	req.body.id];
+	req.params.id];
 	
 	sql_update_cosmetics = "UPDATE cosmetics SET description=?, type=?, price=? WHERE id=?";
 	
@@ -86,13 +86,13 @@ router.put('/cosmetics', (req,res) =>{
 })
 
 // Orders
-router.put('/orders', (req,res) =>{
+router.put('/orders/:id', (req,res) =>{
 	
 	inserts = [req.body.order_date, 
 	req.body.total, 
 	req.body.status,
 	req.body.user_id,
-	req.body.id];
+	req.params.id];
 	
 	sql_update_orders = "UPDATE orders SET order_date=?, total=?, status=?, user_id=? WHERE id=?";
 	
