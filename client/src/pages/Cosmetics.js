@@ -90,7 +90,7 @@ function Cosmetics({ setCosmeticToEdit }) {
 
     return (
         <>
-
+            {console.log(price)}
             <img src={cosmeticsIcon} alt="cosmetics icon" />
             <h1 className="title-header">Cosmetics</h1>
 

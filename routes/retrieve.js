@@ -113,6 +113,7 @@ router.get('/single-cosmetic/:id', (req, res) => {
 
 // SEARCH
 router.post('/cosmetics-filter', (req, res) => {
+    console.log(req.body)
     let queryClause = 'WHERE '
 	let multiParam = false
 	
@@ -128,7 +129,7 @@ router.post('/cosmetics-filter', (req, res) => {
         queryClause += `type = '${req.body.type}'`
 		multiParam = true
     }
-	if (req.body.price !== null) {
+	if (req.body.price !== undefined) {
 		if(multiParam)
 		{
 			queryClause += ' AND '
@@ -136,6 +137,7 @@ router.post('/cosmetics-filter', (req, res) => {
         queryClause += `price = '${req.body.price}'`
 		multiParam = true
     }
+    console.log(queryClause)
     db.query(`SELECT * FROM cosmetics ${queryClause};`, (err, result) => {
         if(err) {
             console.log(err)
