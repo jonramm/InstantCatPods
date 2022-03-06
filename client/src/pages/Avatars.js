@@ -78,7 +78,7 @@ function Avatars({ setAvatarToEdit }) {
                 <div className="container instructions table-dark bg-dark">
                 <h3>Add new avatar or search existing avatars</h3>
             </div>
-                <form>
+                <form className="form-width">
                     <div class="form-input">
                         <div class="form-group">
                             <label for="user">User Name: </label>

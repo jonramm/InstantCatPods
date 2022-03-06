@@ -35,7 +35,7 @@ function EditAvatar( {avatarToEdit} ) {
         <>
             <img src={avatarsIcon} alt="avatars icon" />
             <h1 className="title-header">Edit Avatar</h1>
-            <form>
+            <form className="form-width">
                 <div class="form-input">
                     <div class="form-group">
                         <label for="name">Name: </label>

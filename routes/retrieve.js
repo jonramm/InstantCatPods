@@ -11,6 +11,29 @@ router.get('/users', (req, res) => {
       })
 })
 
+router.post('/users-filter', (req, res) => {
+    let queryClause = 'WHERE '
+    if (req.body.first_name !== '') {
+        queryClause += `first_name = '${req.body.first_name}'`
+    }
+    if (req.body.last_name !== '') {
+        queryClause += `last_name = '${req.body.last_name}'`
+    }
+    if (req.body.screen_name !== '') {
+        queryClause += `screen_name = '${req.body.screen_name}'`
+    }
+    if (req.body.dob !== '') {
+        queryClause += `dob = '${req.body.dob}'`
+    }
+
+    db.query(`SELECT * FROM users ${queryClause};`, (err, result) => {
+        if(err) {
+            console.log(err)
+          }
+          res.send(result)
+    })
+})
+
 router.get('/avatars', (req, res) => {
     db.query('SELECT a.id, a.name, u.first_name, u.last_name, a.user_id FROM avatars a LEFT JOIN users u ON a.user_id = u.id;', (err, result) => {
         if (err) {

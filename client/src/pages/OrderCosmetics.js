@@ -69,7 +69,7 @@ function OrderCosmetics() {
                 <div className="container instructions table-dark bg-dark">
                     <h3>Add cosmetics to orders</h3>
                 </div>
-                <form>
+                <form className="form-width">
                     <div class="form-input">
                         <div class="form-group">
                             <label for="order">Order: </label>
