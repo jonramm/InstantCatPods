@@ -113,7 +113,6 @@ router.get('/single-cosmetic/:id', (req, res) => {
 
 // SEARCH
 router.post('/cosmetics-filter', (req, res) => {
-    console.log(req.body)
     let queryClause = 'WHERE '
 	let multiParam = false
 	
@@ -137,7 +136,6 @@ router.post('/cosmetics-filter', (req, res) => {
         queryClause += `price = '${req.body.price}'`
 		multiParam = true
     }
-    console.log(queryClause)
     db.query(`SELECT * FROM cosmetics ${queryClause};`, (err, result) => {
         if(err) {
             console.log(err)
@@ -158,14 +156,15 @@ router.get('/orders', (req, res) => {
 
 // SEARCH
 router.post('/orders-filter', (req, res) => {
+    console.log(req.body)
     let queryClause = 'WHERE '
 	let multiParam = false
 	
-    if (req.body.user_id !== null) {
+    if (req.body.user_id !== '') {
         queryClause += `user_id = '${req.body.user_id}'`
 		multiParam = true
     }
-    if (req.body.order_date !== null) {
+    if (req.body.order_date !== '') {
 		if(multiParam)
 		{
 			queryClause += ' AND '
@@ -173,14 +172,14 @@ router.post('/orders-filter', (req, res) => {
         queryClause += `order_date = '${req.body.order_date}'`
 		multiParam = true
     }
-	if (req.body.total !== null) {
-		if(multiParam)
-		{
-			queryClause += ' AND '
-		}
-        queryClause += `total = '${req.body.total}'`
-		multiParam = true
-    }
+	// if (req.body.total !== null) {
+	// 	if(multiParam)
+	// 	{
+	// 		queryClause += ' AND '
+	// 	}
+    //     queryClause += `total = '${req.body.total}'`
+	// 	multiParam = true
+    // }
 	if (req.body.status !== '') {
 		if(multiParam)
 		{
@@ -189,7 +188,8 @@ router.post('/orders-filter', (req, res) => {
         queryClause += `status = '${req.body.status}'`
 		multiParam = true
     }
-    db.query(`SELECT * FROM orders ${queryClause};`, (err, result) => {
+    console.log(queryClause)
+    db.query(`SELECT o.id, u.first_name, u.last_name, order_date, total, status, o.user_id FROM orders o JOIN users u ON u.id = o.user_id ${queryClause};`, (err, result) => {
         if(err) {
             console.log(err)
           }
