@@ -13,11 +13,11 @@ router.get('/users', (req, res) => {
 
 router.post('/users-filter', (req, res) => {
     let queryClause = 'WHERE '
-	let multiParam = False
+	let multiParam = false
 	
     if (req.body.first_name !== '') {
         queryClause += `first_name = '${req.body.first_name}'`
-		multiParam = True
+		multiParam = true
     }
     if (req.body.last_name !== '') {
 		if(multiParam)
@@ -25,7 +25,7 @@ router.post('/users-filter', (req, res) => {
 			queryClause += ' AND '
 		}
         queryClause += `last_name = '${req.body.last_name}'`
-		multiParam = True
+		multiParam = true
     }
     if (req.body.screen_name !== '') {
 		if(multiParam)
@@ -33,7 +33,7 @@ router.post('/users-filter', (req, res) => {
 			queryClause += ' AND '
 		}
         queryClause += `screen_name = '${req.body.screen_name}'`
-		multiParam = True
+		multiParam = true
     }
     if (req.body.dob !== '') {
 		if(multiParam)
@@ -41,7 +41,7 @@ router.post('/users-filter', (req, res) => {
 			queryClause += ' AND '
 		}
         queryClause += `dob = '${req.body.dob}'`
-		multiParam = True
+		multiParam = true
     }
 
     db.query(`SELECT * FROM users ${queryClause};`, (err, result) => {
