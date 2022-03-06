@@ -5,7 +5,7 @@ import cosmeticsIcon from '../images/cosmeticsicon.png';
 import CosmeticsTable from "../components/CosmeticsTable";
 import { useNavigate } from "react-router-dom";
 
-function Cosmetics( { setCosmeticToEdit }) {
+function Cosmetics({ setCosmeticToEdit }) {
 
     const [description, setDescription] = useState('')
     const [type, setType] = useState('')
@@ -13,6 +13,24 @@ function Cosmetics( { setCosmeticToEdit }) {
     const [cosmetics, setCosmetics] = useState([])
 
     const navigate = useNavigate()
+
+    const filterCosmetics = async (e) => {
+        e.preventDefault();
+        const searchFilters = { description, type, price }
+        if (description || type || price) {
+            const response = await fetch('/retrieve/cosmetics-filter', {
+                method: 'POST',
+                body: JSON.stringify(searchFilters),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const data = await response.json();
+            setCosmetics(data);
+        } else {
+            loadCosmetics()
+        }
+    }
 
     const loadCosmetics = async () => {
         // function for retrieving cosmetics from db
@@ -73,59 +91,70 @@ function Cosmetics( { setCosmeticToEdit }) {
     return (
         <>
 
-            <img src={cosmeticsIcon} alt="cosmetics icon"/>
+            <img src={cosmeticsIcon} alt="cosmetics icon" />
             <h1 className="title-header">Cosmetics</h1>
-            <div className="container instructions table-dark bg-dark">
-                <h3>Add new cosmetic or search existing cosmetics</h3>
-            </div>
-            <form className="form-width">
-                <div class="form-input">
-                    <div class="form-group">
-                        <label for="description">Description: </label>
-                        <input class="form-control"
-                            type="text"
-                            id="description"
-                            value={description}
-                            onChange={e => setDescription(e.target.value)} />
-                    </div>
-                    <div class="form-group">
-                        <label for="type">Type: </label>
-                        <select class="form-control"
-                            type="text"
-                            id="type"
-                            value={type}
-                            onChange={e => setType(e.target.value)}>
-                            <option value=''>--please select a type--</option>
-                            <option>Head Gear</option>
-                            <option>Torso Gear</option>
-                            <option>Feet Gear</option>
-                        </select>   
-                    </div>
-                    <div class="form-group">
-                        <label for="price">Price: </label>
-                        <input class="form-control"
-                            type="number"
-                            step="any"
-                            id="price"
-                            value={price}
-                            onChange={e => setPrice(e.target.value)} />
+
+            <div className="row justify-content-around">
+                <div className="col-4">
+                    <div className="container instructions table-dark bg-dark">
+                        <h3>Add a new cosmetic or filter existing cosmetics. Enter data into the fields
+                            and click 'Add Cosmetic' to submit it to the database, or click 'Filter Results'
+                            to display database rows that match specified criteria. Click 'Reset Results'
+                            to clear criteria and refresh the results.</h3>
                     </div>
                 </div>
-                <button class="btn btn-primary" onClick={createCosmetic}>Insert</button>
-                <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
-            </form>
+
+                <div className="col-6">
+                    <form>
+                        <div class="form-input">
+                            <div class="form-group">
+                                <label for="description">Description: </label>
+                                <input class="form-control"
+                                    type="text"
+                                    id="description"
+                                    value={description}
+                                    onChange={e => setDescription(e.target.value)} />
+                            </div>
+                            <div class="form-group">
+                                <label for="type">Type: </label>
+                                <select class="form-control"
+                                    type="text"
+                                    id="type"
+                                    value={type}
+                                    onChange={e => setType(e.target.value)}>
+                                    <option value=''>--please select a type--</option>
+                                    <option>Head Gear</option>
+                                    <option>Torso Gear</option>
+                                    <option>Feet Gear</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="price">Price: </label>
+                                <input class="form-control"
+                                    type="number"
+                                    step="any"
+                                    id="price"
+                                    value={price}
+                                    onChange={e => setPrice(e.target.value)} />
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onClick={createCosmetic}>Add Cosmetic</button>
+                        <button class="btn btn-primary" onClick={filterCosmetics} name="search_btn">Filter Cosmetics</button>
+                        <button class="btn btn-primary" onClick={loadCosmetics} name="reset">Reset Results</button>
+                    </form>
+                </div>
+            </div>
 
             <CosmeticsTable cosmetics={cosmetics} onDelete={deleteCosmetic} onEdit={editCosmetic} />
 
             <div class="links-container">
-                    <button type="button" class="btn btn-secondary">
-                        <Link class="relationship-links" to="/order-cosmetics"> Order Cosmetics</Link>
-                    </button>
-                    <button type="button" class="btn btn-secondary">
-                        <Link class="relationship-links" to="/user-cosmetics">User Cosmetics</Link>
-                    </button>
-                </div>
-
+                <button type="button" class="btn btn-secondary">
+                    <Link class="relationship-links" to="/order-cosmetics"> Order Cosmetics</Link>
+                </button>
+                <button type="button" class="btn btn-secondary">
+                    <Link class="relationship-links" to="/user-cosmetics">User Cosmetics</Link>
+                </button>
+            </div>
         </>
     )
 }

@@ -5,7 +5,7 @@ function OrdersTable({ orders, onDelete, onEdit, onView }) {
 
     return (
         <>
-            <table class="table table-dark">
+            <table class="table table-dark table-striped table-hover">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
