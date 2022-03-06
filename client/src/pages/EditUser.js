@@ -67,7 +67,7 @@ function EditUser( {userToEdit} ) {
                         <input class="form-control"
                             type="date"
                             id="dob"
-                            value={dob}
+                            value={dob.substring(0, 10)}
                             onChange={e => setDob(e.target.value)} />
                     </div>
                 </div>

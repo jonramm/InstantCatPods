@@ -59,7 +59,7 @@ function EditOrder({ orderToEdit }) {
                         <input class="form-control"
                             id="order_date"
                             type="date"
-                            value={order_date}
+                            value={order_date.substring(0, 10)}
                             onChange={e => setOrderDate(e.target.value)} />
                     </div>
                     <div class="form-group">

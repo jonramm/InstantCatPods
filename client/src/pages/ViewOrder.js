@@ -38,7 +38,7 @@ function ViewOrder({ orderToView }) {
             <div class="card col-4 order-display">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item order-details">{first_name + ' ' + last_name}</li>
-                    <li class="list-group-item order-details">{month + '-' + day + '-' + year}</li>
+                    <li class="list-group-item order-details">{month + ' / ' + day + ' / ' + year}</li>
                     <li class="list-group-item order-details">${total}</li>
                     <li class="list-group-item order-details">{status}</li>
                     {orderItems.map((item, i) => (<li class="list-group-item">{item.description} - ${item.price}</li>))}

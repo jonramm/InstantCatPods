@@ -11,7 +11,7 @@ function OrdersRow({ order, onDelete, onEdit, onView }) {
             <tr>
                 <td>{order.id}</td>
                 <td>{order.first_name + ' ' + order.last_name}</td>
-                <td>{month + '-' + day + '-' + year}</td>
+                <td>{month + ' - ' + day + ' - ' + year}</td>
                 <td>${order.total}</td>
                 <td>{order.status}</td>
                 <td class="td-button"><button onClick={() => onEdit(order)} class="btn btn-primary">Edit</button></td>
