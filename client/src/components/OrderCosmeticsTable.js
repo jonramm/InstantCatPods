@@ -5,7 +5,7 @@ function OrderCosmeticsTable({ orderCosmetics, onDelete }) {
 
     return (
         <>
-            <table class="table table-dark table-striped">
+            <table class="table table-dark table-striped table-hover">
                 <thead>
                     <tr>
                         <th scope="col">Order</th>

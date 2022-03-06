@@ -6,7 +6,7 @@ function UsersTable({ users, onDelete, onEdit }) {
     return (
         <>
             <div className="table-border">
-                <table class="table table-dark table-striped">
+                <table class="table table-dark table-striped table-hover table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>

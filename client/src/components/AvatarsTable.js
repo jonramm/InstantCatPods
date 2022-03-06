@@ -5,7 +5,7 @@ function AvatarsTable({ avatars, onDelete, onEdit }) {
 
     return (
         <>
-            <table class="table table-dark table-striped">
+            <table class="table table-dark table-striped table-hover">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
