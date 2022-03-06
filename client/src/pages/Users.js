@@ -96,10 +96,10 @@ function Users({ setUserToEdit }) {
             <div className="row justify-content-around">
                 <div className="col-4">
                     <div className="container instructions table-dark bg-dark">
-                        <h3>Add new user or filter existing users. Enter data into the fields
-                        and click 'Add User' to submit it to the database or 'Filter Results'
+                        <h3>Add a new user or filter existing users. Enter data into the fields
+                        and click 'Add User' to submit it to the database, or click 'Filter Results'
                         to display database rows that match specified criteria. Click 'Reset Results'
-                        to clear criteria.</h3>
+                        to clear criteria and refresh the results.</h3>
                     </div>
                 </div>
 
