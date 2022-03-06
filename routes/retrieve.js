@@ -11,6 +11,7 @@ router.get('/users', (req, res) => {
       })
 })
 
+// SEARCH
 router.post('/users-filter', (req, res) => {
     let queryClause = 'WHERE '
 	let multiParam = false
@@ -61,6 +62,33 @@ router.get('/avatars', (req, res) => {
     })
 })
 
+// SEARCH
+router.post('/avatars-filter', (req, res) => {
+    let queryClause = 'WHERE '
+	let multiParam = false
+	
+    if (req.body.user_id !== null) {
+        queryClause += `user_id = '${req.body.user_id}'`
+		multiParam = true
+    }
+    if (req.body.name !== '') {
+		if(multiParam)
+		{
+			queryClause += ' AND '
+		}
+        queryClause += `name = '${req.body.name}'`
+		multiParam = true
+    }
+    
+    db.query(`SELECT * FROM avatars ${queryClause};`, (err, result) => {
+        if(err) {
+            console.log(err)
+          }
+          res.send(result)
+    })
+})
+
+
 router.get('/cosmetics', (req, res) => {
     db.query('SELECT * FROM cosmetics', (err, result) => {
         if (err) {
@@ -79,12 +107,87 @@ router.get('/single-cosmetic/:id', (req, res) => {
     })
 })
 
+// SEARCH
+router.post('/cosmetics-filter', (req, res) => {
+    let queryClause = 'WHERE '
+	let multiParam = false
+	
+    if (req.body.description !== '') {
+        queryClause += `description = '${req.body.description}'`
+		multiParam = true
+    }
+    if (req.body.type !== '') {
+		if(multiParam)
+		{
+			queryClause += ' AND '
+		}
+        queryClause += `type = '${req.body.type}'`
+		multiParam = true
+    }
+	if (req.body.price !== null) {
+		if(multiParam)
+		{
+			queryClause += ' AND '
+		}
+        queryClause += `price = '${req.body.price}'`
+		multiParam = true
+    }
+    db.query(`SELECT * FROM cosmetics ${queryClause};`, (err, result) => {
+        if(err) {
+            console.log(err)
+          }
+          res.send(result)
+    })
+})
+
+
 router.get('/orders', (req, res) => {
     db.query('SELECT o.id, u.first_name, u.last_name, order_date, total, status, o.user_id FROM orders o JOIN users u ON u.id = o.user_id;', (err, result) => {
         if (err) {
             console.log(err)
         }
         res.send(result)
+    })
+})
+
+// SEARCH
+router.post('/orders-filter', (req, res) => {
+    let queryClause = 'WHERE '
+	let multiParam = false
+	
+    if (req.body.user_id !== null) {
+        queryClause += `user_id = '${req.body.user_id}'`
+		multiParam = true
+    }
+    if (req.body.order_date !== null) {
+		if(multiParam)
+		{
+			queryClause += ' AND '
+		}
+        queryClause += `order_date = '${req.body.order_date}'`
+		multiParam = true
+    }
+	if (req.body.total !== null) {
+		if(multiParam)
+		{
+			queryClause += ' AND '
+		}
+        queryClause += `total = '${req.body.total}'`
+		multiParam = true
+    }
+	if (req.body.status !== '') {
+		if(multiParam)
+		{
+			queryClause += ' AND '
+		}
+        queryClause += `status = '${req.body.status}'`
+		multiParam = true
+    }
+    db.query(`SELECT * FROM orders ${queryClause};`, (err, result) => {
+        if(err) {
+            console.log(err)
+          }
+          res.send(result)
     })
 })
 
@@ -115,12 +218,62 @@ router.get('/orders-cosmetics', (req, res) =>  {
     })
 })
 
+// SEARCH
+router.post('/orders-cosmetics-filter', (req, res) => {
+    let queryClause = 'WHERE '
+	let multiParam = false
+	
+    if (req.body.order_id !== null) {
+        queryClause += `order_id = '${req.body.order_id}'`
+		multiParam = true
+    }
+    if (req.body.asset_id !== null) {
+		if(multiParam)
+		{
+			queryClause += ' AND '
+		}
+        queryClause += `asset_id = '${req.body.asset_id}'`
+		multiParam = true
+    }
+    db.query(`SELECT * FROM orders_cosmetics ${queryClause};`, (err, result) => {
+        if(err) {
+            console.log(err)
+          }
+          res.send(result)
+    })
+})
+
 router.get('/users-cosmetics', (req, res) =>  {
     db.query('SELECT u.id, c.description, uc.asset_id FROM users_cosmetics uc JOIN users u ON u.id = uc.user_id JOIN cosmetics c on c.id = uc.asset_id ORDER BY u.id;', (err, result) => {
         if (err) {
             console.log(err)
         }
         res.send(result)
+    })
+})
+
+// SEARCH
+router.post('/users-cosmetics-filter', (req, res) => {
+    let queryClause = 'WHERE '
+	let multiParam = false
+	
+    if (req.body.user_id !== null) {
+        queryClause += `user_id = '${req.body.user_id}'`
+		multiParam = true
+    }
+    if (req.body.asset_id !== null) {
+		if(multiParam)
+		{
+			queryClause += ' AND '
+		}
+        queryClause += `asset_id = '${req.body.asset_id}'`
+		multiParam = true
+    }d
+    db.query(`SELECT * FROM users_cosmetics ${queryClause};`, (err, result) => {
+        if(err) {
+            console.log(err)
+          }
+          res.send(result)
     })
 })
 
