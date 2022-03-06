@@ -67,14 +67,16 @@ router.post('/avatars-filter', (req, res) => {
     let queryClause = 'WHERE '
 	let multiParam = false
 	
-    if (req.body.user_id !== '') {
-        queryClause += `a.user_id = '${req.body.user_id}'`
-		multiParam = true
+    if (req.body.user_id !== undefined) {
+        if (req.body.user_id === '') {
+            queryClause += `a.user_id IS NULL`
+            multiParam = true
+        } else {
+            queryClause += `a.user_id = '${req.body.user_id}'`
+		    multiParam = true
+        } 
     }
-    if (req.body.user_id === '') {
-        queryClause += `a.user_id IS NULL`
-		multiParam = true
-    }
+    
     if (req.body.name !== '') {
 		if(multiParam)
 		{
@@ -87,7 +89,6 @@ router.post('/avatars-filter', (req, res) => {
         if(err) {
             console.log(err)
           }
-          console.log(result)
           res.send(result)
     })
 })
