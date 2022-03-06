@@ -67,8 +67,12 @@ router.post('/avatars-filter', (req, res) => {
     let queryClause = 'WHERE '
 	let multiParam = false
 	
-    if (req.body.user_id !== null) {
-        queryClause += `user_id = '${req.body.user_id}'`
+    if (req.body.user_id !== '') {
+        queryClause += `a.user_id = '${req.body.user_id}'`
+		multiParam = true
+    }
+    if (req.body.user_id === '') {
+        queryClause += `a.user_id IS NULL`
 		multiParam = true
     }
     if (req.body.name !== '') {
@@ -76,14 +80,14 @@ router.post('/avatars-filter', (req, res) => {
 		{
 			queryClause += ' AND '
 		}
-        queryClause += `name = '${req.body.name}'`
+        queryClause += `a.name = '${req.body.name}'`
 		multiParam = true
     }
-    
-    db.query(`SELECT * FROM avatars ${queryClause};`, (err, result) => {
+    db.query(`SELECT a.id, a.name, u.first_name, u.last_name, a.user_id FROM avatars a LEFT JOIN users u ON a.user_id = u.id ${queryClause};`, (err, result) => {
         if(err) {
             console.log(err)
           }
+          console.log(result)
           res.send(result)
     })
 })

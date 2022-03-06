@@ -16,7 +16,7 @@ function Avatars({ setAvatarToEdit }) {
     const filterAvatars = async (e) => {
         e.preventDefault();
         const searchFilters = { name, user_id }
-        if (name || user_id) {
+        // if (name || user_id) {
             const response = await fetch('/retrieve/avatars-filter', {
                 method: 'POST',
                 body: JSON.stringify(searchFilters),
@@ -26,9 +26,9 @@ function Avatars({ setAvatarToEdit }) {
             });
             const data = await response.json();
             setAvatars(data);
-        } else {
-            loadAvatars()
-        }
+        // } else {
+        //     loadAvatars()
+        // }
     }
 
     const loadAvatars = async () => {
@@ -88,6 +88,7 @@ function Avatars({ setAvatarToEdit }) {
 
     return (
         <>
+        {console.log(user_id)}
             <>
                 <img src={avatarsIcon} alt="avatar icon" />
                 <h1 className="title-header">Avatars</h1>
