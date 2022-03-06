@@ -81,43 +81,53 @@ function OrderCosmetics() {
         <>
             {console.log(orderCosmetics)}
             <>
-                <img src={ordersIcon} alt="orders icon"/>
-                <img src={heart} alt="heart gif"/>
-                <img src={cosmeticsIcon} alt="cosmetics icon"/>
+                <img src={ordersIcon} alt="orders icon" />
+                <img src={heart} alt="heart gif" />
+                <img src={cosmeticsIcon} alt="cosmetics icon" />
                 <h1 className="title-header">Order Cosmetics</h1>
-                <div className="container instructions table-dark bg-dark">
-                    <h3>Add cosmetics to orders</h3>
-                </div>
-                <form className="form-width">
-                    <div class="form-input">
-                        <div class="form-group">
-                            <label for="order">Order: </label>
-                            <select class="form-control"
-                                type="number"
-                                id="order"
-                                value={order_id}
-                                onChange={e => setOrder(e.target.value)}>
-                                <option>--please enter a cosmetic--</option>
-                                <OrderInputOptions />
-                            </select>
+                <div className="row justify-content-around">
+                    <div className="col-4">
+                        <div className="container instructions table-dark bg-dark">
+                            <h3>Add a new relationship or filter existing relationships. Enter an order 
+                            and cosmetic to connect and click 'Add Relationship' to submit it to the database, or 
+                            click 'Filter Results' to display database rows that match specified criteria. 
+                            Click 'Reset Results' to clear criteria and refresh the results.</h3>
                         </div>
-                        <div class="form-group">
-                            <label for="cosmetic">Cosmetic: </label>
-                            <select class="form-control"
-                                type="text"
-                                id="cosmetic"
-                                value={cosmetic}
-                                onChange={e => setCosmetic(e.target.value)}>
-                                <option>--please enter a cosmetic--</option>
-                                <CosmeticInputOptions />
-                            </select>
-                        </div>
-                        
                     </div>
-                    <button class="btn btn-primary" onClick={createOrderCosmetic}>Add Relationship</button>
-                    <button class="btn btn-primary" onClick={filterResults} name="search_btn" type="submit">Filter Results</button>
-                    <button class="btn btn-primary" onClick={loadOrderCosmetics} name="reset">Reset Results</button>
-                </form>
+
+                    <div className="col-6">
+                        <form>
+                            <div class="form-input">
+                                <div class="form-group">
+                                    <label for="order">Order Id: </label>
+                                    <select class="form-control"
+                                        type="number"
+                                        id="order"
+                                        value={order_id}
+                                        onChange={e => setOrder(e.target.value)}>
+                                        <option>--please enter an order id--</option>
+                                        <OrderInputOptions />
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cosmetic">Cosmetic: </label>
+                                    <select class="form-control"
+                                        type="text"
+                                        id="cosmetic"
+                                        value={cosmetic}
+                                        onChange={e => setCosmetic(e.target.value)}>
+                                        <option>--please enter a cosmetic--</option>
+                                        <CosmeticInputOptions />
+                                    </select>
+                                </div>
+
+                            </div>
+                            <button class="btn btn-primary" onClick={createOrderCosmetic}>Add Relationship</button>
+                            <button class="btn btn-primary" onClick={filterResults} name="search_btn" type="submit">Filter Results</button>
+                            <button class="btn btn-primary" onClick={loadOrderCosmetics} name="reset">Reset Results</button>
+                        </form>
+                    </div>
+                </div>
 
                 <OrderCosmeticsTable orderCosmetics={orderCosmetics} onDelete={deleteOrderCosmetic} />
 
