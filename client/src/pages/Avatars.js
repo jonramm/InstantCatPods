@@ -126,7 +126,7 @@ function Avatars({ setAvatarToEdit }) {
                                 </div>
                             </div>
                             <button class="btn btn-primary" onClick={createAvatar}>Add Avatar</button>
-                            <button class="btn btn-primary" onClick={filterAvatars} name="search_btn">Filter Users</button>
+                            <button class="btn btn-primary" onClick={filterAvatars} name="search_btn">Filter Avatars</button>
                             <button class="btn btn-primary" onClick={loadAvatars} name="reset">Reset Results</button>
                         </form>
                     </div>

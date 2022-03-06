@@ -6,7 +6,7 @@ function CosmeticsTable({ cosmetics, onDelete, onEdit }) {
     return (
         <>
         {console.log(cosmetics)}
-            <table class="table table-dark">
+            <table class="table table-dark table-striped">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>

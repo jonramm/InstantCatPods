@@ -139,7 +139,7 @@ function Cosmetics({ setCosmeticToEdit }) {
                             </div>
                         </div>
                         <button class="btn btn-primary" onClick={createCosmetic}>Add Cosmetic</button>
-                        <button class="btn btn-primary" onClick={filterCosmetics} name="search_btn">Filter Users</button>
+                        <button class="btn btn-primary" onClick={filterCosmetics} name="search_btn">Filter Cosmetics</button>
                         <button class="btn btn-primary" onClick={loadCosmetics} name="reset">Reset Results</button>
                     </form>
                 </div>

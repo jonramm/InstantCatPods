@@ -22,6 +22,24 @@ function Orders({ setOrderToEdit, setOrderToView }) {
 
     const navigate = useNavigate()
 
+    const filterOrders = async (e) => {
+        e.preventDefault();
+        const searchFilters = { user_id, order_date, status, total }
+        if (user_id || order_date || status || total) {
+            const response = await fetch('/retrieve/orders-filter', {
+                method: 'POST',
+                body: JSON.stringify(searchFilters),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const data = await response.json();
+            setOrders(data);
+        } else {
+            loadOrders()
+        }
+    }
+
     const addCosmetic = async () => {
 
         let cosmeticName = await loadCosmetic(cosmetic)
@@ -156,12 +174,16 @@ function Orders({ setOrderToEdit, setOrderToView }) {
         <>
             <img src={ordersIcon} alt="orders icon" />
             <h1 className="title-header">Orders</h1>
+            <div className="container instructions table-dark bg-dark">
+                <h3>Add a new order or filter existing orders. Enter data into the fields on 
+                the left and add cosmetics on the right, then click 'Add Order' to submit it 
+                to the database. Click 'Filter Results' to display database rows that match 
+                specified criteria, or click 'Reset Results' to clear criteria and refresh 
+                the results.</h3>
+            </div>
 
             <div className="row justify-content-around">
                 <form className="col-4">
-                    <div className="container instructions table-dark bg-dark">
-                        <h3>Add new order or search existing orders</h3>
-                    </div>
                     <div class="form-input">
                         <div class="form-group">
                             <label for="user">User: </label>
@@ -200,18 +222,12 @@ function Orders({ setOrderToEdit, setOrderToView }) {
                             </select>
                         </div>
                     </div>
-                    <button class="btn btn-primary" onClick={createOrder}>Insert</button>
-                    {/* <Link to="/order-details"
-                                state={{ user_id: user_id, order_date: order_date, total: total, status: status }}>
-                                <button class="btn btn-primary">Add Cosmetics</button>
-                            </Link> */}
-                    <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
+                    <button class="btn btn-primary" onClick={createOrder}>Add Order</button>
+                    <button class="btn btn-primary" onClick={filterOrders} name="search_btn">Filter Orders</button>
+                    <button class="btn btn-primary" onClick={loadOrders} name="reset">Reset Results</button>
                 </form>
 
                 <div className='col-4'>
-                    <div className="container instructions table-dark bg-dark">
-                        <h3>Add cosmetics to order</h3>
-                    </div>
                     <form>
                         <div className="form-input">
                             <label for="cosmetic">Cosmetic: </label>
