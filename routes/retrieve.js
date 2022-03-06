@@ -67,8 +67,12 @@ router.post('/avatars-filter', (req, res) => {
     let queryClause = 'WHERE '
 	let multiParam = false
 	
-    if (req.body.user_id !== null) {
-        queryClause += `user_id = '${req.body.user_id}'`
+    if (req.body.user_id !== '') {
+        queryClause += `a.user_id = '${req.body.user_id}'`
+		multiParam = true
+    }
+    if (req.body.user_id === '') {
+        queryClause += `a.user_id IS NULL`
 		multiParam = true
     }
     if (req.body.name !== '') {
@@ -76,14 +80,14 @@ router.post('/avatars-filter', (req, res) => {
 		{
 			queryClause += ' AND '
 		}
-        queryClause += `name = '${req.body.name}'`
+        queryClause += `a.name = '${req.body.name}'`
 		multiParam = true
     }
-    
-    db.query(`SELECT * FROM avatars ${queryClause};`, (err, result) => {
+    db.query(`SELECT a.id, a.name, u.first_name, u.last_name, a.user_id FROM avatars a LEFT JOIN users u ON a.user_id = u.id ${queryClause};`, (err, result) => {
         if(err) {
             console.log(err)
           }
+          console.log(result)
           res.send(result)
     })
 })
@@ -124,7 +128,7 @@ router.post('/cosmetics-filter', (req, res) => {
         queryClause += `type = '${req.body.type}'`
 		multiParam = true
     }
-	if (req.body.price !== null) {
+	if (req.body.price !== undefined) {
 		if(multiParam)
 		{
 			queryClause += ' AND '
@@ -152,14 +156,15 @@ router.get('/orders', (req, res) => {
 
 // SEARCH
 router.post('/orders-filter', (req, res) => {
+    console.log(req.body)
     let queryClause = 'WHERE '
 	let multiParam = false
 	
-    if (req.body.user_id !== null) {
+    if (req.body.user_id !== '') {
         queryClause += `user_id = '${req.body.user_id}'`
 		multiParam = true
     }
-    if (req.body.order_date !== null) {
+    if (req.body.order_date !== '') {
 		if(multiParam)
 		{
 			queryClause += ' AND '
@@ -167,14 +172,14 @@ router.post('/orders-filter', (req, res) => {
         queryClause += `order_date = '${req.body.order_date}'`
 		multiParam = true
     }
-	if (req.body.total !== null) {
-		if(multiParam)
-		{
-			queryClause += ' AND '
-		}
-        queryClause += `total = '${req.body.total}'`
-		multiParam = true
-    }
+	// if (req.body.total !== null) {
+	// 	if(multiParam)
+	// 	{
+	// 		queryClause += ' AND '
+	// 	}
+    //     queryClause += `total = '${req.body.total}'`
+	// 	multiParam = true
+    // }
 	if (req.body.status !== '') {
 		if(multiParam)
 		{
@@ -183,7 +188,8 @@ router.post('/orders-filter', (req, res) => {
         queryClause += `status = '${req.body.status}'`
 		multiParam = true
     }
-    db.query(`SELECT * FROM orders ${queryClause};`, (err, result) => {
+    console.log(queryClause)
+    db.query(`SELECT o.id, u.first_name, u.last_name, order_date, total, status, o.user_id FROM orders o JOIN users u ON u.id = o.user_id ${queryClause};`, (err, result) => {
         if(err) {
             console.log(err)
           }
