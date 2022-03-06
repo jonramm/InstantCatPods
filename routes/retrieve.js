@@ -227,22 +227,24 @@ router.get('/orders-cosmetics', (req, res) =>  {
 
 // SEARCH
 router.post('/orders-cosmetics-filter', (req, res) => {
+    console.log(req.body)
     let queryClause = 'WHERE '
 	let multiParam = false
 	
-    if (req.body.order_id !== null) {
-        queryClause += `order_id = '${req.body.order_id}'`
+    if (req.body.order_id !== '') {
+        queryClause += `order_id = ${req.body.order_id}`
 		multiParam = true
     }
-    if (req.body.asset_id !== null) {
+    if (req.body.asset_id !== '') {
 		if(multiParam)
 		{
 			queryClause += ' AND '
 		}
-        queryClause += `asset_id = '${req.body.asset_id}'`
+        queryClause += `asset_id = ${req.body.asset_id}`
 		multiParam = true
     }
-    db.query(`SELECT * FROM orders_cosmetics ${queryClause};`, (err, result) => {
+    console.log(queryClause)
+    db.query(`SELECT o.id, c.description, oc.asset_id FROM orders_cosmetics oc JOIN orders o ON o.id = oc.order_id JOIN cosmetics c on c.id = oc.asset_id ${queryClause};`, (err, result) => {
         if(err) {
             console.log(err)
           }

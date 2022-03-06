@@ -21,6 +21,24 @@ function OrderCosmetics() {
         setOrderCosmetics(data)
     }
 
+    const filterResults = async (e) => {
+        e.preventDefault();
+        const searchFilters = { order_id, asset_id: cosmetic }
+        if (order_id || cosmetic) {
+            const response = await fetch('/retrieve/orders-cosmetics-filter', {
+                method: 'POST',
+                body: JSON.stringify(searchFilters),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const data = await response.json();
+            setOrderCosmetics(data);
+        } else {
+            loadOrderCosmetics()
+        }
+    }
+
     const createOrderCosmetic = async (e) => {
         e.preventDefault();
         const newOrderCosmetic = { order_id, cosmetic };
@@ -61,6 +79,7 @@ function OrderCosmetics() {
 
     return (
         <>
+            {console.log(orderCosmetics)}
             <>
                 <img src={ordersIcon} alt="orders icon"/>
                 <img src={heart} alt="heart gif"/>
@@ -78,6 +97,7 @@ function OrderCosmetics() {
                                 id="order"
                                 value={order_id}
                                 onChange={e => setOrder(e.target.value)}>
+                                <option>--please enter a cosmetic--</option>
                                 <OrderInputOptions />
                             </select>
                         </div>
@@ -94,8 +114,9 @@ function OrderCosmetics() {
                         </div>
                         
                     </div>
-                    <button class="btn btn-primary" onClick={createOrderCosmetic}>Insert</button>
-                    <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
+                    <button class="btn btn-primary" onClick={createOrderCosmetic}>Add Relationship</button>
+                    <button class="btn btn-primary" onClick={filterResults} name="search_btn" type="submit">Filter Results</button>
+                    <button class="btn btn-primary" onClick={loadOrderCosmetics} name="reset">Reset Results</button>
                 </form>
 
                 <OrderCosmeticsTable orderCosmetics={orderCosmetics} onDelete={deleteOrderCosmetic} />
