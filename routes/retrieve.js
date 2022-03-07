@@ -276,7 +276,7 @@ router.post('/users-cosmetics-filter', (req, res) => {
         queryClause += `asset_id = '${req.body.asset_id}'`
 		multiParam = true
     }
-    db.query(`SELECT u.id, c.description, uc.asset_id FROM users_cosmetics uc JOIN users u ON u.id = uc.user_id JOIN cosmetics c on c.id = uc.asset_id ${queryClause};`, (err, result) => {
+    db.query(`SELECT u.id, u.first_name, u.last_name, c.description, uc.asset_id FROM users_cosmetics uc JOIN users u ON u.id = uc.user_id JOIN cosmetics c on c.id = uc.asset_id ${queryClause};`, (err, result) => {
         if(err) {
             console.log(err)
           }
