@@ -14,6 +14,24 @@ function UserCosmetics() {
     const [cosmetic, setCosmetic] = useState('')
     const [userCosmetics, setUserCosmetics] = useState([])
 
+    const filterResults = async (e) => {
+        e.preventDefault();
+        const searchFilters = { user_id, asset_id: cosmetic }
+        if (user_id || cosmetic) {
+            const response = await fetch('/retrieve/users-cosmetics-filter', {
+                method: 'POST',
+                body: JSON.stringify(searchFilters),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const data = await response.json();
+            setUserCosmetics(data);
+        } else {
+            loadUserCosmetics()
+        }
+    }
+
     const loadUserCosmetics = async () => {
         // function for retrieving user cosmetics from db
         const response = await fetch('/retrieve/users-cosmetics');
@@ -63,42 +81,54 @@ function UserCosmetics() {
     return (
         <>
             <>
-                <img src={usersIcon} alt="users icon"/>
-                <img src={heart} alt="heart gif"/>
-                <img src={cosmeticsIcon} alt="cosmetics icon"/>
+                <img src={usersIcon} alt="users icon" />
+                <img src={heart} alt="heart gif" />
+                <img src={cosmeticsIcon} alt="cosmetics icon" />
                 <h1 className="title-header">User Cosmetics</h1>
-                <div className="container instructions table-dark bg-dark">
-                    <h3>Add cosmetics to users</h3>
-                </div>
-                <form className="form-width">
-                    <div class="form-input">
-                        <div class="form-group">
-                            <label for="user">User: </label>
-                            <select class="form-control"
-                                type="text"
-                                id="user"
-                                value={user_id}
-                                onChange={e => setUser(e.target.value)}>
-                                <option>--please select a user--</option>
-                                <UserInputOptions />
-                            </select>
+
+                <div className="row justify-content-around">
+                    <div className="col-4">
+                        <div className="container instructions table-dark bg-dark">
+                            <h3>Add a new relationship or filter existing relationships. Enter a user
+                                and cosmetic to connect and click 'Add Relationship' to submit it to the database, or
+                                click 'Filter Results' to display database rows that match specified criteria.
+                                Click 'Reset Results' to clear criteria and refresh the results.</h3>
                         </div>
-                        <div class="form-group">
-                            <label for="cosmetic">Cosmetic: </label>
-                            <select class="form-control"
-                                type="text"
-                                id="cosmetic"
-                                value={cosmetic}
-                                onChange={e => setCosmetic(e.target.value)}>
-                                <option>--please select a cosmetic--</option>
-                                <CosmeticInputOptions />
-                            </select>
-                        </div>
-                        
                     </div>
-                    <button class="btn btn-primary" onClick={createUserCosmetic}>Insert</button>
-                    <button class="btn btn-primary" name="search_btn" type="submit">Search</button>
-                </form>
+
+                    <div className="col-6">
+                        <form>
+                            <div class="form-input">
+                                <div class="form-group">
+                                    <label for="user">User: </label>
+                                    <select class="form-control"
+                                        type="text"
+                                        id="user"
+                                        value={user_id}
+                                        onChange={e => setUser(e.target.value)}>
+                                        <option>--please select a user--</option>
+                                        <UserInputOptions />
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cosmetic">Cosmetic: </label>
+                                    <select class="form-control"
+                                        type="text"
+                                        id="cosmetic"
+                                        value={cosmetic}
+                                        onChange={e => setCosmetic(e.target.value)}>
+                                        <option>--please select a cosmetic--</option>
+                                        <CosmeticInputOptions />
+                                    </select>
+                                </div>
+
+                            </div>
+                            <button class="btn btn-primary" onClick={createUserCosmetic}>Add Relationship</button>
+                            <button class="btn btn-primary" onClick={filterResults} name="search_btn" type="submit">Filter Results</button>
+                            <button class="btn btn-primary" onClick={loadUserCosmetics} name="reset">Reset Results</button>
+                        </form>
+                    </div>
+                </div>
 
                 <UserCosmeticsTable userCosmetics={userCosmetics} onDelete={deleteUserCosmetic} />
 
