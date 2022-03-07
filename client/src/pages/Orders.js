@@ -13,7 +13,7 @@ function Orders({ setOrderToEdit, setOrderToView }) {
     const [status, setStatus] = useState('')
     const [orders, setOrders] = useState([])
     const [total, setTotal] = useState(0)
-    // const [lastOrder, setLastOrder] = useState()
+    const [totalString, setTotalString] = useState('')
 
     console.log(orders)
 
@@ -57,6 +57,7 @@ function Orders({ setOrderToEdit, setOrderToView }) {
         if (!inArray) {
             setComponents([...components, { id: cosmetic, description: description, price: newPrice }])
             setTotal(total + newPrice)
+            setTotalString((Math.round((total + newPrice) * 100) / 100).toFixed(2))
         }
     }
 
@@ -64,6 +65,7 @@ function Orders({ setOrderToEdit, setOrderToView }) {
         let componentsArr = components.filter((item) => item.description !== toDelete.description)
         setComponents(componentsArr)
         setTotal(total - toDelete.price)
+        setTotalString((total- toDelete.price).toFixed(2))
     };
 
     const loadCosmetic = async (id) => {
@@ -90,6 +92,7 @@ function Orders({ setOrderToEdit, setOrderToView }) {
         setUserId()
         setOrderDate('')
         setTotal(0)
+        setTotalString('')
         setStatus('')
         setComponents([])
     }
@@ -208,7 +211,7 @@ function Orders({ setOrderToEdit, setOrderToView }) {
                         </div>
                         <div class="form-group">
                             <label for="total">Total: </label>
-                            <p class="form-control" id="total">${total}</p>
+                            <p class="form-control" id="total">${totalString}</p>
                         </div>
                         <div class="form-group">
                             <label for="status">Status: </label>
