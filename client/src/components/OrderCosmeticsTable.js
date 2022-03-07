@@ -8,7 +8,7 @@ function OrderCosmeticsTable({ orderCosmetics, onDelete }) {
             <table class="table table-dark table-striped table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Order</th>
+                        <th scope="col">Order Id</th>
                         <th scope="col">Cosmetic</th>
                         <th scope="col"></th>
                         <th scope="col"></th>

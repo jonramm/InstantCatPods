@@ -230,19 +230,19 @@ router.post('/orders-cosmetics-filter', (req, res) => {
     let queryClause = 'WHERE '
 	let multiParam = false
 	
-    if (req.body.order_id !== null) {
-        queryClause += `order_id = '${req.body.order_id}'`
+    if (req.body.order_id !== '') {
+        queryClause += `order_id = ${req.body.order_id}`
 		multiParam = true
     }
-    if (req.body.asset_id !== null) {
+    if (req.body.asset_id !== '') {
 		if(multiParam)
 		{
 			queryClause += ' AND '
 		}
-        queryClause += `asset_id = '${req.body.asset_id}'`
+        queryClause += `asset_id = ${req.body.asset_id}`
 		multiParam = true
     }
-    db.query(`SELECT * FROM orders_cosmetics ${queryClause};`, (err, result) => {
+    db.query(`SELECT o.id, c.description, oc.asset_id FROM orders_cosmetics oc JOIN orders o ON o.id = oc.order_id JOIN cosmetics c on c.id = oc.asset_id ${queryClause};`, (err, result) => {
         if(err) {
             console.log(err)
           }
@@ -264,19 +264,19 @@ router.post('/users-cosmetics-filter', (req, res) => {
     let queryClause = 'WHERE '
 	let multiParam = false
 	
-    if (req.body.user_id !== null) {
+    if (req.body.user_id !== '') {
         queryClause += `user_id = '${req.body.user_id}'`
 		multiParam = true
     }
-    if (req.body.asset_id !== null) {
+    if (req.body.asset_id !== '') {
 		if(multiParam)
 		{
 			queryClause += ' AND '
 		}
         queryClause += `asset_id = '${req.body.asset_id}'`
 		multiParam = true
-    }d
-    db.query(`SELECT * FROM users_cosmetics ${queryClause};`, (err, result) => {
+    }
+    db.query(`SELECT u.id, c.description, uc.asset_id FROM users_cosmetics uc JOIN users u ON u.id = uc.user_id JOIN cosmetics c on c.id = uc.asset_id ${queryClause};`, (err, result) => {
         if(err) {
             console.log(err)
           }
