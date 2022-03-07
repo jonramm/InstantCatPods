@@ -251,7 +251,7 @@ router.post('/orders-cosmetics-filter', (req, res) => {
 })
 
 router.get('/users-cosmetics', (req, res) =>  {
-    db.query('SELECT u.id, c.description, uc.asset_id FROM users_cosmetics uc JOIN users u ON u.id = uc.user_id JOIN cosmetics c on c.id = uc.asset_id ORDER BY u.id;', (err, result) => {
+    db.query('SELECT u.id, u.first_name, u.last_name, c.description, uc.asset_id FROM users_cosmetics uc JOIN users u ON u.id = uc.user_id JOIN cosmetics c on c.id = uc.asset_id ORDER BY u.id;', (err, result) => {
         if (err) {
             console.log(err)
         }
