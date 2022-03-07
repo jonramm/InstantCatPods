@@ -38,7 +38,7 @@ function EditAvatar( {avatarToEdit} ) {
             <form className="form-width">
                 <div class="form-input">
                     <div class="form-group">
-                        <label for="name">Name: </label>
+                        <label for="name">Avatar Name: </label>
                         <input class="form-control"
                             type="text"
                             id="name"
