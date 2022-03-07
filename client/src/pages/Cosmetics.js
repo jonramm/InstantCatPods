@@ -42,7 +42,7 @@ function Cosmetics({ setCosmeticToEdit }) {
     const clearFields = () => {
         setDescription('')
         setType('')
-        setPrice()
+        setPrice('')
     }
 
     const createCosmetic = async (e) => {
