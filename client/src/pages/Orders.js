@@ -153,6 +153,8 @@ function Orders({ setOrderToEdit, setOrderToView }) {
         }
         if (response2.status === 200) {
             alert('Successfully added user-cosmetics relationships!')
+        } else if (response2.status === 519) {
+            alert('User-cosmetic relationship already found')
         }
     }
 

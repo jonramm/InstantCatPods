@@ -154,8 +154,8 @@ router.post('/users-cosmetics', (req, res) => {
 	db.query(sql_insert_orders, inserts, (err, result) => {
     if(err) {
       console.log(err)
-	  res.write(JSON.stringify(err));
-	  res.end();
+	    // res.write(JSON.stringify(err));
+      res.status(519).end()
     }
     res.send(result)
   })

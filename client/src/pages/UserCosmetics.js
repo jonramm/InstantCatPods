@@ -55,6 +55,8 @@ function UserCosmetics() {
                 alert('Successfully added the relationship!!')
                 // clearFields();
                 loadUserCosmetics();
+            } else if (response.status === 519) {
+                alert('User-cosmetic relationship already found')
             } else {
                 alert(`Failed to add relationship, status code = ${response.status}.`)
                 // clearFields();
