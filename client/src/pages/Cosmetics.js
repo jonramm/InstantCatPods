@@ -49,20 +49,24 @@ function Cosmetics({ setCosmeticToEdit }) {
         e.preventDefault();
         const newCosmetic = { description, type, price };
         if (description && type && price) {
-            const response = await fetch('/create/cosmetics', {
-                method: 'POST',
-                body: JSON.stringify(newCosmetic),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            if (response.status === 200) {
-                alert('Successfully added the cosmetic!')
-                clearFields();
-                loadCosmetics();
+            if (price > 0) {
+                const response = await fetch('/create/cosmetics', {
+                    method: 'POST',
+                    body: JSON.stringify(newCosmetic),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                if (response.status === 200) {
+                    alert('Successfully added the cosmetic!')
+                    clearFields();
+                    loadCosmetics();
+                } else {
+                    alert(`Failed to add cosmetic, status code = ${response.status}.`)
+                    clearFields();
+                }
             } else {
-                alert(`Failed to add cosmetic, status code = ${response.status}.`)
-                clearFields();
+                alert('Please enter a non-negative price')
             }
         } else {
             alert('Please fill out all fields')
