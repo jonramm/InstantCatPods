@@ -139,6 +139,7 @@ router.post('/users-cosmetics-bulk', (req, res) => {
   db.query(`INSERT INTO users_cosmetics (user_id, asset_id) VALUES ${editValuesStr};`, (err, result) => {
     if (err) {
       console.log(err)
+      res.status(519).end()
     }
     res.send(result)
   })
