@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import cosmeticsIcon from '../images/cosmeticsicon.png';
 
 // Completes the process of editing Cosmetics table.  References routes/update.js requests
-function EditCosmetic( {cosmeticToEdit} ) {
+function EditCosmetic({ cosmeticToEdit }) {
 
     const [description, setDescription] = useState(cosmeticToEdit.description)
     const [type, setType] = useState(cosmeticToEdit.type)
@@ -30,14 +30,14 @@ function EditCosmetic( {cosmeticToEdit} ) {
             alert(`Failed to edit cosmetic, status code = ${response.status}.`)
             navigate('/cosmetics')
         }
-    }    
+    }
 
     return (
         <>
             <img src={cosmeticsIcon} alt="avatars icon" />
             <h1 className="title-header">Edit Cosmetic</h1>
             <form className="form-width">
-            <div class="form-input">
+                <div class="form-input">
                     <div class="form-group">
                         <label for="description">Description: </label>
                         <input class="form-control"
@@ -57,7 +57,7 @@ function EditCosmetic( {cosmeticToEdit} ) {
                             <option>Head Gear</option>
                             <option>Torso Gear</option>
                             <option>Feet Gear</option>
-                        </select>   
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="price">Price: </label>

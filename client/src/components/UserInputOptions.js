@@ -4,16 +4,6 @@ import { useState } from 'react';
 function UserInputOptions() {
 
     const [users, setUsers] = useState([])
-    
-    // const loadUsers = async () => {
-    //     const users = [{first_name: "John",
-    //                   last_name: "Doe"},
-    //                   {first_name: "Jane",
-    //                   last_name: "Doe"}]
-    //     for (const obj of users) {
-    //         setUsers(arr => [...arr, obj])
-    //     }
-    // }
 
     const loadUsers = async () => {
         const response = await fetch('/retrieve/users');

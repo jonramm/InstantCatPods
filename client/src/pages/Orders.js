@@ -15,8 +15,6 @@ function Orders({ setOrderToEdit, setOrderToView }) {
     const [total, setTotal] = useState(0)
     const [totalString, setTotalString] = useState('')
 
-    console.log(orders)
-
     const [cosmetic, setCosmetic] = useState('')
     const [components, setComponents] = useState([]);
 

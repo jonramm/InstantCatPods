@@ -13,15 +13,15 @@ function OrderCosmetics() {
     const [order_id, setOrder] = useState('')
     const [cosmetic, setCosmetic] = useState('')
     const [orderCosmetics, setOrderCosmetics] = useState([])
-	
+
     const loadOrderCosmetics = async () => {
         // function for retrieving order cosmetics from db
         const response = await fetch('/retrieve/orders-cosmetics');
         const data = await response.json();
         setOrderCosmetics(data)
     }
-	
-	// Filter for order-cosmetics.  References routes/retrieve.js for requests
+
+    // Filter for order-cosmetics.  References routes/retrieve.js for requests
     const filterResults = async (e) => {
         e.preventDefault();
         const searchFilters = { order_id, asset_id: cosmetic }
@@ -39,8 +39,8 @@ function OrderCosmetics() {
             loadOrderCosmetics()
         }
     }
-	
-	// INSERT for orders-cosmetics.  References routes/create.js
+
+    // INSERT for orders-cosmetics.  References routes/create.js
     const createOrderCosmetic = async (e) => {
         e.preventDefault();
         const newOrderCosmetic = { order_id, cosmetic };
@@ -62,8 +62,8 @@ function OrderCosmetics() {
             alert('Please fill out all fields')
         }
     }
-	
-	// DELETE for orders-cosmetics.  References routes/destroy.js
+
+    // DELETE for orders-cosmetics.  References routes/destroy.js
     const deleteOrderCosmetic = async (order_id, asset_id) => {
         const response = await fetch(`/destroy/order-cosmetics/${order_id}/${asset_id}`, { method: 'DELETE' });
         if (response.status === 200) {
@@ -80,67 +80,64 @@ function OrderCosmetics() {
 
     return (
         <>
-            {console.log(orderCosmetics)}
-            <>
-                <img src={ordersIcon} alt="orders icon" />
-                <img src={heart} alt="heart gif" />
-                <img src={cosmeticsIcon} alt="cosmetics icon" />
-                <h1 className="title-header">Order Cosmetics</h1>
-                <div className="row justify-content-around">
-                    <div className="col-4">
-                        <div className="container instructions table-dark bg-dark">
-                            <h3>Add a new relationship or filter existing relationships. Enter an order 
-                            and cosmetic to connect and click 'Add Relationship' to submit it to the database, or 
-                            click 'Filter Results' to display database rows that match specified criteria. 
+            <img src={ordersIcon} alt="orders icon" />
+            <img src={heart} alt="heart gif" />
+            <img src={cosmeticsIcon} alt="cosmetics icon" />
+            <h1 className="title-header">Order Cosmetics</h1>
+            <div className="row justify-content-around">
+                <div className="col-4">
+                    <div className="container instructions table-dark bg-dark">
+                        <h3>Add a new relationship or filter existing relationships. Enter an order
+                            and cosmetic to connect and click 'Add Relationship' to submit it to the database, or
+                            click 'Filter Results' to display database rows that match specified criteria.
                             Click 'Reset Results' to clear criteria and refresh the results.</h3>
-                        </div>
                     </div>
+                </div>
 
-                    <div className="col-6">
-                        <form>
-                            <div class="form-input">
-                                <div class="form-group">
-                                    <label for="order">Order Id: </label>
-                                    <select class="form-control"
-                                        type="number"
-                                        id="order"
-                                        value={order_id}
-                                        onChange={e => setOrder(e.target.value)}>
-                                        <option>--please enter an order id--</option>
-                                        <OrderInputOptions />
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="cosmetic">Cosmetic: </label>
-                                    <select class="form-control"
-                                        type="text"
-                                        id="cosmetic"
-                                        value={cosmetic}
-                                        onChange={e => setCosmetic(e.target.value)}>
-                                        <option>--please enter a cosmetic--</option>
-                                        <CosmeticInputOptions />
-                                    </select>
-                                </div>
-
+                <div className="col-6">
+                    <form>
+                        <div class="form-input">
+                            <div class="form-group">
+                                <label for="order">Order Id: </label>
+                                <select class="form-control"
+                                    type="number"
+                                    id="order"
+                                    value={order_id}
+                                    onChange={e => setOrder(e.target.value)}>
+                                    <option>--please enter an order id--</option>
+                                    <OrderInputOptions />
+                                </select>
                             </div>
-                            <button class="btn btn-primary" onClick={createOrderCosmetic}>Add Relationship</button>
-                            <button class="btn btn-primary" onClick={filterResults} name="search_btn" type="submit">Filter Results</button>
-                            <button class="btn btn-primary" onClick={loadOrderCosmetics} name="reset">Reset Results</button>
-                        </form>
-                    </div>
-                </div>
+                            <div class="form-group">
+                                <label for="cosmetic">Cosmetic: </label>
+                                <select class="form-control"
+                                    type="text"
+                                    id="cosmetic"
+                                    value={cosmetic}
+                                    onChange={e => setCosmetic(e.target.value)}>
+                                    <option>--please enter a cosmetic--</option>
+                                    <CosmeticInputOptions />
+                                </select>
+                            </div>
 
-                <OrderCosmeticsTable orderCosmetics={orderCosmetics} onDelete={deleteOrderCosmetic} />
-
-                <div class="links-container">
-                    <button type="button" class="btn btn-secondary">
-                        <Link class="relationship-links" to="/order-cosmetics"> Order Cosmetics</Link>
-                    </button>
-                    <button type="button" class="btn btn-secondary">
-                        <Link class="relationship-links" to="/user-cosmetics">User Cosmetics</Link>
-                    </button>
+                        </div>
+                        <button class="btn btn-primary" onClick={createOrderCosmetic}>Add Relationship</button>
+                        <button class="btn btn-primary" onClick={filterResults} name="search_btn" type="submit">Filter Results</button>
+                        <button class="btn btn-primary" onClick={loadOrderCosmetics} name="reset">Reset Results</button>
+                    </form>
                 </div>
-            </>
+            </div>
+
+            <OrderCosmeticsTable orderCosmetics={orderCosmetics} onDelete={deleteOrderCosmetic} />
+
+            <div class="links-container">
+                <button type="button" class="btn btn-secondary">
+                    <Link class="relationship-links" to="/order-cosmetics"> Order Cosmetics</Link>
+                </button>
+                <button type="button" class="btn btn-secondary">
+                    <Link class="relationship-links" to="/user-cosmetics">User Cosmetics</Link>
+                </button>
+            </div>
         </>
     )
 }

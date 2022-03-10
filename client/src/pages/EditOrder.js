@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ordersIcon from '../images/ordersicon.png';
 import UserInputOptions from "../components/UserInputOptions";
 
@@ -12,10 +12,6 @@ function EditOrder({ orderToEdit }) {
     const [status, setStatus] = useState(orderToEdit.status)
     const [user_id, setUserId] = useState(orderToEdit.user_id)
     const [id, setId] = useState(orderToEdit.id)
-
-    const month = order_date.slice(5, 7)
-    const day = order_date.slice(8, 10)
-    const year = order_date.slice(0, 4)
 
     const navigate = useNavigate()
 

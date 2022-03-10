@@ -16,38 +16,38 @@ function Header() {
                     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                         <Link to="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
                             <img src={catPodLogo} class="logo-image" alt="logo icon" />
-                                <h1>Instant Cat Pods</h1>
+                            <h1>Instant Cat Pods</h1>
                         </Link>
 
                         <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                             <li>
                                 <Link to="/" class="nav-link text-white">
                                     <img class="bi d-block mx-auto mb-1" width="24" height="24" src={homeIcon} alt="home icon" />
-                                        Home
+                                    Home
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/users" class="nav-link text-white">
                                     <img class="bi d-block mx-auto mb-1" width="24" height="24" src={userIcon} alt="user icon" />
-                                        Users
+                                    Users
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/avatars" class="nav-link text-white">
                                     <img class="bi d-block mx-auto mb-1" width="24" height="24" src={avatarIcon} alt="avatar icon" />
-                                        Avatars
+                                    Avatars
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/cosmetics" class="nav-link text-white">
                                     <img class="bi d-block mx-auto mb-1" width="24" height="24" src={cosmeticIcon} alt="cosmetic icon" />
-                                        Cosmetics
+                                    Cosmetics
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/orders" class="nav-link text-white">
                                     <img class="bi d-block mx-auto mb-1" width="24" height="24" src={orderIcon} alt="order icon" />
-                                        Orders
+                                    Orders
                                 </Link>
                             </li>
                         </ul>

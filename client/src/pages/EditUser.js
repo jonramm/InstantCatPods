@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import usersIcon from '../images/usersicon.png';
 
-// Completes the process of editing Users table.  References routes/update.js requests
-function EditUser( {userToEdit} ) {
+
+function EditUser({ userToEdit }) {
 
     const [first_name, setFirstName] = useState(userToEdit.first_name)
     const [last_name, setLastName] = useState(userToEdit.last_name)
@@ -14,6 +14,7 @@ function EditUser( {userToEdit} ) {
 
     const navigate = useNavigate()
 
+    // Completes the process of editing Users table.  References routes/update.js requests
     const editUser = async (e) => {
         e.preventDefault();
         const newUser = { first_name, last_name, screen_name, dob };
@@ -31,7 +32,7 @@ function EditUser( {userToEdit} ) {
             alert(`Failed to edit user, status code = ${response.status}.`)
             navigate('/users')
         }
-    }    
+    }
 
     return (
         <>

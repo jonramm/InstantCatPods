@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import avatarsIcon from '../images/avatarsicon.png';
 import UserInputOptions from "../components/UserInputOptions";
 

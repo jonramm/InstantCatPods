@@ -30,8 +30,6 @@ function ViewOrder({ orderToView }) {
         loadOrderItems(id)
     }, [])
 
-    console.log(orderItems)
-
     return (
         <>
             <img src={ordersIcon} alt="orders icon" />
