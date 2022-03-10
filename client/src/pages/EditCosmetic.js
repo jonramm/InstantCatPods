@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import cosmeticsIcon from '../images/cosmeticsicon.png';
 
+// Completes the process of editing Cosmetics table.  References routes/update.js requests
 function EditCosmetic( {cosmeticToEdit} ) {
 
     const [description, setDescription] = useState(cosmeticToEdit.description)

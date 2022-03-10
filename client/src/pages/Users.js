@@ -14,7 +14,8 @@ function Users({ setUserToEdit }) {
     const [users, setUsers] = useState([])
 
     const navigate = useNavigate()
-
+	
+	// Function to filter Users by data in form. Corresponds to requests in routes/retrive.js
     const filterUsers = async (e) => {
         e.preventDefault();
         const searchFilters = { first_name, last_name, screen_name, dob }
@@ -34,6 +35,7 @@ function Users({ setUserToEdit }) {
     }
 
     const loadUsers = async () => {
+		// function for retrieving users from db
         const response = await fetch('/retrieve/users');
         const data = await response.json();
         setUsers(data);
@@ -45,7 +47,8 @@ function Users({ setUserToEdit }) {
         setScreenName('')
         setDob('')
     }
-
+	
+	// For User Insertions using routes/create.js
     const createUser = async (e) => {
         e.preventDefault();
         const newUser = { first_name, last_name, screen_name, dob };
@@ -70,6 +73,7 @@ function Users({ setUserToEdit }) {
         }
     }
 
+	// Delete Users via routes/destroy.js
     const deleteUser = async id => {
         const response = await fetch(`/destroy/users/${id}`, { method: 'DELETE' });
         if (response.status === 200) {
@@ -79,7 +83,8 @@ function Users({ setUserToEdit }) {
             alert(`Failed to delete user, status code = ${response.status}.`)
         }
     }
-
+	
+	// UPDATE function for users references routes/update.js requests
     const editUser = async userToEdit => {
         setUserToEdit(userToEdit)
         navigate('/edit-user')

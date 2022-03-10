@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const db = require('../dbcon')
 
+// Users READ request
 router.get('/users', (req, res) => {
     db.query('SELECT * FROM users', (err, result) => {
         if(err) {
@@ -11,7 +12,7 @@ router.get('/users', (req, res) => {
       })
 })
 
-// SEARCH
+// Filter functionality for Users based on data in the same form used for insertion
 router.post('/users-filter', (req, res) => {
     let queryClause = 'WHERE '
 	let multiParam = false
@@ -53,6 +54,7 @@ router.post('/users-filter', (req, res) => {
     })
 })
 
+// Avatars READ request
 router.get('/avatars', (req, res) => {
     db.query('SELECT a.id, a.name, u.first_name, u.last_name, a.user_id FROM avatars a LEFT JOIN users u ON a.user_id = u.id;', (err, result) => {
         if (err) {
@@ -62,7 +64,7 @@ router.get('/avatars', (req, res) => {
     })
 })
 
-// SEARCH
+// Filter functionality for Avatars based on data in the same form used for insertion
 router.post('/avatars-filter', (req, res) => {
     let queryClause = 'WHERE '
 	let multiParam = false
@@ -93,7 +95,7 @@ router.post('/avatars-filter', (req, res) => {
     })
 })
 
-
+// Cosmetics READ request for populating table
 router.get('/cosmetics', (req, res) => {
     db.query('SELECT * FROM cosmetics', (err, result) => {
         if (err) {
@@ -103,6 +105,7 @@ router.get('/cosmetics', (req, res) => {
     })
 })
 
+// Single cosmetic READ for populating drop downs.
 router.get('/single-cosmetic/:id', (req, res) => {
     db.query(`SELECT description, price FROM cosmetics WHERE id = ${req.params.id}`, (err, result) => {
         if (err) {
@@ -112,7 +115,7 @@ router.get('/single-cosmetic/:id', (req, res) => {
     })
 })
 
-// SEARCH
+// Filter functionality for Cosmetics based on data in the same form used for insertion
 router.post('/cosmetics-filter', (req, res) => {
     let queryClause = 'WHERE '
 	let multiParam = false
@@ -145,7 +148,7 @@ router.post('/cosmetics-filter', (req, res) => {
     })
 })
 
-
+// Orders READ that includes data from Users for Orders table
 router.get('/orders', (req, res) => {
     db.query('SELECT o.id, u.first_name, u.last_name, order_date, total, status, o.user_id FROM orders o JOIN users u ON u.id = o.user_id;', (err, result) => {
         if (err) {
@@ -155,7 +158,7 @@ router.get('/orders', (req, res) => {
     })
 })
 
-// SEARCH
+// Filter functionality for Orders based on data in the same form used for insertion
 router.post('/orders-filter', (req, res) => {
     console.log(req.body)
     let queryClause = 'WHERE '
@@ -173,14 +176,7 @@ router.post('/orders-filter', (req, res) => {
         queryClause += `order_date = '${req.body.order_date}'`
 		multiParam = true
     }
-	// if (req.body.total !== null) {
-	// 	if(multiParam)
-	// 	{
-	// 		queryClause += ' AND '
-	// 	}
-    //     queryClause += `total = '${req.body.total}'`
-	// 	multiParam = true
-    // }
+	
 	if (req.body.status !== '') {
 		if(multiParam)
 		{
@@ -198,6 +194,7 @@ router.post('/orders-filter', (req, res) => {
     })
 })
 
+// READ with Join for the View section of orders table
 router.get('/order-items/:id', (req, res) => {
     db.query(`SELECT c.description, c.price FROM orders o JOIN orders_cosmetics oc ON o.id = oc.order_id JOIN cosmetics c ON oc.asset_id = c.id WHERE o.id = ${req.params.id};`, (err, result) => {
         if (err) {
@@ -207,6 +204,7 @@ router.get('/order-items/:id', (req, res) => {
     })
 })
 
+// Gets the previous order
 router.get('/last-order', (req, res) => {
     db.query('SELECT id FROM orders WHERE id= LAST_INSERT_ID();', (err, result) => {
         if (err) {
@@ -216,6 +214,7 @@ router.get('/last-order', (req, res) => {
     })
 })
 
+// READ for orders-cosmetics
 router.get('/orders-cosmetics', (req, res) =>  {
     db.query('SELECT o.id, c.description, oc.asset_id FROM orders_cosmetics oc JOIN orders o ON o.id = oc.order_id JOIN cosmetics c on c.id = oc.asset_id ORDER BY o.id;', (err, result) => {
         if (err) {
@@ -225,7 +224,7 @@ router.get('/orders-cosmetics', (req, res) =>  {
     })
 })
 
-// SEARCH
+// Filter functionality for orders-comsetics based on data in the same form used for insertion
 router.post('/orders-cosmetics-filter', (req, res) => {
     let queryClause = 'WHERE '
 	let multiParam = false
@@ -250,6 +249,7 @@ router.post('/orders-cosmetics-filter', (req, res) => {
     })
 })
 
+// READ for users-cosmetics
 router.get('/users-cosmetics', (req, res) =>  {
     db.query('SELECT u.id, u.first_name, u.last_name, c.description, uc.asset_id FROM users_cosmetics uc JOIN users u ON u.id = uc.user_id JOIN cosmetics c on c.id = uc.asset_id ORDER BY u.id;', (err, result) => {
         if (err) {
@@ -259,7 +259,7 @@ router.get('/users-cosmetics', (req, res) =>  {
     })
 })
 
-// SEARCH
+// Filter functionality for Users-Cosmetics based on data in the same form used for insertion
 router.post('/users-cosmetics-filter', (req, res) => {
     let queryClause = 'WHERE '
 	let multiParam = false

@@ -12,11 +12,11 @@ function Avatars({ setAvatarToEdit }) {
     const [avatars, setAvatars] = useState([])
 
     const navigate = useNavigate()
-
+	
+	// Function to filter Avatars by data in form. Corresponds to requests in routes/retrive.js
     const filterAvatars = async (e) => {
         e.preventDefault();
         const searchFilters = { name, user_id }
-        // if (name || user_id) {
             const response = await fetch('/retrieve/avatars-filter', {
                 method: 'POST',
                 body: JSON.stringify(searchFilters),
@@ -26,13 +26,10 @@ function Avatars({ setAvatarToEdit }) {
             });
             const data = await response.json();
             setAvatars(data);
-        // } else {
-        //     loadAvatars()
-        // }
     }
 
     const loadAvatars = async () => {
-        // function for retrieving avatars from db
+        // function for retrieving avatars from db - references routes/retrieve.js
         const response = await fetch('/retrieve/avatars');
         const data = await response.json();
         setAvatars(data);
@@ -42,7 +39,8 @@ function Avatars({ setAvatarToEdit }) {
         setUserId()
         setName('')
     }
-
+	
+	// For Avatar Insertions using routes/create.js
     const createAvatar = async (e) => {
         e.preventDefault();
         const newUser = { name, user_id };
@@ -66,12 +64,14 @@ function Avatars({ setAvatarToEdit }) {
             alert('Please fill out name field')
         }
     }
-
+	
+	// UPDATE function references routes/update.js requests
     const editAvatar = async avatarToEdit => {
         setAvatarToEdit(avatarToEdit)
         navigate(`/edit-avatar`)
     }
-
+	
+	// Delete avatars via routes/destroy.js
     const deleteAvatar = async id => {
         const response = await fetch(`/destroy/avatars/${id}`, { method: 'DELETE' });
         if (response.status === 200) {

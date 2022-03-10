@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import ordersIcon from '../images/ordersicon.png';
 
+// Views individual orders in more detail via the "View" button. 
 function ViewOrder({ orderToView }) {
 
     const [order_date, setOrderDate] = useState(orderToView.order_date)

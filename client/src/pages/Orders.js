@@ -22,6 +22,7 @@ function Orders({ setOrderToEdit, setOrderToView }) {
 
     const navigate = useNavigate()
 
+	// Filter for Orders utilizing same form as insertion.  References routes/retrieve.js
     const filterOrders = async (e) => {
         e.preventDefault();
         const searchFilters = { user_id, order_date, status, total }
@@ -39,7 +40,8 @@ function Orders({ setOrderToEdit, setOrderToView }) {
             loadOrders()
         }
     }
-
+	
+	// INSERT for adding cosmetics to an order. (The right section of the page).  
     const addCosmetic = async () => {
 
         let cosmeticName = await loadCosmetic(cosmetic)
@@ -76,12 +78,13 @@ function Orders({ setOrderToEdit, setOrderToView }) {
 
 
     const loadOrders = async () => {
-        // function for retrieving users from db
+        // function for retrieving orders from db
         const response = await fetch('/retrieve/orders');
         const data = await response.json();
         setOrders(data)
     }
-
+	
+	// For the view button on table.
     const loadLastOrder = async () => {
         const response = await fetch('/retrieve/last-order');
         const data = await response.json()
@@ -96,7 +99,8 @@ function Orders({ setOrderToEdit, setOrderToView }) {
         setStatus('')
         setComponents([])
     }
-
+	
+	// INSERT for orders.  References routes/create.js
     const createOrder = async (e) => {
         e.preventDefault();
         const newUser = { user_id, order_date, total, status };
@@ -132,7 +136,8 @@ function Orders({ setOrderToEdit, setOrderToView }) {
         setOrderToView(orderToView)
         navigate('/view-order')
     }
-
+	
+	// Establishes relationship tables for order-cosmetics and user-cosmetics M:M relationships.
     const createRelationships = async () => {
         const lastOrder = await loadLastOrder()
         const newOrdersCosmetics = { lastOrder, components };
@@ -160,7 +165,8 @@ function Orders({ setOrderToEdit, setOrderToView }) {
             alert('One or more user-cosmetic relationships already found')
         }
     }
-
+	
+	// DELETE for Orders.  References routes/destroy.js for requests.
     const deleteOrder = async id => {
         const response = await fetch(`/destroy/orders/${id}`, { method: 'DELETE' });
         if (response.status === 200) {

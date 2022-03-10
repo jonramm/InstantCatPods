@@ -1,3 +1,5 @@
+// Boilerplate Setup
+
 require('dotenv').config();
 
 const PORT = process.env.PORT || 4000;
@@ -36,6 +38,7 @@ app.use(express.json())
 
 app.use(express.static(path.join(__dirname, 'build')));
 
+// Routes for our various get / post / put requests
 app.use('/retrieve', retrieve)
 app.use('/create', create)
 app.use('/destroy', destroy)

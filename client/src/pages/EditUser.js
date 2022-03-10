@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import usersIcon from '../images/usersicon.png';
 
+// Completes the process of editing Users table.  References routes/update.js requests
 function EditUser( {userToEdit} ) {
 
     const [first_name, setFirstName] = useState(userToEdit.first_name)

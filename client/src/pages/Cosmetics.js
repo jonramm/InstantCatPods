@@ -13,7 +13,8 @@ function Cosmetics({ setCosmeticToEdit }) {
     const [cosmetics, setCosmetics] = useState([])
 
     const navigate = useNavigate()
-
+	
+	// Function to filter Cosmetics by data in form. Corresponds to requests in routes/retrive.js
     const filterCosmetics = async (e) => {
         e.preventDefault();
         const searchFilters = { description, type, price }
@@ -44,7 +45,8 @@ function Cosmetics({ setCosmeticToEdit }) {
         setType('')
         setPrice('')
     }
-
+	
+	// For Cosmetic Insertions using routes/create.js
     const createCosmetic = async (e) => {
         e.preventDefault();
         const newCosmetic = { description, type, price };
@@ -72,12 +74,14 @@ function Cosmetics({ setCosmeticToEdit }) {
             alert('Please fill out all fields')
         }
     }
-
+	
+	// UPDATE function for cosmetics references routes/update.js requests
     const editCosmetic = async cosmeticToEdit => {
         setCosmeticToEdit(cosmeticToEdit)
         navigate('/edit-cosmetic')
     }
 
+	// Delete cosmetics via routes/destroy.js
     const deleteCosmetic = async id => {
         const response = await fetch(`/destroy/cosmetics/${id}`, { method: 'DELETE' });
         if (response.status === 200) {

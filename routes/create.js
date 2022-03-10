@@ -2,9 +2,7 @@ const express = require('express')
 const router = express.Router()
 const db = require('../dbcon')
 
-// I changed the way insertions are done for the db.query
-// and updated the error handling to match the examples from class
-
+// User INSERT request
 router.post('/users', (req, res) => {
 	
 	inserts = [req.body.first_name, req.body.last_name, req.body.screen_name, req.body.dob];
@@ -22,6 +20,8 @@ router.post('/users', (req, res) => {
       })
 })
 
+
+// AVATAR INSERT request
 router.post('/avatars', (req, res) => {
 	
   if (req.body.name && req.body.user_id) {
@@ -57,6 +57,7 @@ router.post('/avatars', (req, res) => {
   }
 })
 
+// Cosemtics INSERT request
 router.post('/cosmetics', (req, res) => {
 	
 	inserts = [req.body.description, req.body.type, req.body.price];
@@ -74,6 +75,7 @@ router.post('/cosmetics', (req, res) => {
   })
 })
 
+// Orders INSERT request
 router.post('/orders', (req, res) => {
 	
 	inserts = [req.body.order_date, req.body.total, req.body.status, req.body.user_id];
@@ -91,6 +93,7 @@ router.post('/orders', (req, res) => {
   })
 })
 
+// orders-cosmetics INSERT request
 router.post('/orders-cosmetics', (req, res) => {
 	
 	inserts = [req.body.order_id, req.body.cosmetic];
@@ -108,6 +111,7 @@ router.post('/orders-cosmetics', (req, res) => {
   })
 })
 
+// orders-cosmetics INSERT request for bulk 
 router.post('/orders-cosmetics-bulk', (req, res) => {
   const order_id = req.body.lastOrder
   const inputArr = req.body.components
@@ -127,6 +131,7 @@ router.post('/orders-cosmetics-bulk', (req, res) => {
   })
 })
 
+// users-cosmetics INSERT request for bulk
 router.post('/users-cosmetics-bulk', (req, res) => {
   const user_id = req.body.user_id
   const inputArr = req.body.components
@@ -145,6 +150,7 @@ router.post('/users-cosmetics-bulk', (req, res) => {
   })
 })
 
+// user-cosmetics INSERT request
 router.post('/users-cosmetics', (req, res) => {
 	
 	inserts = [req.body.user_id, req.body.cosmetic];

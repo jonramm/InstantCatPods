@@ -13,14 +13,15 @@ function OrderCosmetics() {
     const [order_id, setOrder] = useState('')
     const [cosmetic, setCosmetic] = useState('')
     const [orderCosmetics, setOrderCosmetics] = useState([])
-
+	
     const loadOrderCosmetics = async () => {
         // function for retrieving order cosmetics from db
         const response = await fetch('/retrieve/orders-cosmetics');
         const data = await response.json();
         setOrderCosmetics(data)
     }
-
+	
+	// Filter for order-cosmetics.  References routes/retrieve.js for requests
     const filterResults = async (e) => {
         e.preventDefault();
         const searchFilters = { order_id, asset_id: cosmetic }
@@ -38,7 +39,8 @@ function OrderCosmetics() {
             loadOrderCosmetics()
         }
     }
-
+	
+	// INSERT for orders-cosmetics.  References routes/create.js
     const createOrderCosmetic = async (e) => {
         e.preventDefault();
         const newOrderCosmetic = { order_id, cosmetic };
@@ -52,17 +54,16 @@ function OrderCosmetics() {
             });
             if (response.status === 200) {
                 alert('Successfully added the relationship!!')
-                // clearFields();
                 loadOrderCosmetics();
             } else {
                 alert(`Failed to add relationship, status code = ${response.status}.`)
-                // clearFields();
             }
         } else {
             alert('Please fill out all fields')
         }
     }
-
+	
+	// DELETE for orders-cosmetics.  References routes/destroy.js
     const deleteOrderCosmetic = async (order_id, asset_id) => {
         const response = await fetch(`/destroy/order-cosmetics/${order_id}/${asset_id}`, { method: 'DELETE' });
         if (response.status === 200) {

@@ -2,9 +2,8 @@ const express = require('express')
 const router = express.Router()
 const db = require('../dbcon')
 
-// I changed the way insertions are done for the db.query
-// and updated the error handling to match the examples from class
 
+// Users DELETE request
 router.delete('/users/:id', (req, res) => {
 	
 	inserts = [req.params.id];
@@ -20,6 +19,7 @@ router.delete('/users/:id', (req, res) => {
       })
 })
 
+// Avatars DELETE request
 router.delete('/avatars/:id', (req, res) => {
 	
 	inserts = [req.params.id];
@@ -35,6 +35,7 @@ router.delete('/avatars/:id', (req, res) => {
       })
 })
 
+// Cosmetics DELETE request
 router.delete('/cosmetics/:id', (req, res) => {
 	
 	inserts = [req.params.id];
@@ -50,6 +51,7 @@ router.delete('/cosmetics/:id', (req, res) => {
     })
 })
 
+// Orders DELETE request
 router.delete('/orders/:id', (req, res) => {
 	
 	inserts = [req.params.id];
@@ -65,6 +67,7 @@ router.delete('/orders/:id', (req, res) => {
     })
 })
 
+// Orders-Cosmetics DELETE request
 router.delete('/order-cosmetics/:order_id/:asset_id', (req, res) => {
 	
 	inserts = [req.params.order_id, req.params.asset_id];
@@ -80,6 +83,7 @@ router.delete('/order-cosmetics/:order_id/:asset_id', (req, res) => {
     })
 })
 
+// Users-Cosmetics DELETE request
 router.delete('/user-cosmetics/:user_id/:asset_id', (req, res) => {
 	
 	inserts = [req.params.user_id, req.params.asset_id];

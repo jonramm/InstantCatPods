@@ -13,7 +13,8 @@ function UserCosmetics() {
     const [user_id, setUser] = useState('')
     const [cosmetic, setCosmetic] = useState('')
     const [userCosmetics, setUserCosmetics] = useState([])
-
+	
+	// Filter for user-cosmetics.  References routes/retrieve.js for requests
     const filterResults = async (e) => {
         e.preventDefault();
         const searchFilters = { user_id, asset_id: cosmetic }
@@ -40,6 +41,7 @@ function UserCosmetics() {
         setUserCosmetics(data)
     }
 
+	// INSERT for users-cosmetics.  References routes/create.js
     const createUserCosmetic = async (e) => {
         e.preventDefault();
         const newUserCosmetic = { user_id, cosmetic };
@@ -66,6 +68,7 @@ function UserCosmetics() {
         }
     }
 
+	// DELETE for users-cosmetics.  References routes/destroy.js
     const deleteUserCosmetic = async (user_id, asset_id) => {
         const response = await fetch(`/destroy/user-cosmetics/${user_id}/${asset_id}`, { method: 'DELETE' });
         if (response.status === 200) {

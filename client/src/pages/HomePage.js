@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import homeIcon from '../images/homeicon.png'
 
+// Homepage with links to each main page.  
 function HomePage() {
 
     return (

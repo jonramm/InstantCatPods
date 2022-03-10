@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ordersIcon from '../images/ordersicon.png';
 import UserInputOptions from "../components/UserInputOptions";
 
+// Completes the process of editing Orders table.  References routes/update.js requests
 function EditOrder({ orderToEdit }) {
 
     const [order_date, setOrderDate] = useState(orderToEdit.order_date)

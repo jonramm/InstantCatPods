@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import avatarsIcon from '../images/avatarsicon.png';
 import UserInputOptions from "../components/UserInputOptions";
 
+// Completes the process of editing avatars table.  References routes/update.js requests
 function EditAvatar( {avatarToEdit} ) {
 
     const [name, setName] = useState(avatarToEdit.name)
