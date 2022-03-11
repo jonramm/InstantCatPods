@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import ordersIcon from '../images/ordersicon.png';
+import ordersIcon from '../images/orderdetailsicon.png';
 
 // Views individual orders in more detail via the "View" button. 
 function ViewOrder({ orderToView }) {
